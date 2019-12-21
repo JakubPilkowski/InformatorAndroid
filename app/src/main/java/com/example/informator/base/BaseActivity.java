@@ -24,6 +24,7 @@ public abstract class BaseActivity<B extends ViewDataBinding, VM extends BaseVie
         super.onCreate(savedInstanceState);
         navigator.setActivity(this);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().hide();
         binding = DataBindingUtil.setContentView(this, getLayoutRes());
         viewModel = ViewModelProviders.of(this).get(getViewModel());
         initActivity(binding);
