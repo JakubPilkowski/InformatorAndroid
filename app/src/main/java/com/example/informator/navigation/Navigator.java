@@ -9,7 +9,7 @@ public class Navigator {
         this.activity = activity;
     }
 
-    public void showRozklad(){
+    public void showNoticeBoard(){
 //        activity.getSupportFragmentManager()
 //                .beginTransaction()
 //                .addToBackStack()

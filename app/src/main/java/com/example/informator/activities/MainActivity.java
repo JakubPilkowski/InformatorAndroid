@@ -1,8 +1,10 @@
-package com.example.informator;
+package com.example.informator.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.informator.R;
 
 public class MainActivity extends AppCompatActivity {
 
