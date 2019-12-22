@@ -23,7 +23,8 @@ public abstract class BaseActivity<B extends ViewDataBinding, VM extends BaseVie
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         navigator.setActivity(this);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+//        getSupportActionBar().setDisplayShowTitleEnabled(false);
+//        getSupportActionBar().hide();
         binding = DataBindingUtil.setContentView(this, getLayoutRes());
         viewModel = ViewModelProviders.of(this).get(getViewModel());
         initActivity(binding);
@@ -34,7 +35,7 @@ public abstract class BaseActivity<B extends ViewDataBinding, VM extends BaseVie
 
     @Override
     public void onBackPressed() {
-        if(getSupportFragmentManager().getBackStackEntryCount()==1)
+        if(getSupportFragmentManager().getBackStackEntryCount()<=1)
             finish();
         else {
             BaseFragment fragment = (BaseFragment) getCurrentFragment();

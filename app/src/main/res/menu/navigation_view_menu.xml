@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/menu_timetable"
+            android:title="@string/timetable"
+            android:icon="@drawable/ic_rozkladjazdy"/>
+        <item
+            android:id="@+id/menu_weather"
+            android:title="@string/weather"
+            android:icon="@drawable/ic_pogoda"/>
+        <item
+            android:id="@+id/menu_events"
+            android:title="@string/events"
+            android:icon="@drawable/ic_wydarzenia"/>
+        <item
+            android:id="@+id/menu_offers"
+            android:title="@string/offers"
+            android:icon="@drawable/ic_oferty"/>
+        <item
+            android:id="@+id/menu_notice_board"
+            android:title="@string/notice_board"
+            android:icon="@drawable/ic_tablicaogloszen"/>
+        <item
+            android:id="@+id/menu_offices"
+            android:title="@string/offices"
+            android:icon="@drawable/ic_urzedy"/>
+    </group>
+
+</menu>
