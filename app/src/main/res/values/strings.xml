@@ -10,4 +10,6 @@
     <string name="offers">Oferty</string>
     <string name="notice_board">Tablica ogłoszeń</string>
     <string name="offices">Urzędy</string>
+    <string name="post_offices">Urzędy pocztowe</string>
+    <string name="government_offcies">Urzędy państwowe</string>
 </resources>
