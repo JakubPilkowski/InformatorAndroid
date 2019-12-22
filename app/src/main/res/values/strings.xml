@@ -4,4 +4,10 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="menu_title">Menu Główne</string>
+    <string name="timetable">Rozkład jazdy</string>
+    <string name="weather">Pogoda</string>
+    <string name="events">Wydarzenia</string>
+    <string name="offers">Oferty</string>
+    <string name="notice_board">Tablica ogłoszeń</string>
+    <string name="offices">Urzędy</string>
 </resources>
