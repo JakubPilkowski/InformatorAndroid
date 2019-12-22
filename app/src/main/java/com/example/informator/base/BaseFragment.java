@@ -54,4 +54,5 @@ public abstract class BaseFragment<B extends ViewDataBinding, VM extends BaseVie
     public abstract int getBackPressType();
     // 0 - cofnij o jeden
     // 1 - cofnij do menu głównego
+
 }
