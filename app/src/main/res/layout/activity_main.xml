@@ -11,16 +11,10 @@
         tools:context=".activities.MainActivity"
         tools:openDrawer="start">
 
-        <LinearLayout
+        <include
+            layout="@layout/main_content"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="?attr/actionBarSize">
-
-            <FrameLayout
-                android:id="@+id/main_container"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </LinearLayout>
+            android:layout_height="match_parent" />
 
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/nav_view"
@@ -28,10 +22,8 @@
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:fitsSystemWindows="true"
-            android:textAlignment="textStart"
             app:headerLayout="@layout/navigation_view_header"
-            app:itemTextColor="@color/colorPrimary"
-            app:menu="@menu/navigation_view_menu"/>
+            app:menu="@menu/navigation_view_menu" />
     </androidx.drawerlayout.widget.DrawerLayout>
 
     <data>

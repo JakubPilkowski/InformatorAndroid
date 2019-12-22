@@ -7,6 +7,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.informator.R;
@@ -24,6 +25,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainActivity
     protected void initActivity(ActivityMainBinding binding) {
         binding.setViewModel(viewModel);
 //        viewModel.setProviders(this);
+
         navigationView = findViewById(R.id.nav_view);
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView.setNavigationItemSelectedListener(this);
@@ -42,6 +44,12 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainActivity
     @Override
     public int getLayoutRes() {
         return R.layout.activity_main;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.navigation_view_menu,menu);
+        return true;
     }
 
     @Override
