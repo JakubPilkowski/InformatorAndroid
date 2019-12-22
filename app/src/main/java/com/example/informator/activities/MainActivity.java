@@ -24,7 +24,6 @@ import com.google.android.material.navigation.NavigationView;
 public class MainActivity extends BaseActivity<ActivityMainBinding, MainActivityViewModel> implements NavigationView.OnNavigationItemSelectedListener, Providers {
 
     DrawerLayout drawerLayout;
-    ActionBarDrawerToggle toggle;
     NavigationView navigationView;
 
     @Override
