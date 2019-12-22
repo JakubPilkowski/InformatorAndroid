@@ -1,6 +1,11 @@
 package com.example.informator.navigation;
 
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.example.informator.R;
+import com.example.informator.ui.home.HomeFragment;
 
 public class Navigator {
     FragmentActivity activity;
@@ -58,4 +63,12 @@ public class Navigator {
 //                .commit();
     }
 
+    public void showHome() {
+        activity.getSupportFragmentManager()
+                .beginTransaction()
+                .addToBackStack(HomeFragment.TAG)
+                .replace(R.id.main_container, HomeFragment.newInstance(), HomeFragment.TAG)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                .commit();
+    }
 }
