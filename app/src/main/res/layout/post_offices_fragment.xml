@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.offices.post_offices.PostOfficesFragment">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/post_offices_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:nestedScrollingEnabled="false"
+        android:overScrollMode="never"
+        app:recyclerViewAdapter="@{viewModel.adapter}"
+        app:layout_manager="@{context}"
+        />
+<data>
+    <variable
+        name="viewModel"
+        type="com.example.informator.ui.offices.post_offices.PostOfficesViewModel" />
+</data>
+</layout>
