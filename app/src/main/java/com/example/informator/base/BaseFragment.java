@@ -2,8 +2,6 @@ package com.example.informator.base;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -15,6 +13,8 @@ import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.informator.R;
+import com.example.informator.activities.MainActivity;
 import com.example.informator.interfaces.Providers;
 
 public abstract class BaseFragment<B extends ViewDataBinding, VM extends BaseViewModel> extends Fragment implements Providers {
@@ -25,6 +25,7 @@ public abstract class BaseFragment<B extends ViewDataBinding, VM extends BaseVie
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater,getLayoutRes(),container,false);
         viewModel = ViewModelProviders.of(this).get(getViewModelClass());
+        ((MainActivity)getActivity()).refreshToolbar();
         bindData(binding);
         return binding.getRoot();
     }
@@ -35,11 +36,19 @@ public abstract class BaseFragment<B extends ViewDataBinding, VM extends BaseVie
         setHasOptionsMenu(true);
     }
 
-    @Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        ((BaseActivity) getActivity()).refreshToolbar();
-    }
+//    @Override
+//    public void onCrOptionsMenu(@NonNull Menu menu) {
+//        menu.clear();
+//        Log.d("halo", "onCreateOptionsMenu: ");
+//        ((MainActivity) getActivity()).refreshToolbar();
+//    }
+
+//    @Override
+//    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+//        super.onCreateOptionsMenu(menu, inflater);
+//        Log.d("halo", "onCreateOptionsMenu: ");
+////        ((MainActivity) getActivity()).refreshToolbar();
+//    }
 
     @LayoutRes
     public abstract int getLayoutRes();
@@ -50,9 +59,21 @@ public abstract class BaseFragment<B extends ViewDataBinding, VM extends BaseVie
 
     public abstract int getToolbarType();
     // 0 - brak toolbara
-    // 1 - toolbar
+    // 1 - toolbar główny (białe tło, czarna zawartość)
+    // 2 - toolbar poboczny (czarne tło, biała zawartość)
+    // 3 - toolbar niestandardowy (możliwe że potrzebny do pogody)
+
     public abstract int getBackPressType();
     // 0 - cofnij o jeden
     // 1 - cofnij do menu głównego
+
+    public int getWhiteBurger(){
+        return R.drawable.ic_burger_bialy;
+    }
+    public int getBlackBurger(){
+        return R.drawable.ic_burger_ciemny;
+    }
+    public abstract String getToolbarName();
+    public abstract float getToolbarFontSize();
 
 }

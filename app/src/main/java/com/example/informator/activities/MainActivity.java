@@ -10,8 +10,11 @@ import androidx.fragment.app.Fragment;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.example.informator.R;
 import com.example.informator.base.BaseActivity;
@@ -53,13 +56,21 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.navigation_view_menu,menu);
+        navigationView.getMenu().clear();
+        navigationView.inflateMenu(R.menu.navigation_view_menu);
         return true;
     }
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        drawerLayout.closeDrawer(GravityCompat.START);
+        refreshToolbar();
+    }
+
+    @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.menu_timetable:
                 navigator.showTimetable();
                 break;
@@ -84,6 +95,13 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainActivity
     }
 
     @Override
+    public boolean onSupportNavigateUp() {
+        if (getCurrentFragment().getToolbarType() != 0) {
+            drawerLayout.openDrawer(GravityCompat.START);
+        }return true;
+    }
+
+    @Override
     public Activity getActivity() {
         return this;
     }
@@ -100,7 +118,11 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainActivity
 
     @Override
     public ViewDataBinding getFragmentBinding() {
-        BaseFragment fragment = (BaseFragment) getCurrentFragment();
+        BaseFragment fragment = getCurrentFragment();
         return fragment.binding;
+    }
+
+    public void refreshToolbar() {
+        viewModel.refreshToolbar();
     }
 }
