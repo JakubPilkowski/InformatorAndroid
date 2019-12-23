@@ -6,7 +6,6 @@ import com.example.informator.R;
 import com.example.informator.activities.MainActivity;
 import com.example.informator.base.BaseFragment;
 import com.example.informator.databinding.HomeFragmentBinding;
-import com.example.informator.interfaces.Providers;
 import com.example.informator.navigation.Navigator;
 
 public class HomeFragment extends BaseFragment<HomeFragmentBinding, HomeViewModel>{
@@ -43,6 +42,16 @@ public class HomeFragment extends BaseFragment<HomeFragmentBinding, HomeViewMode
     @Override
     public int getBackPressType() {
         return 0;
+    }
+
+    @Override
+    public String getToolbarName() {
+        return "costam";
+    }
+
+    @Override
+    public float getToolbarFontSize() {
+        return 24;
     }
 
 

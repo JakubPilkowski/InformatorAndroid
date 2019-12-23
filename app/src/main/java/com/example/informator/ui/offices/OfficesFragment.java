@@ -44,6 +44,16 @@ public class OfficesFragment extends BaseFragment<OfficesFragmentBinding,Offices
     }
 
     @Override
+    public String getToolbarName() {
+        return "Urzędy";
+    }
+
+    @Override
+    public float getToolbarFontSize() {
+        return 24;
+    }
+
+    @Override
     public Navigator getNavigator() {
         return ((MainActivity)getActivity()).navigator;
     }

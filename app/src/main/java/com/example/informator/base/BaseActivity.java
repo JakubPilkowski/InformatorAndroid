@@ -29,8 +29,8 @@ public abstract class BaseActivity<B extends ViewDataBinding, VM extends BaseVie
         viewModel = ViewModelProviders.of(this).get(getViewModel());
         initActivity(binding);
     }
-    public Fragment getCurrentFragment(){
-        return getSupportFragmentManager().findFragmentById(getIdFragmentContainer());
+    public BaseFragment getCurrentFragment(){
+        return (BaseFragment) getSupportFragmentManager().findFragmentById(getIdFragmentContainer());
     }
 
     @Override
@@ -38,7 +38,7 @@ public abstract class BaseActivity<B extends ViewDataBinding, VM extends BaseVie
         if(getSupportFragmentManager().getBackStackEntryCount()<=1)
             finish();
         else {
-            BaseFragment fragment = (BaseFragment) getCurrentFragment();
+            BaseFragment fragment = getCurrentFragment();
             switch (fragment.getBackPressType()){
                 case 0:
                     super.onBackPressed();
@@ -47,18 +47,6 @@ public abstract class BaseActivity<B extends ViewDataBinding, VM extends BaseVie
                     navigator.clearBackStack();
                     navigator.showHome();
                     break;
-            }
-        }
-    }
-
-    public void refreshToolbar(){
-        Fragment fragment = getCurrentFragment();
-        if (fragment instanceof BaseFragment){
-            if (((BaseFragment) fragment).getToolbarType()==0){
-                getSupportActionBar().hide();
-            }
-            else {
-                getSupportActionBar().show();
             }
         }
     }
