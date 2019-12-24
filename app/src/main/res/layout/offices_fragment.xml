@@ -29,6 +29,7 @@
                 android:textSize="19sp"
                 android:fontFamily="@font/montserrat"
                 android:text="@string/post_offices"
+                android:onClick="@{() -> ViewModel.onPostOfficesClick()}"
                 android:textAllCaps="false"
                 android:textColor="@color/colorWhite"
                 />
@@ -53,6 +54,7 @@
                 android:textSize="19sp"
                 android:fontFamily="@font/montserrat"
                 android:text="@string/government_offcies"
+                android:onClick="@{() -> ViewModel.onGovernmentOfficesClick()}"
                 android:textAllCaps="false"
                 android:textColor="@color/colorWhite"
                 />

@@ -30,6 +30,7 @@ public class OfficesFragment extends BaseFragment<OfficesFragmentBinding,Offices
     @Override
     public void bindData(OfficesFragmentBinding binding) {
         binding.setViewModel(viewModel);
+        viewModel.setProviders(this);
         viewModel.init();
     }
 
@@ -55,7 +56,7 @@ public class OfficesFragment extends BaseFragment<OfficesFragmentBinding,Offices
 
     @Override
     public Navigator getNavigator() {
-        return ((MainActivity)getActivity()).navigator;
+        return ((MainActivity)getActivity()).getNavigator();
     }
 
     @Override

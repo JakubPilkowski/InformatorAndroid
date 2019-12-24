@@ -55,8 +55,8 @@ public class MainActivityViewModel extends BaseViewModel {
                 activity.getSupportActionBar().setHomeAsUpIndicator(fragment.getWhiteBurger());
                 title.set(fragment.getToolbarName());
                 background.set(fragment.getContext().getDrawable(R.drawable.black_background));
-                textSize.set(fragment.getToolbarFontSize());
-                textColor.set(ContextCompat.getColor(fragment.getContext(),R.color.colorBlack));
+                textSize.set(TextHelper.getPixels(TypedValue.COMPLEX_UNIT_SP,fragment.getToolbarFontSize()));
+                textColor.set(ContextCompat.getColor(fragment.getContext(),R.color.colorWhite));
                 visibility.set(View.VISIBLE);
                 break;
             case 3:

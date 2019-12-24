@@ -30,7 +30,7 @@ public class PostOfficesFragment extends BaseFragment<PostOfficesFragmentBinding
 
     @Override
     public int getLayoutRes() {
-        return R.layout.offices_fragment;
+        return R.layout.post_offices_fragment;
     }
 
     @Override
