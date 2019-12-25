@@ -8,4 +8,8 @@
     <color name="colorBlackLight">#333333</color>
     <color name="colorGradientStart">#FF9200</color>
     <color name="colorGradientEnd">#EB577B</color>
+    <color name="colorGray">#EEEEEE</color>
+    <color name="colorTextBlack">#4F4F4F</color>
+    <color name="colorTextGray">#828282</color>
+
 </resources>

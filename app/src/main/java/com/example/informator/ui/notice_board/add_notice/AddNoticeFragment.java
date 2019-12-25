@@ -1,46 +1,39 @@
-package com.example.informator.ui.notice_board;
+package com.example.informator.ui.notice_board.add_notice;
+
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.SeekBar;
 
 import androidx.databinding.ViewDataBinding;
-import androidx.lifecycle.ViewModelProviders;
-
-import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.example.informator.R;
 import com.example.informator.activities.MainActivity;
 import com.example.informator.base.BaseFragment;
-import com.example.informator.databinding.NoticeBoardFragmentBinding;
+import com.example.informator.databinding.AddNoticeFragmentBinding;
 import com.example.informator.interfaces.Providers;
 import com.example.informator.navigation.Navigator;
 
-public class NoticeBoardFragment extends BaseFragment<NoticeBoardFragmentBinding, NoticeBoardViewModel> implements Providers {
+public class AddNoticeFragment extends BaseFragment<AddNoticeFragmentBinding, AddNoticeViewModel> implements Providers {
+    public static final String TAG = "AddNoticeFragment";
 
-
-    public static final String TAG = "NoticeBoardFragment";
-    public static NoticeBoardFragment newInstance() {
-        return new NoticeBoardFragment();
+    public static AddNoticeFragment newInstance() {
+        return new AddNoticeFragment();
     }
 
 
     @Override
     public int getLayoutRes() {
-        return R.layout.notice_board_fragment;
+        return R.layout.add_notice_fragment;
     }
 
     @Override
-    public Class<NoticeBoardViewModel> getViewModelClass() {
-        return NoticeBoardViewModel.class;
+    public Class<AddNoticeViewModel> getViewModelClass() {
+        return AddNoticeViewModel.class;
     }
 
     @Override
-    public void bindData(NoticeBoardFragmentBinding binding) {
+    public void bindData(AddNoticeFragmentBinding binding) {
         binding.setViewModel(viewModel);
         viewModel.setProviders(this);
         viewModel.init();
@@ -48,23 +41,24 @@ public class NoticeBoardFragment extends BaseFragment<NoticeBoardFragmentBinding
 
     @Override
     public int getToolbarType() {
-        return 1;
+        return 2;
     }
 
     @Override
     public int getBackPressType() {
-        return 1;
+        return 0;
     }
 
     @Override
     public String getToolbarName() {
-        return "Tablica Ogłoszeń";
+        return getContext().getString(R.string.add_notice);
     }
 
     @Override
     public float getToolbarFontSize() {
-        return 19;
+        return 18;
     }
+
     @Override
     public Navigator getNavigator() {
         return ((MainActivity)getActivity()).navigator;

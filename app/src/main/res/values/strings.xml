@@ -15,5 +15,12 @@
     <string name="phone">Telefon</string>
     <string name="postal_code">Kod pocztowy</string>
     <string name="opening_hours">Godziny otwarcia</string>
-    <string name="add_offer">Dodaj ofertę</string>
+    <string name="add_notice">Dodaj ofertę</string>
+    <string name="notice_title">Tytuł oferty</string>
+    <string name="price">Cena</string>
+    <string name="description">Opis</string>
+    <string name="photos">Zdjęcia</string>
+    <string name="add_photos">Kliknij, aby dodać zdjęcia</string>
+    <string name="publish_notice">Opublikuj ofertę</string>
+    <string name="cancel">Anuluj</string>
 </resources>

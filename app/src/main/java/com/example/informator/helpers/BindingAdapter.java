@@ -2,19 +2,24 @@ package com.example.informator.helpers;
 
 
 import android.content.Context;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
+import android.widget.EditText;
 import android.widget.ImageView;
 
+import androidx.databinding.ViewDataBinding;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.informator.R;
+import com.example.informator.databinding.AddNoticeFragmentBinding;
 
 public class BindingAdapter {
 
@@ -93,5 +98,39 @@ public class BindingAdapter {
             case -1:
                 break;
         }
+    }
+    @androidx.databinding.BindingAdapter("onTextChanged")
+    public static void onTextChangedListener(final EditText editText, ViewDataBinding binding){
+        final AddNoticeFragmentBinding viewBinding = (AddNoticeFragmentBinding) binding;
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//                String lettersAmount = String.valueOf(count);
+                String lettersAmount = String.valueOf(editText.getText().length());
+                switch ((String) editText.getTag()) {
+                    case "TitleTag":
+                        lettersAmount += "/30";
+                        viewBinding.titleLetterLength.setText(lettersAmount);
+                        break;
+                    case "PriceTag":
+                        lettersAmount += "/30";
+                        viewBinding.priceLetterLength.setText(lettersAmount);
+                        break;
+                    case "DescriptionTag":
+                        lettersAmount += "/1000";
+                        viewBinding.descLetterLength.setText(lettersAmount);
+                        break;
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 }
