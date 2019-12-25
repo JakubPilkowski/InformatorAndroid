@@ -31,6 +31,6 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.informator.adapters.SingleOpeningHourViewModel" />
+            type="com.example.informator.adapters.offices.SingleOpeningHourViewModel" />
     </data>
 </layout>

@@ -1,16 +1,13 @@
 package com.example.informator.ui.offices.post_offices;
 
 import androidx.databinding.ObservableField;
-import androidx.lifecycle.ViewModel;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.informator.adapters.PostOfficesListAdapter;
+import com.example.informator.adapters.offices.PostOfficesListAdapter;
 import com.example.informator.base.BaseViewModel;
 import com.example.informator.models.PostOffice;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 

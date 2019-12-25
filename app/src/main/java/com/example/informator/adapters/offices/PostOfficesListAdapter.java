@@ -1,4 +1,4 @@
-package com.example.informator.adapters;
+package com.example.informator.adapters.offices;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,7 +17,6 @@ import com.example.informator.databinding.SinglePostOfficeBinding;
 import com.example.informator.models.PostOffice;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 

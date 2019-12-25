@@ -1,5 +1,6 @@
 package com.example.informator.ui.notice_board;
 
+import androidx.databinding.ViewDataBinding;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
@@ -13,26 +14,69 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.informator.R;
+import com.example.informator.base.BaseFragment;
+import com.example.informator.databinding.NoticeBoardFragmentBinding;
+import com.example.informator.interfaces.Providers;
+import com.example.informator.navigation.Navigator;
 
-public class NoticeBoardFragment extends Fragment {
+public class NoticeBoardFragment extends BaseFragment<NoticeBoardFragmentBinding, NoticeBoardViewModel> implements Providers {
 
-    private NoticeBoardViewModel mViewModel;
 
+    public static final String TAG = "NoticeBoardFragment";
     public static NoticeBoardFragment newInstance() {
         return new NoticeBoardFragment();
     }
 
+
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.notice_board_fragment, container, false);
+    public int getLayoutRes() {
+        return R.layout.notice_board_fragment;
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(NoticeBoardViewModel.class);
-        // TODO: Use the ViewModel
+    public Class<NoticeBoardViewModel> getViewModelClass() {
+        return NoticeBoardViewModel.class;
     }
 
+    @Override
+    public void bindData(NoticeBoardFragmentBinding binding) {
+        binding.setViewModel(viewModel);
+        viewModel.setProviders(this);
+        viewModel.init();
+    }
+
+    @Override
+    public int getToolbarType() {
+        return 1;
+    }
+
+    @Override
+    public int getBackPressType() {
+        return 1;
+    }
+
+    @Override
+    public String getToolbarName() {
+        return "Tablica Ogłoszeń";
+    }
+
+    @Override
+    public float getToolbarFontSize() {
+        return 19;
+    }
+
+    @Override
+    public Navigator getNavigator() {
+        return null;
+    }
+
+    @Override
+    public ViewDataBinding getBinding() {
+        return null;
+    }
+
+    @Override
+    public ViewDataBinding getFragmentBinding() {
+        return null;
+    }
 }
