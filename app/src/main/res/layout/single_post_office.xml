@@ -167,6 +167,6 @@
 
         <variable
             name="viewModel"
-            type="com.example.informator.adapters.PostOfficesAdapterViewModel" />
+            type="com.example.informator.adapters.offices.PostOfficesAdapterViewModel" />
     </data>
 </layout>

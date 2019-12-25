@@ -1,4 +1,4 @@
-package com.example.informator.adapters;
+package com.example.informator.adapters.offices;
 
 import androidx.databinding.ObservableField;
 import androidx.lifecycle.ViewModel;

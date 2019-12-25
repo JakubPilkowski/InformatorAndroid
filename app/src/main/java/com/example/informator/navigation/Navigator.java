@@ -7,7 +7,9 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.informator.R;
 import com.example.informator.databinding.OfficesFragmentBinding;
+import com.example.informator.models.Notice;
 import com.example.informator.ui.home.HomeFragment;
+import com.example.informator.ui.notice_board.NoticeBoardFragment;
 import com.example.informator.ui.offices.OfficesFragment;
 import com.example.informator.ui.offices.post_offices.PostOfficesFragment;
 
@@ -23,12 +25,12 @@ public class Navigator {
     }
 
     public void showNoticeBoard() {
-//        activity.getSupportFragmentManager()
-//                .beginTransaction()
-//                .addToBackStack()
-//                .replace()
-//                .setTransition()
-//                .commit();
+        activity.getSupportFragmentManager()
+                .beginTransaction()
+                .addToBackStack(NoticeBoardFragment.TAG)
+                .replace(R.id.main_container, NoticeBoardFragment.newInstance(),NoticeBoardFragment.TAG)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                .commit();
     }
 
     public void showWeather() {
