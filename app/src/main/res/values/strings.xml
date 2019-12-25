@@ -12,4 +12,7 @@
     <string name="offices">Urzędy</string>
     <string name="post_offices">Urzędy pocztowe</string>
     <string name="government_offcies">Urzędy państwowe</string>
+    <string name="phone">Telefon</string>
+    <string name="postal_code">Kod pocztowy</string>
+    <string name="opening_hours">Godziny otwarcia</string>
 </resources>

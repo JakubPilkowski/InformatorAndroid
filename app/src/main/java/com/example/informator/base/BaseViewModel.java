@@ -16,10 +16,10 @@ public abstract class BaseViewModel extends ViewModel {
         this.providers = providers;
     }
 
-    public Activity getActivity() {
+    protected Activity getActivity() {
         return providers.getActivity();
     }
-    public Navigator getNavigator(){
+    protected Navigator getNavigator(){
         return providers.getNavigator();
     }
     public ViewDataBinding getBinding(){
