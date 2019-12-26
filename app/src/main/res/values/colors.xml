@@ -11,5 +11,5 @@
     <color name="colorGray">#EEEEEE</color>
     <color name="colorTextBlack">#4F4F4F</color>
     <color name="colorTextGray">#828282</color>
-
+    <color name="colorNoticeDescGray">#555555</color>
 </resources>
