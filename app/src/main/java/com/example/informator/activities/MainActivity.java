@@ -125,7 +125,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainActivity
     }
 
     @Override
-    public ViewDataBinding getFragmentBinding() {
+    public ViewDataBinding getActivityOrFragmentBinding() {
         BaseFragment fragment = getCurrentFragment();
         return fragment.binding;
     }

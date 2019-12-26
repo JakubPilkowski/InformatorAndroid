@@ -70,7 +70,7 @@ public class AddNoticeFragment extends BaseFragment<AddNoticeFragmentBinding, Ad
     }
 
     @Override
-    public ViewDataBinding getFragmentBinding() {
+    public ViewDataBinding getActivityOrFragmentBinding() {
         return ((MainActivity)getActivity()).binding;
     }
 }

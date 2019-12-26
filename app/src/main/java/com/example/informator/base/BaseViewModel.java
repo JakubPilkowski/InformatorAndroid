@@ -1,7 +1,6 @@
 package com.example.informator.base;
 
 import android.app.Activity;
-import android.view.View;
 
 import androidx.databinding.ViewDataBinding;
 import androidx.lifecycle.ViewModel;
@@ -25,7 +24,8 @@ public abstract class BaseViewModel extends ViewModel {
     public ViewDataBinding getBinding(){
         return providers.getBinding();
     }
+    public BaseFragment getFragment(){return providers.getFragment();}
     public ViewDataBinding getFragmentBinding(){
-        return providers.getFragmentBinding();
+        return providers.getActivityOrFragmentBinding();
     }
 }

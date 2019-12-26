@@ -47,7 +47,7 @@ public class WeatherFragment extends BaseFragment<WeatherFragmentBinding, Weathe
 
     @Override
     public int getToolbarType() {
-        return 3;
+        return 0;
     }
 
     @Override
@@ -76,7 +76,7 @@ public class WeatherFragment extends BaseFragment<WeatherFragmentBinding, Weathe
     }
 
     @Override
-    public ViewDataBinding getFragmentBinding() {
+    public ViewDataBinding getActivityOrFragmentBinding() {
         return null;
     }
 }
