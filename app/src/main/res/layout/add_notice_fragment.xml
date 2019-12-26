@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="vertical"
+    android:scrollbarThumbVertical="@drawable/veritacal_main_gradient"
+    android:overScrollMode="never"
+    >
+    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:context=".ui.notice_board.add_notice.AddNoticeFragment">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:weightSum="11"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_tytul" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="9"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/notice_title"
+                android:textColor="@color/colorTextBlack"
+                android:textSize="24sp" />
+            <TextView
+                android:id="@+id/title_letter_length"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:textAlignment="textEnd"
+                android:layout_gravity="bottom"
+                android:textSize="12sp"
+                android:text="0/30"
+                android:textColor="@color/colorGradientEnd"
+                android:fontFamily="@font/montserrat"
+                />
+
+        </LinearLayout>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginStart="12dp"
+            android:tag="TitleTag"
+            android:layout_marginEnd="12dp"
+            android:textAlignment="center"
+            android:background="@drawable/gradient_bottom_border_background"
+            android:fontFamily="@font/montserrat"
+            android:inputType="text"
+            android:maxLines="1"
+            app:onTextChanged="@{viewModel.binding}"
+            android:textColor="@color/colorTextBlack"
+            android:textSize="18sp"
+            android:maxLength="30"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:weightSum="11"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_cena" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="9"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/price"
+                android:textColor="@color/colorTextBlack"
+                android:textSize="24sp" />
+            <TextView
+                android:id="@+id/price_letter_length"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:textAlignment="textEnd"
+                android:layout_gravity="bottom"
+                android:text="0/30"
+                android:textSize="12sp"
+                android:textColor="@color/colorGradientEnd"
+                android:fontFamily="@font/montserrat"
+                />
+
+        </LinearLayout>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:tag="PriceTag"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/gradient_bottom_border_background"
+            android:fontFamily="@font/montserrat"
+            android:maxLines="1"
+            android:textAlignment="center"
+            android:inputType="text"
+            app:onTextChanged="@{viewModel.binding}"
+            android:maxLength="30"
+            android:textColor="@color/colorTextBlack"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:weightSum="12"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_opis" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="9"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/description"
+                android:textColor="@color/colorTextBlack"
+                android:textSize="24sp" />
+            <TextView
+                android:id="@+id/desc_letter_length"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:textAlignment="textEnd"
+                android:layout_gravity="bottom"
+                android:text="0/1000"
+                android:textSize="12sp"
+                android:textColor="@color/colorGradientEnd"
+                android:fontFamily="@font/montserrat"
+                />
+
+        </LinearLayout>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:tag="DescriptionTag"
+            android:padding="2dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/gradient_bottom_border_background"
+            android:fontFamily="@font/montserrat"
+            android:textColor="@color/colorTextBlack"
+            app:onTextChanged="@{viewModel.binding}"
+            android:gravity="top|start"
+            android:maxLength="1000"
+            android:textSize="18sp"
+            android:inputType="textMultiLine"
+            android:scrollbars="none"
+            android:minLines="5"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_zdjecia" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/photos"
+                android:textColor="@color/colorTextBlack"
+                android:textSize="24sp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="42dp"
+            android:orientation="horizontal">
+            <Button
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:onClick="@{() -> viewModel.onAddPhoto()}"
+                android:background="@drawable/add_with_background" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="@string/add_photos"
+                android:textColor="@color/colorTextGray"
+                android:textSize="18sp"
+                android:fontFamily="@font/montserrat"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:weightSum="10"
+            android:orientation="horizontal">
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:textAllCaps="false"
+                android:text="@string/cancel"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp"
+                android:onClick="@{() -> viewModel.onCancel()}"
+                android:fontFamily="@font/montserrat"
+                android:background="@color/colorBlackLight" />
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="7"
+                android:background="@drawable/horizontal_main_gradient"
+                android:text="@string/publish_notice"
+                android:textAllCaps="false"
+                android:onClick="@{() -> viewModel.onPublishOffer()}"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp"
+                android:fontFamily="@font/montserrat"
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.informator.ui.notice_board.add_notice.AddNoticeViewModel" />
+    </data>
+</layout>

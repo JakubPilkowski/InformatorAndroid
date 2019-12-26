@@ -14,6 +14,6 @@ public class NoticeBoardHeaderAdapterViewModel extends BaseAdapterViewModel {
 
     }
     public void onAddClick(){
-
+        navigator.addNotice();
     }
 }
