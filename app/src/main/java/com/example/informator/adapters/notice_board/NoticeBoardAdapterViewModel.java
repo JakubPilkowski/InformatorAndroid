@@ -24,7 +24,7 @@ public class NoticeBoardAdapterViewModel extends BaseAdapterViewModel {
     }
 
     public void onDetailsClick(){
-
+        navigator.showNoticeDetails(notice);
     }
 
 }

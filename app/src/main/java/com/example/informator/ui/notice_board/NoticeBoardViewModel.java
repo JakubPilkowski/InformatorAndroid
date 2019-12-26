@@ -24,7 +24,7 @@ public class NoticeBoardViewModel extends BaseViewModel {
         adapter.set(noticeBoardAdapter);
         List<Notice>notices = new ArrayList<>();
         LocalDate date = LocalDate.now();
-        Log.d("data", String.valueOf(date));
+        Log.d("local_data", String.valueOf(date));
         notices.add(new Notice("Placki","5500 zł","https://d3iamf8ydd24h9.cloudfront.net/pictures/articles/2019/03/412525-v-1000x1000.jpg",new ArrayList<String>(),"Takie tam placki na sprzedaż", date));
         notices.add(new Notice("GTR Sashy!!!","Za darmo!!!","https://apollo-ireland.akamaized.net/v1/files/eyJmbiI6InVwMWNieDc5dWc3NS1PVE9NT1RPUEwifQ.NDfu13FCMsXLxaMwAsdNQfmUHnBSHx7hy2ocvAq_nCA/image;s=1080x720;cars_;/857660195_;slot=4;filename=eyJmbiI6InVwMWNieDc5dWc3NS1PVE9NT1RPUEwifQ.NDfu13FCMsXLxaMwAsdNQfmUHnBSHx7hy2ocvAq+nCA_rev001.jpg",new ArrayList<String>(),"GTR do oddania, nie chce tego ścierwa",date));
         notices.add(new Notice("GTR Sashy!!!","Za darmo!!!","https://apollo-ireland.akamaized.net/v1/files/eyJmbiI6InVwMWNieDc5dWc3NS1PVE9NT1RPUEwifQ.NDfu13FCMsXLxaMwAsdNQfmUHnBSHx7hy2ocvAq_nCA/image;s=1080x720;cars_;/857660195_;slot=4;filename=eyJmbiI6InVwMWNieDc5dWc3NS1PVE9NT1RPUEwifQ.NDfu13FCMsXLxaMwAsdNQfmUHnBSHx7hy2ocvAq+nCA_rev001.jpg",new ArrayList<String>(),"GTR do oddania, nie chce tego ścierwa",date));

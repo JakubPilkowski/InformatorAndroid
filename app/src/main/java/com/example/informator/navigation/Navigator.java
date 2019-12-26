@@ -11,6 +11,7 @@ import com.example.informator.models.Notice;
 import com.example.informator.ui.home.HomeFragment;
 import com.example.informator.ui.notice_board.NoticeBoardFragment;
 import com.example.informator.ui.notice_board.add_notice.AddNoticeFragment;
+import com.example.informator.ui.notice_board.notice_details.NoticeDetailsFragment;
 import com.example.informator.ui.offices.OfficesFragment;
 import com.example.informator.ui.offices.post_offices.PostOfficesFragment;
 
@@ -102,6 +103,15 @@ public class Navigator {
                 .beginTransaction()
                 .addToBackStack(AddNoticeFragment.TAG)
                 .replace(R.id.main_container, AddNoticeFragment.newInstance(), AddNoticeFragment.TAG)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .commit();
+    }
+
+    public void showNoticeDetails(Notice notice) {
+        activity.getSupportFragmentManager()
+                .beginTransaction()
+                .addToBackStack(NoticeDetailsFragment.TAG)
+                .replace(R.id.main_container, NoticeDetailsFragment.newInstance(notice), NoticeDetailsFragment.TAG)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit();
     }
