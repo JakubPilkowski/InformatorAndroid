@@ -8,12 +8,14 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.informator.R;
 import com.example.informator.databinding.OfficesFragmentBinding;
 import com.example.informator.models.Notice;
+import com.example.informator.models.Weather;
 import com.example.informator.ui.home.HomeFragment;
 import com.example.informator.ui.notice_board.NoticeBoardFragment;
 import com.example.informator.ui.notice_board.add_notice.AddNoticeFragment;
 import com.example.informator.ui.notice_board.notice_details.NoticeDetailsFragment;
 import com.example.informator.ui.offices.OfficesFragment;
 import com.example.informator.ui.offices.post_offices.PostOfficesFragment;
+import com.example.informator.ui.weather.WeatherFragment;
 
 public class Navigator {
     FragmentActivity activity;
@@ -36,12 +38,12 @@ public class Navigator {
     }
 
     public void showWeather() {
-//        activity.getSupportFragmentManager()
-//                .beginTransaction()
-//                .addToBackStack()
-//                .replace()
-//                .setTransition()
-//                .commit();
+        activity.getSupportFragmentManager()
+                .beginTransaction()
+                .addToBackStack(WeatherFragment.TAG)
+                .replace(R.id.main_container, WeatherFragment.newInstance(),WeatherFragment.TAG)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                .commit();
     }
 
     public void showEvents() {

@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.informator.R;
+import com.example.informator.activities.MainActivity;
 import com.example.informator.base.BaseFragment;
 import com.example.informator.databinding.WeatherFragmentBinding;
 import com.example.informator.interfaces.Providers;
@@ -23,6 +24,7 @@ import com.example.informator.navigation.Navigator;
 public class WeatherFragment extends BaseFragment<WeatherFragmentBinding, WeatherViewModel> implements Providers {
 
 
+    public static String TAG = "WeatherFragment";
     public static WeatherFragment newInstance() {
         return new WeatherFragment();
     }
@@ -67,16 +69,21 @@ public class WeatherFragment extends BaseFragment<WeatherFragmentBinding, Weathe
 
     @Override
     public Navigator getNavigator() {
-        return null;
+        return ((MainActivity)getActivity()).navigator;
     }
 
     @Override
     public ViewDataBinding getBinding() {
-        return null;
+        return binding;
     }
 
     @Override
     public ViewDataBinding getActivityOrFragmentBinding() {
-        return null;
+        return ((MainActivity)getActivity()).binding;
+    }
+
+    @Override
+    public BaseFragment getFragment() {
+        return this;
     }
 }

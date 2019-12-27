@@ -73,4 +73,9 @@ public class HomeFragment extends BaseFragment<HomeFragmentBinding, HomeViewMode
     public ViewDataBinding getActivityOrFragmentBinding() {
         return null;
     }
+
+    @Override
+    public BaseFragment getFragment() {
+        return this;
+    }
 }

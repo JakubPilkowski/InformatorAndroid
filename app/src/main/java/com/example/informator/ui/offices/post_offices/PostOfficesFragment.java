@@ -79,4 +79,9 @@ public class PostOfficesFragment extends BaseFragment<PostOfficesFragmentBinding
     public ViewDataBinding getActivityOrFragmentBinding() {
         return ((MainActivity)getActivity()).binding;
     }
+
+    @Override
+    public BaseFragment getFragment() {
+        return this;
+    }
 }

@@ -3,28 +3,24 @@ package com.example.informator.helpers;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import androidx.annotation.RequiresApi;
-import androidx.databinding.DataBindingUtil;
 
 import com.example.informator.R;
 
-import static com.example.informator.helpers.DateHelper.getHourToBeginSun;
+import static com.example.informator.models.Weather.BURZA;
+import static com.example.informator.models.Weather.CZESCIOWE_ZACHMURZENIE;
+import static com.example.informator.models.Weather.DESZCZ;
+import static com.example.informator.models.Weather.GRAD;
+import static com.example.informator.models.Weather.MGLA;
+import static com.example.informator.models.Weather.MZAWKA;
+import static com.example.informator.models.Weather.SLONCE;
+import static com.example.informator.models.Weather.SNIEG;
+import static com.example.informator.models.Weather.ZACHMURZONE_NIEBO;
 
 public class WeatherHelper {
 
-    public static final String BURZA = "Burza";
-    public static final String DESZCZ = "Opady deszczu";
-    public static final String GRAD = "Grad";
-    public static final String SLONCE = "Słoneczna pogoda";
-    public static final String MZAWKA = "Mzawka";
-    public static final String SNIEG = "Opady Śniegu";
-    public static final String ZACHMURZONE_NIEBO = "Zachmurzone niebo";
-    public static final String CZESCIOWE_ZACHMURZENIE = "Częściowe zachmurzenie";
-    public static final String BEZCHMURNA_NOC = "Bezchmurna noc";
-    public static final String MGLA = "Mgła";
+
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)

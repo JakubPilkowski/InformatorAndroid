@@ -93,4 +93,9 @@ public class NoticeDetailsFragment extends BaseFragment<NoticeDetailsFragmentBin
     public ViewDataBinding getActivityOrFragmentBinding() {
         return ((MainActivity)getActivity()).binding;
     }
+
+    @Override
+    public BaseFragment getFragment() {
+        return this;
+    }
 }
