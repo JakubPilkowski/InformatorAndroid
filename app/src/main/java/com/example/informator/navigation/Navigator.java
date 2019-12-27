@@ -15,6 +15,7 @@ import com.example.informator.ui.notice_board.add_notice.AddNoticeFragment;
 import com.example.informator.ui.notice_board.notice_details.NoticeDetailsFragment;
 import com.example.informator.ui.offices.OfficesFragment;
 import com.example.informator.ui.offices.post_offices.PostOfficesFragment;
+import com.example.informator.ui.timetable.TimetableFragment;
 import com.example.informator.ui.weather.WeatherFragment;
 
 public class Navigator {
@@ -65,12 +66,12 @@ public class Navigator {
     }
 
     public void showTimetable() {
-//        activity.getSupportFragmentManager()
-//                .beginTransaction()
-//                .addToBackStack()
-//                .replace()
-//                .setTransition()
-//                .commit();
+        activity.getSupportFragmentManager()
+                .beginTransaction()
+                .addToBackStack(TimetableFragment.TAG)
+                .replace(R.id.main_container, TimetableFragment.newInstance(),TimetableFragment.TAG)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                .commit();
     }
 
     public void showOffices() {

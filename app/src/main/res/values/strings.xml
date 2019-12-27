@@ -29,4 +29,6 @@
     <string name="overmorrow">Pojutrze</string>
     <string name="today">Dzisiaj</string>
     <string name="celciusz">℃</string>
+    <string name="line_distribution">Rozkłady linii</string>
+    <string name="set_route">Wyznacz trase</string>
 </resources>
