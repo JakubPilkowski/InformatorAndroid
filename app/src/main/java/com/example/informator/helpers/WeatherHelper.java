@@ -3,6 +3,7 @@ package com.example.informator.helpers;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
@@ -20,14 +21,24 @@ import static com.example.informator.models.Weather.ZACHMURZONE_NIEBO;
 
 public class WeatherHelper {
 
+    public static final String DAY ="Day";
+    public static final String NIGHT = "Night";
 
-
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static String getDayType(){
+        String date = DateHelper.getDate();
+        int actualHour = Integer.parseInt(DateHelper.getHour(date));
+        if (Integer.parseInt(DateHelper.getHourToBeginSun(date)) <= actualHour && actualHour <= Integer.parseInt(DateHelper.getHourToEndSun(date)))
+            return "Day";
+        else
+            return "Night";
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     static Drawable getWeatherDrawable(Context context, String type){
         String date = DateHelper.getDate();
-        int monthValue = Integer.parseInt(DateHelper.getMonth(date));
-        if (Integer.parseInt(DateHelper.getHourToBeginSun(date)) <= monthValue && monthValue <= Integer.parseInt(DateHelper.getHourToEndSun(date)))
+        int actualHour = Integer.parseInt(DateHelper.getHour(date));
+        if (Integer.parseInt(DateHelper.getHourToBeginSun(date)) <= actualHour && actualHour <= Integer.parseInt(DateHelper.getHourToEndSun(date)))
         {
             switch (type){
                 case BURZA:
@@ -77,10 +88,10 @@ public class WeatherHelper {
     public static Drawable getWeatherToolbarBackground(Context context, String type){
 
         String date = DateHelper.getDate();
-        int monthValue = Integer.parseInt(DateHelper.getMonth(date));
+        int actualHour = Integer.parseInt(DateHelper.getHour(date));
         if(type.equals(BURZA)) return context.getDrawable(R.drawable.burza);
         if(type.equals(DESZCZ)||type.equals(GRAD)||type.equals(MZAWKA)) return context.getDrawable(R.drawable.deszcz);
-        if (Integer.parseInt(DateHelper.getHourToBeginSun(date)) <= monthValue && monthValue <= Integer.parseInt(DateHelper.getHourToEndSun(date)))
+        if (Integer.parseInt(DateHelper.getHourToBeginSun(date)) <= actualHour && actualHour <= Integer.parseInt(DateHelper.getHourToEndSun(date)))
         {
             switch (type){
                 case SLONCE:
