@@ -2,6 +2,10 @@ package com.example.informator.ui.offers;
 
 import androidx.lifecycle.ViewModel;
 
-public class OffersViewModel extends ViewModel {
+import com.example.informator.base.BaseViewModel;
+
+public class OffersViewModel extends BaseViewModel {
+    public void init() {
+    }
     // TODO: Implement the ViewModel
 }

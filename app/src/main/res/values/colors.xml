@@ -13,4 +13,6 @@
     <color name="colorTextGray">#828282</color>
     <color name="colorNoticeDescGray">#555555</color>
     <color name="colorGrayLight">#F2F2F2</color>
+    <color name="colorBlackOffers">#222222</color>
+    <color name="colorGrayOffers">#C4C4C4</color>
 </resources>
