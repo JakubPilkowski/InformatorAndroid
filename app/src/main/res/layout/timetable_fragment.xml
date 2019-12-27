@@ -1,13 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.timetable.TimetableFragment">
+<layout>
 
-    <TextView
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello" />
+        android:orientation="vertical"
+        android:weightSum="2"
+        tools:context=".ui.timetable.TimetableFragment">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/wyznacz_trase"
+                android:scaleType="fitXY"
+                />
+            <Button
+                android:layout_width="264dp"
+                android:layout_height="48dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="12dp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/horizontal_main_gradient"
+                android:textSize="24sp"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/set_route"
+                android:onClick="@{() -> viewModel.onSetRouteClick()}"
+                android:textAllCaps="false"
+                android:textColor="@color/colorWhite"
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/rozklady_linii"
+                android:scaleType="fitXY"
+                />
+            <Button
+                android:layout_width="264dp"
+                android:layout_height="48dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="12dp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/horizontal_main_gradient"
+                android:textSize="24sp"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/line_distribution"
+                android:onClick="@{() -> viewModel.onLineDistributionClick()}"
+                android:textAllCaps="false"
+                android:textColor="@color/colorWhite"
+                />
+        </RelativeLayout>
 
-</FrameLayout>
+
+    </LinearLayout>
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.informator.ui.timetable.TimetableViewModel" />
+    </data>
+</layout>

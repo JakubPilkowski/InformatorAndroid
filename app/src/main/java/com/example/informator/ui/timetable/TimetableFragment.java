@@ -1,5 +1,6 @@
 package com.example.informator.ui.timetable;
 
+import androidx.databinding.ViewDataBinding;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
@@ -13,26 +14,75 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.informator.R;
+import com.example.informator.activities.MainActivity;
+import com.example.informator.base.BaseFragment;
+import com.example.informator.databinding.TimetableFragmentBinding;
+import com.example.informator.interfaces.Providers;
+import com.example.informator.navigation.Navigator;
 
-public class TimetableFragment extends Fragment {
+import java.sql.Time;
 
-    private TimetableViewModel mViewModel;
+public class TimetableFragment extends BaseFragment<TimetableFragmentBinding, TimetableViewModel> implements Providers {
 
+    public static final String TAG = "TimetableFragment";
     public static TimetableFragment newInstance() {
         return new TimetableFragment();
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.timetable_fragment, container, false);
+    public int getLayoutRes() {
+        return R.layout.timetable_fragment;
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(TimetableViewModel.class);
-        // TODO: Use the ViewModel
+    public Class<TimetableViewModel> getViewModelClass() {
+        return TimetableViewModel.class;
     }
 
+    @Override
+    public void bindData(TimetableFragmentBinding binding) {
+        binding.setViewModel(viewModel);
+        viewModel.setProviders(this);
+        viewModel.init();
+    }
+
+    @Override
+    public int getToolbarType() {
+        return 1;
+    }
+
+    @Override
+    public int getBackPressType() {
+        return 1;
+    }
+
+    @Override
+    public String getToolbarName() {
+        return getContext().getString(R.string.timetable);
+    }
+
+    @Override
+    public float getToolbarFontSize() {
+        return 18;
+    }
+
+    @Override
+    public Navigator getNavigator() {
+        return ((MainActivity)getActivity()).navigator;
+    }
+
+    @Override
+    public ViewDataBinding getBinding() {
+        return binding;
+    }
+
+    @Override
+    public ViewDataBinding getActivityOrFragmentBinding() {
+        return ((MainActivity)getActivity()).binding;
+    }
+
+    @Override
+    public BaseFragment getFragment() {
+        return this;
+    }
 }
