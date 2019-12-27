@@ -37,6 +37,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainActivity
     NavigationView navigationView;
     public static final int REQUEST_ACCEPTED = 1;
     public static final int RESULT_LOAD_IMAGE = 1001;
+
     @Override
     protected void initActivity(ActivityMainBinding binding) {
         binding.setViewModel(viewModel);
@@ -104,9 +105,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainActivity
 
     @Override
     public boolean onSupportNavigateUp() {
-        if (getCurrentFragment().getToolbarType() != 0) {
-            drawerLayout.openDrawer(GravityCompat.START);
-        }return true;
+        drawerLayout.openDrawer(GravityCompat.START);
+        return true;
     }
 
     @Override
@@ -125,9 +125,14 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainActivity
     }
 
     @Override
-    public ViewDataBinding getFragmentBinding() {
+    public ViewDataBinding getActivityOrFragmentBinding() {
         BaseFragment fragment = getCurrentFragment();
         return fragment.binding;
+    }
+
+    @Override
+    public BaseFragment getFragment() {
+        return getCurrentFragment();
     }
 
     public void refreshToolbar() {
@@ -136,13 +141,12 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainActivity
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode==REQUEST_ACCEPTED){
-            if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
+        if (requestCode == REQUEST_ACCEPTED) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Intent i = new Intent(Intent.ACTION_PICK,
                         MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(i, RESULT_LOAD_IMAGE);
-            }
-            else {
+            } else {
                 finish();
             }
         }
@@ -151,10 +155,10 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainActivity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.d("Halo",String.valueOf(requestCode));
-        Log.d("Halo",String.valueOf(resultCode));
-        if (requestCode==RESULT_LOAD_IMAGE && resultCode==RESULT_OK)
-            Toast.makeText(getApplicationContext(), "Dodano zdjęcie",Toast.LENGTH_SHORT).show();
+        Log.d("Halo", String.valueOf(requestCode));
+        Log.d("Halo", String.valueOf(resultCode));
+        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK)
+            Toast.makeText(getApplicationContext(), "Dodano zdjęcie", Toast.LENGTH_SHORT).show();
     }
 
     @Override

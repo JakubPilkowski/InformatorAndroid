@@ -65,7 +65,12 @@ public class OfficesFragment extends BaseFragment<OfficesFragmentBinding,Offices
     }
 
     @Override
-    public ViewDataBinding getFragmentBinding() {
+    public ViewDataBinding getActivityOrFragmentBinding() {
         return binding;
+    }
+
+    @Override
+    public BaseFragment getFragment() {
+        return this;
     }
 }
