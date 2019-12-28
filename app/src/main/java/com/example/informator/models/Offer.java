@@ -1,17 +1,23 @@
 package com.example.informator.models;
 
-public class Offers {
+public class Offer {
     private String brand;
     private String title;
-    private String subTitle;
+    private String descTitle;
     private String imgUrl;
     private String brandLogoUrl;
-    public Offers(String brand, String title, String subTitle, String imgUrl, String brandLogoUrl) {
+    private String desc;
+    private String siteUri;
+
+
+    public Offer(String brand, String title, String descTitle, String imgUrl, String brandLogoUrl, String desc, String siteUri) {
         this.brand = brand;
         this.title = title;
-        this.subTitle = subTitle;
+        this.descTitle = descTitle;
         this.imgUrl = imgUrl;
         this.brandLogoUrl = brandLogoUrl;
+        this.desc = desc;
+        this.siteUri = siteUri;
     }
 
     public String getBrand() {
@@ -22,8 +28,8 @@ public class Offers {
         return title;
     }
 
-    public String getSubTitle() {
-        return subTitle;
+    public String getDescTitle() {
+        return descTitle;
     }
 
     public String getImgUrl() {
@@ -34,4 +40,11 @@ public class Offers {
         return brandLogoUrl;
     }
 
+    public String getDesc() {
+        return desc;
+    }
+
+    public String getSiteUri() {
+        return siteUri;
+    }
 }

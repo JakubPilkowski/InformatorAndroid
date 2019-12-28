@@ -81,7 +81,6 @@ public class BindingAdapter {
     @androidx.databinding.BindingAdapter("imageUrl")
     public static void setImageUrl(ImageView imageView, String url) {
         Context context = imageView.getContext();
-        Log.d("halo", "setImageUrl: ");
         Glide.with(context)
                 .load(url)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)

@@ -2,23 +2,84 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
-    <ImageView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="400dp"
-        android:maxHeight="500dp"
+        android:background="@color/colorGrayOffers"
+        android:paddingBottom="12dp"
+        >
+        <LinearLayout
+            android:id="@+id/offer_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/offer_main_info"
+            app:showViewWithAnim="@{viewModel.show}"
+            android:orientation="vertical"
+            android:background="@color/colorBlackLight"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/montserrat"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@color/colorWhite"
+                android:text="@{viewModel.descTitle}"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="12dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp"
+                android:fontFamily="@font/montserrat"
+                android:text="@{viewModel.desc}"
+                />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:onClick="@{() -> viewModel.onLinkClick()}"
+                android:background="@drawable/horizontal_main_gradient"
+                >
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_link"
+                    android:layout_toStartOf="@id/check_offer"
+                    android:layout_margin="12dp"
+                    />
+                <TextView
+                    android:id="@+id/check_offer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/check_offer"
+                    android:textAllCaps="false"
+                    android:layout_centerInParent="true"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/montserrat"
+                    />
+            </RelativeLayout>
+        </LinearLayout>
+    <ImageView
+        android:id="@+id/offer_main_img"
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
         android:scaleType="fitXY"
         app:imageUrl="@{viewModel.imgUrl}"
         />
 
         <LinearLayout
+            android:id="@+id/offer_main_info"
             android:layout_width="match_parent"
             android:layout_height="64dp"
+            android:layout_below="@id/offer_main_img"
             android:weightSum="2"
             android:background="@color/colorBlackOffers"
             android:orientation="horizontal">
@@ -77,14 +138,7 @@
                     app:setOnShowLabelDrawable="@{viewModel.show}" />
             </RelativeLayout>
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
-
-        </LinearLayout>
-    </LinearLayout>
+    </RelativeLayout>
     <data>
         <variable
             name="viewModel"

@@ -31,4 +31,5 @@
     <string name="celciusz">℃</string>
     <string name="line_distribution">Rozkłady linii</string>
     <string name="set_route">Wyznacz trase</string>
+    <string name="check_offer">Sprawdź ofertę</string>
 </resources>
