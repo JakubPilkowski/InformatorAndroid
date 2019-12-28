@@ -12,6 +12,7 @@ import com.example.informator.R;
 import com.example.informator.databinding.OfficesFragmentBinding;
 import com.example.informator.models.Notice;
 import com.example.informator.models.Weather;
+import com.example.informator.ui.events.EventsFragment;
 import com.example.informator.ui.home.HomeFragment;
 import com.example.informator.ui.notice_board.NoticeBoardFragment;
 import com.example.informator.ui.notice_board.add_notice.AddNoticeFragment;
@@ -52,12 +53,12 @@ public class Navigator {
     }
 
     public void showEvents() {
-//        activity.getSupportFragmentManager()
-//                .beginTransaction()
-//                .addToBackStack()
-//                .replace()
-//                .setTransition()
-//                .commit();
+        activity.getSupportFragmentManager()
+                .beginTransaction()
+                .addToBackStack(EventsFragment.TAG)
+                .replace(R.id.main_container,EventsFragment.newInstance(),EventsFragment.TAG)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                .commit();
     }
 
     public void showOffers() {
