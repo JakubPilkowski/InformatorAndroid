@@ -1,12 +1,15 @@
 package com.example.informator.ui.weather;
 
+import android.os.Build;
 import android.util.Log;
 
+import androidx.annotation.RequiresApi;
 import androidx.databinding.ObservableField;
 
 import com.example.informator.activities.MainActivity;
 import com.example.informator.base.BaseViewModel;
 import com.example.informator.databinding.WeatherFragmentBinding;
+import com.example.informator.helpers.WeatherHelper;
 import com.example.informator.models.Weather;
 
 import java.util.Random;
@@ -16,6 +19,7 @@ public class WeatherViewModel extends BaseViewModel {
 
     public ObservableField<String> temp = new ObservableField<>();
     public ObservableField<String> weatherType = new ObservableField<>();
+    public ObservableField<String> weatherTypeName = new ObservableField<>();
     public ObservableField<String> humidity = new ObservableField<>();
     public ObservableField<String> pressure = new ObservableField<>();
     public ObservableField<String> weatherTypeTomorrow = new ObservableField<>();
@@ -25,6 +29,7 @@ public class WeatherViewModel extends BaseViewModel {
     public ObservableField<String> tempOvermorrow = new ObservableField<>();
     public ObservableField<String> maxTempOvermorrow = new ObservableField<>();
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void init() {
         ((MainActivity) getActivity()).setSupportActionBar(((WeatherFragmentBinding) getBinding()).toolbar);
         ((MainActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -83,6 +88,10 @@ public class WeatherViewModel extends BaseViewModel {
         }
         temp.set(weather1.getTemp() + "℃");
         weatherType.set(weather1.getWeatherType());
+        if(weather1.getWeatherType().equals(Weather.SLONCE) && WeatherHelper.getDayType().equals(WeatherHelper.NIGHT))
+            weatherTypeName.set(Weather.BEZCHMURNA_NOC);
+        else
+            weatherTypeName.set(weather1.getWeatherType());
         humidity.set(weather1.getHumidity());
         pressure.set(weather1.getPressure());
         weatherTypeTomorrow.set(weather2.getWeatherType());

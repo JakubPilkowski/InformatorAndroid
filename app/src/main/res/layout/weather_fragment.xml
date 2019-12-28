@@ -67,7 +67,7 @@
                         android:layout_height="48dp"
                         android:textColor="@color/colorWhite"
                         android:fontFamily="@font/montserrat"
-                        android:text="@{viewModel.weatherType}"
+                        android:text="@{viewModel.weatherTypeName}"
                         android:textSize="24sp"
                         android:gravity="center_vertical"
                         />

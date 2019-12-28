@@ -40,7 +40,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/rozklady_linii"
+                android:src="@drawable/rozklady_linii_2"
                 android:scaleType="fitXY"
                 />
             <Button
@@ -58,8 +58,6 @@
                 android:textColor="@color/colorWhite"
                 />
         </RelativeLayout>
-
-
     </LinearLayout>
     <data>
         <variable

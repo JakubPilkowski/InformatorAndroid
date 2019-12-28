@@ -13,7 +13,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/post_office_main_content"
             android:orientation="vertical"
-            app:showViewWithAnim="@{viewModel.show}">
+            app:showViewWithAnim="@{viewModel.show}"
+            >
 
             <ImageView
                 android:layout_width="match_parent"

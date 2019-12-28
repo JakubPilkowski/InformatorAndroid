@@ -1,5 +1,8 @@
 package com.example.informator.navigation;
 
+import android.content.Intent;
+import android.net.Uri;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
@@ -13,6 +16,7 @@ import com.example.informator.ui.home.HomeFragment;
 import com.example.informator.ui.notice_board.NoticeBoardFragment;
 import com.example.informator.ui.notice_board.add_notice.AddNoticeFragment;
 import com.example.informator.ui.notice_board.notice_details.NoticeDetailsFragment;
+import com.example.informator.ui.offers.OffersFragment;
 import com.example.informator.ui.offices.OfficesFragment;
 import com.example.informator.ui.offices.post_offices.PostOfficesFragment;
 import com.example.informator.ui.timetable.TimetableFragment;
@@ -57,12 +61,12 @@ public class Navigator {
     }
 
     public void showOffers() {
-//        activity.getSupportFragmentManager()
-//                .beginTransaction()
-//                .addToBackStack()
-//                .replace()
-//                .setTransition()
-//                .commit();
+        activity.getSupportFragmentManager()
+                .beginTransaction()
+                .addToBackStack(OffersFragment.TAG)
+                .replace(R.id.main_container,OffersFragment.newInstance(),OffersFragment.TAG)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                .commit();
     }
 
     public void showTimetable() {
@@ -117,5 +121,10 @@ public class Navigator {
                 .replace(R.id.main_container, NoticeDetailsFragment.newInstance(notice), NoticeDetailsFragment.TAG)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit();
+    }
+    public void openSite(String uri) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(uri));
+        activity.startActivity(intent);
     }
 }

@@ -21,7 +21,7 @@ public class DateHelper {
     }
 
     public static String getHour(String date) {
-        return date.substring(12, 14);
+        return date.substring(11, 13);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)

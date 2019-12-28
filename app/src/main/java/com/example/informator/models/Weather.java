@@ -6,7 +6,7 @@ public class Weather {
     public static final String DESZCZ = "Opady deszczu";
     public static final String GRAD = "Grad";
     public static final String SLONCE = "Słoneczna pogoda";
-    public static final String MZAWKA = "Mzawka";
+    public static final String MZAWKA = "Mżawka";
     public static final String SNIEG = "Opady Śniegu";
     public static final String ZACHMURZONE_NIEBO = "Zachmurzone niebo";
     public static final String CZESCIOWE_ZACHMURZENIE = "Częściowe zachmurzenie";
