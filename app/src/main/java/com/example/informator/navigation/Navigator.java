@@ -10,9 +10,11 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.informator.R;
 import com.example.informator.databinding.OfficesFragmentBinding;
+import com.example.informator.models.Event;
 import com.example.informator.models.Notice;
 import com.example.informator.models.Weather;
 import com.example.informator.ui.events.EventsFragment;
+import com.example.informator.ui.events.event_details.EventDetailsFragment;
 import com.example.informator.ui.home.HomeFragment;
 import com.example.informator.ui.notice_board.NoticeBoardFragment;
 import com.example.informator.ui.notice_board.add_notice.AddNoticeFragment;
@@ -127,5 +129,14 @@ public class Navigator {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(uri));
         activity.startActivity(intent);
+    }
+
+    public void showEvent(Event event) {
+        activity.getSupportFragmentManager()
+                .beginTransaction()
+                .addToBackStack(EventDetailsFragment.TAG)
+                .replace(R.id.main_container, EventDetailsFragment.newInstance(event), EventDetailsFragment.TAG)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .commit();
     }
 }

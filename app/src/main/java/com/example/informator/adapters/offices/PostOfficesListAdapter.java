@@ -42,7 +42,6 @@ public class PostOfficesListAdapter extends BaseRecyclerViewAdapter<PostOffice, 
             viewModel = new PostOfficesAdapterViewModel();
             viewModels.add(viewModel);
             ((SinglePostOfficeBinding) holder.getBinding()).setViewModel(viewModel);
-            Log.d("halo", "2");
             holder.setViewModel(viewModel);
             holder.setElement(items.get(position), position);
             ((PostOfficesViewHolder)holder).addViews(items.get(position));

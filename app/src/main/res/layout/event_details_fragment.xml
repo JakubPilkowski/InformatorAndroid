@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorGrayBackgroundDay"
+        android:scrollbars="vertical"
+        android:scrollbarThumbVertical="@drawable/veritacal_main_gradient"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".ui.events.event_details.EventDetailsFragment">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/event_details"
+                android:background="@color/colorBlackLight"
+                android:orientation="vertical"
+                app:showViewWithAnim="@{viewModel.show}">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="12dp"
+                    android:fontFamily="@font/montserrat"
+                    android:text="@{viewModel.desc}"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/event_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:layout_marginBottom="12dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:background="@drawable/horizontal_main_gradient"
+                    android:fontFamily="@font/montserrat"
+                    android:gravity="center_vertical"
+                    android:text="@{viewModel.day}"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="36sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="12dp"
+                    android:fontFamily="@font/montserrat"
+                    android:text="@{viewModel.monthAndYear}"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="24sp" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/event_photo"
+                android:layout_width="match_parent"
+                android:layout_height="360dp"
+                android:layout_below="@id/event_date"
+                android:scaleType="fitXY"
+                app:imageUrl="@{viewModel.imgUrl}"
+                />
+
+            <LinearLayout
+                android:id="@+id/event_details"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:layout_below="@id/event_photo"
+                android:background="@color/colorBlackOffers"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/montserrat"
+                    android:text="@{viewModel.title}"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="18sp" />
+
+                <RelativeLayout
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_margin="8dp">
+
+                    <Button
+                        android:id="@+id/post_office_extend_info"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:background="@drawable/oval_gradient_background"
+                        android:onClick="@{() -> viewModel.onClick()}" />
+
+                    <Button
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/ic_dol"
+                        android:onClick="@{() -> viewModel.onClick()}"
+                        app:setOnShowLabelDrawable="@{viewModel.show}" />
+                </RelativeLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.informator.ui.events.event_details.EventDetailsViewModel" />
+    </data>
+</layout>

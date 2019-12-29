@@ -39,14 +39,12 @@ public abstract class BaseFragment<B extends ViewDataBinding, VM extends BaseVie
 //    @Override
 //    public void onCrOptionsMenu(@NonNull Menu menu) {
 //        menu.clear();
-//        Log.d("halo", "onCreateOptionsMenu: ");
 //        ((MainActivity) getActivity()).refreshToolbar();
 //    }
 
 //    @Override
 //    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
 //        super.onCreateOptionsMenu(menu, inflater);
-//        Log.d("halo", "onCreateOptionsMenu: ");
 ////        ((MainActivity) getActivity()).refreshToolbar();
 //    }
 

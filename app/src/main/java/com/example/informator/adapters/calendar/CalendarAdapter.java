@@ -50,6 +50,7 @@ public class CalendarAdapter extends ArrayAdapter {
             view = mInflater.inflate(R.layout.calendar_day, parent, false);
         }
         TextView cell = view.findViewById(R.id.calendar_day_value);
+        TextView id_holder = view.findViewById(R.id.event_id_holder);
         if(displayMonth == currentMonth && displayYear == currentYear){
             cell.setBackgroundColor(view.getContext().getColor(R.color.colorGrayBackgroundDay));
             cell.setTextColor(view.getContext().getColor(R.color.colorCalendarDayName));
@@ -61,14 +62,13 @@ public class CalendarAdapter extends ArrayAdapter {
         cell.setText(String.valueOf(dayValue));
         //Add events to the calendar
         Calendar eventCalendar = Calendar.getInstance();
-        Log.d("date", String.valueOf(events.size()));
         for(int i = 0; i <events.size(); i++){
-            Log.d("date", String.valueOf(events.size()));
             eventCalendar.setTime(events.get(i).getDate());
             if(dayValue == eventCalendar.get(Calendar.DAY_OF_MONTH) && displayMonth == eventCalendar.get(Calendar.MONTH) + 1
                     && displayYear == eventCalendar.get(Calendar.YEAR)){
                 cell.setBackgroundColor(view.getContext().getColor(R.color.colorWhite));
                 cell.setTextColor(view.getContext().getColor(R.color.colorGray2));
+                id_holder.setText(String.valueOf(events.get(i).getId()));
             }
         }
         return view;

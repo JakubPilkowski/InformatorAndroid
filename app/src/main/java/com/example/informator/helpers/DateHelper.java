@@ -1,6 +1,7 @@
 package com.example.informator.helpers;
 
 import android.os.Build;
+import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
@@ -190,6 +191,62 @@ public class DateHelper {
                 newMonthName = "Grudzień ";
                 break;
         }
-        return newMonthName+split[1];
+        return newMonthName + split[1];
+    }
+
+    public static String getDay(String date) {
+        String[] dates = date.split("-");
+        String day;
+        if (dates[2].startsWith("0")) {
+            day = dates[2].substring(1, 2);
+        }
+        else {
+            day = dates[2];
+        }
+        return day;
+    }
+
+    public static String getMonthAndYear(String date) {
+        String[] dates = date.split("-");
+        String month = "";
+        switch (dates[1]) {
+            case "01":
+                month = "Styczeń ";
+                break;
+            case "02":
+                month = "Luty ";
+                break;
+            case "03":
+                month = "Marzec ";
+                break;
+            case "04":
+                month = "Kwiecień ";
+                break;
+            case "05":
+                month = "Maj ";
+                break;
+            case "06":
+                month = "Czerwiec ";
+                break;
+            case "07":
+                month = "Lipiec ";
+                break;
+            case "08":
+                month = "Sierpień ";
+                break;
+            case "09":
+                month = "Wrzesień ";
+                break;
+            case "10":
+                month = "Październik ";
+                break;
+            case "11":
+                month = "Listopad ";
+                break;
+            case "12":
+                month = "Grudzień ";
+                break;
+        }
+        return month + dates[0];
     }
 }

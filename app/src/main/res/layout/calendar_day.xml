@@ -11,7 +11,11 @@
         android:layout_centerInParent="true"
         android:fontFamily="@font/montserrat"
         android:gravity="center_vertical"
-        android:text="32"
         android:textAlignment="center"
         android:textSize="18sp" />
+    <TextView
+        android:id="@+id/event_id_holder"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        />
 </RelativeLayout>

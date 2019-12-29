@@ -1,7 +1,6 @@
 package com.example.informator.ui.events;
 
 import androidx.databinding.ObservableField;
-import androidx.lifecycle.ViewModel;
 
 import com.example.informator.base.BaseViewModel;
 import com.example.informator.models.Event;
@@ -24,31 +23,31 @@ public class EventsViewModel extends BaseViewModel {
             calendars.add(calendar.getTime());
         }
         eventsList.add(new Event(
-                "https://www.wykop.pl/cdn/c3201142/comment_prwD69GDKVA1nwaqSd2kHZELy1mLwc9H.jpg",
+                1, "https://www.wykop.pl/cdn/c3201142/comment_prwD69GDKVA1nwaqSd2kHZELy1mLwc9H.jpg",
                 "Zadymka u Majkuta",
                 "Dużo będzie się działo, wybuchery, gigaakcja",
                 calendars.get(0)
         ));
         eventsList.add(new Event(
-                "https://www.wykop.pl/cdn/c3201142/comment_prwD69GDKVA1nwaqSd2kHZELy1mLwc9H.jpg",
+                2, "https://www.wykop.pl/cdn/c3201142/comment_prwD69GDKVA1nwaqSd2kHZELy1mLwc9H.jpg",
                 "Zadymka u Majkuta",
                 "Dużo będzie się działo, wybuchery, gigaakcja",
                 calendars.get(1)
         ));
         eventsList.add(new Event(
-                "https://www.wykop.pl/cdn/c3201142/comment_prwD69GDKVA1nwaqSd2kHZELy1mLwc9H.jpg",
+                3, "https://www.wykop.pl/cdn/c3201142/comment_prwD69GDKVA1nwaqSd2kHZELy1mLwc9H.jpg",
                 "Zadymka u Majkuta",
                 "Dużo będzie się działo, wybuchery, gigaakcja",
                 calendars.get(2)
         ));
         eventsList.add(new Event(
-                "https://www.wykop.pl/cdn/c3201142/comment_prwD69GDKVA1nwaqSd2kHZELy1mLwc9H.jpg",
+                4, "https://www.wykop.pl/cdn/c3201142/comment_prwD69GDKVA1nwaqSd2kHZELy1mLwc9H.jpg",
                 "Zadymka u Majkuta",
                 "Dużo będzie się działo, wybuchery, gigaakcja",
                 calendars.get(3)
         ));
         eventsList.add(new Event(
-                "https://www.wykop.pl/cdn/c3201142/comment_prwD69GDKVA1nwaqSd2kHZELy1mLwc9H.jpg",
+                5, "https://www.wykop.pl/cdn/c3201142/comment_prwD69GDKVA1nwaqSd2kHZELy1mLwc9H.jpg",
                 "Zadymka u Majkuta",
                 "Dużo będzie się działo, wybuchery, gigaakcja",
                 calendars.get(4)
