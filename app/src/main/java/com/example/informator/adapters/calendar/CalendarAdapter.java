@@ -3,6 +3,7 @@ package com.example.informator.adapters.calendar;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,20 +15,22 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 import com.example.informator.R;
+import com.example.informator.models.Event;
 
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 public class CalendarAdapter extends ArrayAdapter {
-//    private static final String TAG = CalendarAdapter.class.getSimpleName();
     private LayoutInflater mInflater;
     private List<Date> monthlyDates;
     private Calendar currentDate;
-    public CalendarAdapter(Context context, List<Date> monthlyDates, Calendar currentDate) {
+    private List<Event>events;
+    public CalendarAdapter(Context context, List<Date> monthlyDates, Calendar currentDate, List<Event>events) {
         super(context, R.layout.calendar_day);
         this.monthlyDates = monthlyDates;
         this.currentDate = currentDate;
+        this.events = events;
         mInflater = LayoutInflater.from(context);
     }
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -51,19 +54,23 @@ public class CalendarAdapter extends ArrayAdapter {
             cell.setBackgroundColor(view.getContext().getColor(R.color.colorGrayBackgroundDay));
             cell.setTextColor(view.getContext().getColor(R.color.colorCalendarDayName));
         }else{
-            view.setBackgroundColor(Color.parseColor("#cccccc"));
+            cell.setBackgroundColor(view.getContext().getColor(R.color.colorBlackLight));
+            cell.setTextColor(view.getContext().getColor(R.color.colorGray2));
         }
         //Add day to calendar
         cell.setText(String.valueOf(dayValue));
         //Add events to the calendar
-//        Calendar eventCalendar = Calendar.getInstance();
-//        for(int i = 0; i < allEvents.size(); i++){
-//            eventCalendar.setTime(allEvents.get(i).getDate());
-//            if(dayValue == eventCalendar.get(Calendar.DAY_OF_MONTH) && displayMonth == eventCalendar.get(Calendar.MONTH) + 1
-//                    && displayYear == eventCalendar.get(Calendar.YEAR)){
-//                eventIndicator.setBackgroundColor(Color.parseColor("#FF4081"));
-//            }
-//        }
+        Calendar eventCalendar = Calendar.getInstance();
+        Log.d("date", String.valueOf(events.size()));
+        for(int i = 0; i <events.size(); i++){
+            Log.d("date", String.valueOf(events.size()));
+            eventCalendar.setTime(events.get(i).getDate());
+            if(dayValue == eventCalendar.get(Calendar.DAY_OF_MONTH) && displayMonth == eventCalendar.get(Calendar.MONTH) + 1
+                    && displayYear == eventCalendar.get(Calendar.YEAR)){
+                cell.setBackgroundColor(view.getContext().getColor(R.color.colorWhite));
+                cell.setTextColor(view.getContext().getColor(R.color.colorGray2));
+            }
+        }
         return view;
     }
     @Override

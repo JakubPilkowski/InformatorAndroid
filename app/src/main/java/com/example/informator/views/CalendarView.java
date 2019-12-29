@@ -2,46 +2,59 @@ package com.example.informator.views;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
-
 import com.example.informator.R;
 import com.example.informator.adapters.calendar.CalendarAdapter;
+import com.example.informator.helpers.DateHelper;
+import com.example.informator.models.Event;
+import com.example.informator.navigation.Navigator;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 
 public class CalendarView extends LinearLayout {
 
-    private static final int MAX_CALENDAR_COLUMN = 42;
     TextView btnPrev;
     TextView btnNext;
     TextView txtDisplayDate;
     GridView gridView;
-    SimpleDateFormat sdf = new SimpleDateFormat("MMMM yyyy",Locale.GERMANY);
-    Calendar calendar = Calendar.getInstance(Locale.GERMANY);
+    SimpleDateFormat sdf = new SimpleDateFormat("MMMM yyyy",Locale.ENGLISH);
+    Calendar calendar = Calendar.getInstance(Locale.ENGLISH);
     CalendarAdapter mAdapter;
     Context context;
-
+    Navigator navigator;
+    List<Event>events = new ArrayList<>();
     public CalendarView(Context context, AttributeSet attrs) {
         super(context, attrs);
         initControl(context, attrs);
-        setUpCalendarAdapter();
+        this.context = context;
         setPreviousButtonClickEvent();
         setNextButtonClickEvent();
         setGridCellClickEvent();
-        this.context = context;
     }
+
+    public void setNavigator(Navigator navigator) {
+        this.navigator = navigator;
+    }
+
+    public void setEvents(List<Event> events) {
+        this.events.clear();
+        this.events.addAll(events);
+        setUpCalendarAdapter();
+    }
+
     private void assignUiElements() {
         btnPrev = findViewById(R.id.calendar_prev_button);
         btnNext = findViewById(R.id.calendar_next_button);
@@ -57,9 +70,9 @@ public class CalendarView extends LinearLayout {
     }
 
     private void setGridCellClickEvent() {
-        gridView.setOnClickListener(new OnClickListener() {
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
             }
         });
@@ -86,18 +99,25 @@ public class CalendarView extends LinearLayout {
     }
 
     private void setUpCalendarAdapter() {
-        List<Date> dayValueInCells = new ArrayList<Date>();
+        List<Date> dayValueInCells = new ArrayList<>();
         Calendar mCal = (Calendar)calendar.clone();
         mCal.set(Calendar.DAY_OF_MONTH, 1);
-        int firstDayOfTheMonth = mCal.get(Calendar.DAY_OF_WEEK) - 1;
+        int firstDayOfTheMonth = mCal.get(Calendar.DAY_OF_WEEK)-1;
+        if(firstDayOfTheMonth==0)
+            firstDayOfTheMonth=7;
+        firstDayOfTheMonth-=1;
         mCal.add(Calendar.DAY_OF_MONTH, -firstDayOfTheMonth);
+        int MAX_CALENDAR_COLUMN = 42;
         while(dayValueInCells.size() < MAX_CALENDAR_COLUMN){
             dayValueInCells.add(mCal.getTime());
             mCal.add(Calendar.DAY_OF_MONTH, 1);
+            if(mCal.get(Calendar.MONTH)==calendar.get(Calendar.MONTH) && mCal.get(Calendar.DAY_OF_MONTH)==calendar.getActualMaximum(Calendar.DATE) && dayValueInCells.size()<=34){
+                MAX_CALENDAR_COLUMN = 35;
+            }
         }
         String sDate = sdf.format(calendar.getTime());
-        txtDisplayDate.setText(sDate);
-        mAdapter = new CalendarAdapter(context, dayValueInCells, calendar);
+        txtDisplayDate.setText(DateHelper.getPolishFormatDate(sDate));
+        mAdapter = new CalendarAdapter(context, dayValueInCells, calendar, events);
         gridView.setAdapter(mAdapter);
 
     }

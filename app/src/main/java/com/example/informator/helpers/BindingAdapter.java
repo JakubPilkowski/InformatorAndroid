@@ -24,7 +24,12 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.informator.R;
 import com.example.informator.databinding.AddNoticeFragmentBinding;
+import com.example.informator.models.Event;
 import com.example.informator.models.Weather;
+import com.example.informator.navigation.Navigator;
+import com.example.informator.views.CalendarView;
+
+import java.util.List;
 
 public class BindingAdapter {
 
@@ -142,13 +147,25 @@ public class BindingAdapter {
     @RequiresApi(api = Build.VERSION_CODES.O)
     @androidx.databinding.BindingAdapter("setDrawable")
     public static void setImageDrawable(View view, String type) {
-        if(view instanceof ImageView) {
+        if (view instanceof ImageView) {
             Drawable drawable = WeatherHelper.getWeatherDrawable(view.getContext(), type);
             ((ImageView) view).setImageDrawable(drawable);
         }
-        if(view instanceof LinearLayout){
-            Drawable drawable = WeatherHelper.getWeatherToolbarBackground(view.getContext(),type);
+        if (view instanceof LinearLayout) {
+            Drawable drawable = WeatherHelper.getWeatherToolbarBackground(view.getContext(), type);
             view.setBackground(drawable);
         }
     }
+
+    @androidx.databinding.BindingAdapter("setEvents")
+    public static void setEvents(CalendarView calendarView, List<Event> events) {
+        calendarView.setEvents(events);
+    }
+
+    @androidx.databinding.BindingAdapter("setNavigator")
+    public static void setNavigator(CalendarView calendarView, Navigator navigator) {
+        calendarView.setNavigator(navigator);
+    }
+
 }
+

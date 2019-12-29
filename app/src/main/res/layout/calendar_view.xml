@@ -109,11 +109,12 @@
             android:fontFamily="@font/montserrat"
             />
     </LinearLayout>
-    <GridLayout
+    <GridView
         android:id="@+id/calendar_grid"
         android:layout_width="match_parent"
-        android:layout_height="264dp"
-        android:columnCount="7"
+        android:layout_height="wrap_content"
+        android:numColumns="7"
+        android:verticalSpacing="2dp"
         android:background="@color/colorBlackLight"
         />
     <LinearLayout

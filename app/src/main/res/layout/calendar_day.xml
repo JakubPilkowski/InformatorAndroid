@@ -2,14 +2,16 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="48dp"
     android:layout_height="48dp"
-    android:layout_margin="2dp"
     >
+
     <TextView
         android:id="@+id/calendar_day_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="46dp"
+        android:layout_height="46dp"
         android:layout_centerInParent="true"
-        android:textSize="18sp"
         android:fontFamily="@font/montserrat"
-        />
+        android:gravity="center_vertical"
+        android:text="32"
+        android:textAlignment="center"
+        android:textSize="18sp" />
 </RelativeLayout>
