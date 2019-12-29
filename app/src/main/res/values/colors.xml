@@ -15,4 +15,8 @@
     <color name="colorGrayLight">#F2F2F2</color>
     <color name="colorBlackOffers">#222222</color>
     <color name="colorGrayOffers">#C4C4C4</color>
+    <color name="colorCalendarDayName">#AAAAAA</color>
+    <color name="colorGrayBackgroundDay">#4F4F4F</color>
+    <color name="colorGray2">#444444</color>
+
 </resources>

@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorGrayOffers"
     tools:context=".ui.events.EventsFragment">
-
-    <TextView
+    <com.example.informator.views.CalendarView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
-
-</FrameLayout>
+        android:layout_height="wrap_content"
+        app:setEvents="@{viewModel.events}"
+        app:setNavigator="@{viewModel.navigator}"
+        />
+</LinearLayout>
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.informator.ui.events.EventsViewModel" />
+    </data>
+</layout>

@@ -54,6 +54,7 @@ public class DateHelper {
         }
         return "12";
     }
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static String getHourToBeginSun(String date) {
         switch (getMonth(date)) {
@@ -145,5 +146,50 @@ public class DateHelper {
                 return "16";
         }
         return "18";
+    }
+
+    public static String getPolishFormatDate(String date) {
+        String[] split = date.split(" ");
+        String actualMonthName = split[0];
+        String newMonthName = null;
+        switch (actualMonthName) {
+            case "January":
+                newMonthName = "Styczeń ";
+                break;
+            case "February":
+                newMonthName = "Luty ";
+                break;
+            case "March":
+                newMonthName = "Marzec ";
+                break;
+            case "April":
+                newMonthName = "Kwiecień ";
+                break;
+            case "May":
+                newMonthName = "Maj ";
+                break;
+            case "June":
+                newMonthName = "Czerwiec ";
+                break;
+            case "July":
+                newMonthName = "Lipiec ";
+                break;
+            case "August":
+                newMonthName = "Sierpień ";
+                break;
+            case "September":
+                newMonthName = "Wrzesień ";
+                break;
+            case "October":
+                newMonthName = "Październik ";
+                break;
+            case "November":
+                newMonthName = "Listopad ";
+                break;
+            case "December":
+                newMonthName = "Grudzień ";
+                break;
+        }
+        return newMonthName+split[1];
     }
 }

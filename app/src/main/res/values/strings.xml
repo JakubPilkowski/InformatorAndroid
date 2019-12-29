@@ -32,4 +32,13 @@
     <string name="line_distribution">Rozkłady linii</string>
     <string name="set_route">Wyznacz trase</string>
     <string name="check_offer">Sprawdź ofertę</string>
+    <string name="monday_shortcut">Pn</string>
+    <string name="tuesday_shortcut">Wt</string>
+    <string name="wednesday_shortcut">Śr</string>
+    <string name="thursday_shortcut">Cz</string>
+    <string name="friday_shortcut">Pt</string>
+    <string name="saturday_shortcut">So</string>
+    <string name="sunday_shortcut">Nd</string>
+    <string name="last_month">Poprzedni miesiąc</string>
+    <string name="next_month">Następny miesiąc</string>
 </resources>
