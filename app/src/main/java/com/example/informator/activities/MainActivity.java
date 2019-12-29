@@ -155,8 +155,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainActivity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.d("Halo", String.valueOf(requestCode));
-        Log.d("Halo", String.valueOf(resultCode));
         if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK)
             Toast.makeText(getApplicationContext(), "Dodano zdjęcie", Toast.LENGTH_SHORT).show();
     }

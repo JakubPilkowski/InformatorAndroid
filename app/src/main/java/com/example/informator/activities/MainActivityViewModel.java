@@ -31,7 +31,6 @@ public class MainActivityViewModel extends BaseViewModel {
     public void refreshToolbar() {
         BaseFragment fragment = ((MainActivity) getActivity()).getCurrentFragment();
         MainActivity activity = ((MainActivity) getActivity());
-        Log.d("halo", "refreshToolbar: ");
         switch (fragment.getToolbarType()) {
             case 0:
                 activity.setSupportActionBar(null);

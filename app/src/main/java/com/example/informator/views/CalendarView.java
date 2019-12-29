@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.informator.R;
@@ -73,7 +74,16 @@ public class CalendarView extends LinearLayout {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                RelativeLayout linearLayout = (RelativeLayout) view;
+                TextView textView = linearLayout.findViewById(R.id.event_id_holder);
+                if(!textView.getText().toString().isEmpty()){
+                    for (Event event :events) {
+                        if (event.getId()==Integer.parseInt(textView.getText().toString())){
+                            navigator.showEvent(event);
+                        }
 
+                    }
+                }
             }
         });
     }
