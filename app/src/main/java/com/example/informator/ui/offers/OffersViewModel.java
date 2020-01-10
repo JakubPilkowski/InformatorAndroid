@@ -19,23 +19,23 @@ public class OffersViewModel extends BaseViewModel {
         adapter.set(offersAdapter);
         List<Offer> offerList = new ArrayList<>();
         offerList.add(new Offer("X-KOM","Oferta ogólnopolska","Nowa oferta dla graczy",
-                "https://cdn.x-kom.pl/i/img/banners/normal,,noworoczna-wyprzedaz-2019-2020-x-kom_1577434286.jpg",
+                "https://lpk.x-kom.pl/msi-swiateczna-promocja/images/top.png?",
                 "https://upload.wikimedia.org/wikipedia/commons/7/7f/X-kom_logo_ver2018.png",
                 "Kup jeden produkt, drugi gratis", "https://www.x-kom.pl"));
         offerList.add(new Offer("X-KOM","Oferta ogólnopolska","Nowa oferta dla graczy",
-                "https://cdn.x-kom.pl/i/img/banners/normal,,noworoczna-wyprzedaz-2019-2020-x-kom_1577434286.jpg",
+                "https://lpk.x-kom.pl/msi-swiateczna-promocja/images/top.png?",
                 "https://upload.wikimedia.org/wikipedia/commons/7/7f/X-kom_logo_ver2018.png",
                 "Kup jeden produkt, drugi gratis", "https://www.x-kom.pl"));
         offerList.add(new Offer("X-KOM","Oferta ogólnopolska","Nowa oferta dla graczy",
-                "https://cdn.x-kom.pl/i/img/banners/normal,,noworoczna-wyprzedaz-2019-2020-x-kom_1577434286.jpg",
+                "https://lpk.x-kom.pl/msi-swiateczna-promocja/images/top.png?",
                 "https://upload.wikimedia.org/wikipedia/commons/7/7f/X-kom_logo_ver2018.png",
                 "Kup jeden produkt, drugi gratis", "https://www.x-kom.pl"));
         offerList.add(new Offer("X-KOM","Oferta ogólnopolska","Nowa oferta dla graczy",
-                "https://cdn.x-kom.pl/i/img/banners/normal,,noworoczna-wyprzedaz-2019-2020-x-kom_1577434286.jpg",
+                "https://lpk.x-kom.pl/msi-swiateczna-promocja/images/top.png?",
                 "https://upload.wikimedia.org/wikipedia/commons/7/7f/X-kom_logo_ver2018.png",
                 "Kup jeden produkt, drugi gratis", "https://www.x-kom.pl"));
         offerList.add(new Offer("X-KOM","Oferta ogólnopolska","Nowa oferta dla graczy",
-                "https://cdn.x-kom.pl/i/img/banners/normal,,noworoczna-wyprzedaz-2019-2020-x-kom_1577434286.jpg",
+                "https://lpk.x-kom.pl/msi-swiateczna-promocja/images/top.png?",
                 "https://upload.wikimedia.org/wikipedia/commons/7/7f/X-kom_logo_ver2018.png",
                 "Kup jeden produkt, drugi gratis", "https://www.x-kom.pl"));
         offersAdapter.setItems(offerList);

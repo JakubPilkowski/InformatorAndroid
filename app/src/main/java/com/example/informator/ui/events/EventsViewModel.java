@@ -23,33 +23,33 @@ public class EventsViewModel extends BaseViewModel {
             calendars.add(calendar.getTime());
         }
         eventsList.add(new Event(
-                1, "https://www.wykop.pl/cdn/c3201142/comment_prwD69GDKVA1nwaqSd2kHZELy1mLwc9H.jpg",
-                "Zadymka u Majkuta",
-                "Dużo będzie się działo, wybuchery, gigaakcja",
+                1, "https://gfx.antyradio.pl/var/antyradio/storage/images/muzyka/koncerty/enigma-zagra-pierwszy-raz-w-polsce-w-2019-27308/1919440-1-pol-PL/Enigma-zagra-pierwszy-raz-w-Polsce-w-2019.-Zespol-zapowiedzial-7-koncertow_article.jpg",
+                "Koncert",
+                "Koncert zespołu XYZ, nie możesz tego ominąć. Wstęp od 10zł. Wpadaj, nie możesz tego przegapić",
                 calendars.get(0)
         ));
         eventsList.add(new Event(
-                2, "https://www.wykop.pl/cdn/c3201142/comment_prwD69GDKVA1nwaqSd2kHZELy1mLwc9H.jpg",
-                "Zadymka u Majkuta",
-                "Dużo będzie się działo, wybuchery, gigaakcja",
+                2, "https://gfx.antyradio.pl/var/antyradio/storage/images/muzyka/koncerty/enigma-zagra-pierwszy-raz-w-polsce-w-2019-27308/1919440-1-pol-PL/Enigma-zagra-pierwszy-raz-w-Polsce-w-2019.-Zespol-zapowiedzial-7-koncertow_article.jpg",
+                "Koncert",
+                "Koncert zespołu XYZ, nie możesz tego ominąć. Wstęp od 10zł. Wpadaj, nie możesz tego przegapić",
                 calendars.get(1)
         ));
         eventsList.add(new Event(
-                3, "https://www.wykop.pl/cdn/c3201142/comment_prwD69GDKVA1nwaqSd2kHZELy1mLwc9H.jpg",
-                "Zadymka u Majkuta",
-                "Dużo będzie się działo, wybuchery, gigaakcja",
+                3, "https://gfx.antyradio.pl/var/antyradio/storage/images/muzyka/koncerty/enigma-zagra-pierwszy-raz-w-polsce-w-2019-27308/1919440-1-pol-PL/Enigma-zagra-pierwszy-raz-w-Polsce-w-2019.-Zespol-zapowiedzial-7-koncertow_article.jpg",
+                "Koncert",
+                "Koncert zespołu XYZ, nie możesz tego ominąć. Wstęp od 10zł. Wpadaj, nie możesz tego przegapić",
                 calendars.get(2)
         ));
         eventsList.add(new Event(
-                4, "https://www.wykop.pl/cdn/c3201142/comment_prwD69GDKVA1nwaqSd2kHZELy1mLwc9H.jpg",
-                "Zadymka u Majkuta",
-                "Dużo będzie się działo, wybuchery, gigaakcja",
+                4, "https://gfx.antyradio.pl/var/antyradio/storage/images/muzyka/koncerty/enigma-zagra-pierwszy-raz-w-polsce-w-2019-27308/1919440-1-pol-PL/Enigma-zagra-pierwszy-raz-w-Polsce-w-2019.-Zespol-zapowiedzial-7-koncertow_article.jpg",
+                "Koncert",
+                "Koncert zespołu XYZ, nie możesz tego ominąć. Wstęp od 10zł. Wpadaj, nie możesz tego przegapić",
                 calendars.get(3)
         ));
         eventsList.add(new Event(
-                5, "https://www.wykop.pl/cdn/c3201142/comment_prwD69GDKVA1nwaqSd2kHZELy1mLwc9H.jpg",
-                "Zadymka u Majkuta",
-                "Dużo będzie się działo, wybuchery, gigaakcja",
+                5, "https://gfx.antyradio.pl/var/antyradio/storage/images/muzyka/koncerty/enigma-zagra-pierwszy-raz-w-polsce-w-2019-27308/1919440-1-pol-PL/Enigma-zagra-pierwszy-raz-w-Polsce-w-2019.-Zespol-zapowiedzial-7-koncertow_article.jpg",
+                "Koncert",
+                "Koncert zespołu XYZ, nie możesz tego ominąć. Wstęp od 10zł. Wpadaj, nie możesz tego przegapić",
                 calendars.get(4)
         ));
         events.set(eventsList);
