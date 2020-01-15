@@ -27,6 +27,10 @@ public class PostOfficesViewModel extends BaseViewModel {
         ,"10-001",123456789,godzinyOtwarcia1));
         postOffices.add(new PostOffice("Partyzantów 39","https://bi.im-g.pl/im/6a/d4/d3/z13882474V,Poczta-przy-ul--Pienieznego-w-Olsztynie.jpg"
                 ,"10-504",879521212,godzinyOtwarcia2));
+        postOffices.add(new PostOffice("Partyzantów 39","https://bi.im-g.pl/im/6a/d4/d3/z13882474V,Poczta-przy-ul--Pienieznego-w-Olsztynie.jpg"
+                ,"10-504",879521212,godzinyOtwarcia2));
+        postOffices.add(new PostOffice("Partyzantów 39","https://bi.im-g.pl/im/6a/d4/d3/z13882474V,Poczta-przy-ul--Pienieznego-w-Olsztynie.jpg"
+                ,"10-504",879521212,godzinyOtwarcia2));
         postOfficesListAdapter.setItems(postOffices);
     }
 

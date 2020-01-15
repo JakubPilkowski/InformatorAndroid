@@ -58,9 +58,7 @@ public class CalendarAdapter extends ArrayAdapter {
             cell.setBackgroundColor(view.getContext().getColor(R.color.colorBlackLight));
             cell.setTextColor(view.getContext().getColor(R.color.colorGray2));
         }
-        //Add day to calendar
         cell.setText(String.valueOf(dayValue));
-        //Add events to the calendar
         Calendar eventCalendar = Calendar.getInstance();
         for(int i = 0; i <events.size(); i++){
             eventCalendar.setTime(events.get(i).getDate());
