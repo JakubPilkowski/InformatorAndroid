@@ -62,7 +62,7 @@ public class CalendarAdapter extends ArrayAdapter {
         Calendar eventCalendar = Calendar.getInstance();
         for(int i = 0; i <events.size(); i++){
             eventCalendar.setTime(events.get(i).getDate());
-            if(dayValue == eventCalendar.get(Calendar.DAY_OF_MONTH) && displayMonth == eventCalendar.get(Calendar.MONTH) + 1
+            if(dayValue == eventCalendar.get(Calendar.DAY_OF_MONTH) && displayMonth == currentMonth
                     && displayYear == eventCalendar.get(Calendar.YEAR)){
                 cell.setBackgroundColor(view.getContext().getColor(R.color.colorWhite));
                 cell.setTextColor(view.getContext().getColor(R.color.colorGray2));
