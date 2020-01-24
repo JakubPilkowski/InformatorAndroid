@@ -7,6 +7,6 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.informator.activities.MainActivityViewModel" />
+            type="pl.android.informator.activities.MainActivityViewModel" />
     </data>
 </layout>

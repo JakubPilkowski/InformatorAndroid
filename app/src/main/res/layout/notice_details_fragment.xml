@@ -10,7 +10,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            tools:context=".ui.notice_board.notice_details.NoticeDetailsFragment">
+            tools:context="pl.android.informator.ui.notice_board.notice_details.NoticeDetailsFragment">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -151,6 +151,6 @@
 
         <variable
             name="viewModel"
-            type="com.example.informator.ui.notice_board.notice_details.NoticeDetailsViewModel" />
+            type="pl.android.informator.ui.notice_board.notice_details.NoticeDetailsViewModel" />
     </data>
 </layout>

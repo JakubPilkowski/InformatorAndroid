@@ -50,6 +50,6 @@
 
         <variable
             name="viewModel"
-            type="com.example.informator.adapters.notice_board.NoticeBoardAdapterViewModel" />
+            type="pl.android.informator.adapters.notice_board.NoticeBoardAdapterViewModel" />
     </data>
 </layout>

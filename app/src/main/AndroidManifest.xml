@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
 
-    package="com.example.informator">
+    package="com.android.informator">
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <application
@@ -12,10 +12,12 @@
         android:supportsRtl="true"
         android:screenOrientation="portrait"
         android:theme="@style/AppTheme"
-        android:allowBackup="true">
+        android:debuggable="false"
+        android:allowBackup="true"
+        tools:ignore="HardcodedDebugMode">
         <activity
             android:theme="@style/AppTheme.NoActionBar"
-            android:name=".activities.MainActivity">
+            android:name="pl.android.informator.activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.offices.post_offices.PostOfficesFragment">
+    tools:context="pl.android.informator.ui.offices.post_offices.PostOfficesFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/post_offices_list"
@@ -15,6 +15,6 @@
 
         <variable
             name="viewModel"
-            type="com.example.informator.ui.offices.post_offices.PostOfficesViewModel" />
+            type="pl.android.informator.ui.offices.post_offices.PostOfficesViewModel" />
     </data>
 </layout>

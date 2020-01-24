@@ -31,6 +31,6 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.informator.adapters.offices.SingleOpeningHourViewModel" />
+            type="pl.android.informator.adapters.offices.SingleOpeningHourViewModel" />
     </data>
 </layout>

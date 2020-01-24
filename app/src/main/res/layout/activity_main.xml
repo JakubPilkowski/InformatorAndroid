@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        tools:context=".activities.MainActivity"
+        tools:context="pl.android.informator.activities.MainActivity"
         tools:openDrawer="start">
         <RelativeLayout
             android:layout_width="match_parent"
@@ -56,6 +56,6 @@
 
         <variable
             name="viewModel"
-            type="com.example.informator.activities.MainActivityViewModel" />
+            type="pl.android.informator.activities.MainActivityViewModel" />
     </data>
 </layout>

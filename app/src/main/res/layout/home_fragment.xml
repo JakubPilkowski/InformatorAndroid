@@ -5,7 +5,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.home.HomeFragment">
+        tools:context="pl.android.informator.ui.home.HomeFragment">
 
         <Button
             android:layout_width="64dp"
@@ -29,6 +29,6 @@
 
         <variable
             name="ViewModel"
-            type="com.example.informator.ui.home.HomeViewModel" />
+            type="pl.android.informator.ui.home.HomeViewModel" />
     </data>
 </layout>
