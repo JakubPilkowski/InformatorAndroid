@@ -23,10 +23,10 @@
             android:id="@+id/menu_notice_board"
             android:title="@string/notice_board"
             android:icon="@drawable/ic_tablicaogloszen"/>
-        <item
-            android:id="@+id/menu_offices"
-            android:title="@string/offices"
-            android:icon="@drawable/ic_urzedy"/>
+<!--        <item-->
+<!--            android:id="@+id/menu_offices"-->
+<!--            android:title="@string/offices"-->
+<!--            android:icon="@drawable/ic_urzedy"/>-->
     </group>
 
 </menu>
