@@ -8,8 +8,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/colorGrayOffers"
-    tools:context=".ui.events.EventsFragment">
-    <com.example.informator.views.CalendarView
+    tools:context="pl.android.informator.ui.events.EventsFragment">
+    <pl.android.informator.views.CalendarView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:setEvents="@{viewModel.events}"
@@ -19,6 +19,6 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.informator.ui.events.EventsViewModel" />
+            type="pl.android.informator.ui.events.EventsViewModel" />
     </data>
 </layout>

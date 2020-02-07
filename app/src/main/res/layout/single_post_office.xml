@@ -13,6 +13,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/post_office_main_content"
             android:orientation="vertical"
+            android:animateLayoutChanges="true"
             app:showViewWithAnim="@{viewModel.show}"
             >
 
@@ -168,6 +169,6 @@
 
         <variable
             name="viewModel"
-            type="com.example.informator.adapters.offices.PostOfficesAdapterViewModel" />
+            type="pl.android.informator.adapters.offices.PostOfficesAdapterViewModel" />
     </data>
 </layout>

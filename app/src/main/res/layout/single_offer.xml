@@ -142,6 +142,6 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.informator.adapters.offers.OffersAdapterViewModel" />
+            type="pl.android.informator.adapters.offers.OffersAdapterViewModel" />
     </data>
 </layout>
