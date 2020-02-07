@@ -89,9 +89,9 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainActivity
             case R.id.menu_notice_board:
                 navigator.showNoticeBoard();
                 break;
-            case R.id.menu_offices:
-                navigator.showOffices();
-                break;
+//            case R.id.menu_offices:
+//                navigator.showOffices();
+//                break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
