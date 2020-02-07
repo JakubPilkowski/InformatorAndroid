@@ -1,4 +1,4 @@
-package pl.android.informator.ui.timetable;
+package pl.android.informator.ui.timetable.main;
 
 import pl.android.informator.base.BaseViewModel;
 

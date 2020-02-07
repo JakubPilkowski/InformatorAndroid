@@ -20,7 +20,7 @@ import pl.android.informator.ui.notice_board.notice_details.NoticeDetailsFragmen
 import pl.android.informator.ui.offers.OffersFragment;
 import pl.android.informator.ui.offices.OfficesFragment;
 import pl.android.informator.ui.offices.post_offices.PostOfficesFragment;
-import pl.android.informator.ui.timetable.TimetableFragment;
+import pl.android.informator.ui.timetable.main.TimetableFragment;
 import pl.android.informator.ui.weather.WeatherFragment;
 
 public class Navigator {

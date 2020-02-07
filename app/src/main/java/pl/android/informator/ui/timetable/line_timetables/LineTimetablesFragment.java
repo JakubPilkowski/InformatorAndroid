@@ -1,61 +1,63 @@
-package pl.android.informator.ui.timetable;
+package pl.android.informator.ui.timetable.line_timetables;
 
 import androidx.databinding.ViewDataBinding;
+import androidx.fragment.app.Fragment;
 
 import com.android.informator.R;
+import com.android.informator.databinding.LineTimetablesFragmentBinding;
+
 import pl.android.informator.activities.MainActivity;
 import pl.android.informator.base.BaseFragment;
-import com.android.informator.databinding.TimetableFragmentBinding;
 import pl.android.informator.interfaces.Providers;
 import pl.android.informator.navigation.Navigator;
 
-public class TimetableFragment extends BaseFragment<TimetableFragmentBinding, TimetableViewModel> implements Providers {
+public class LineTimetablesFragment extends BaseFragment<LineTimetablesFragmentBinding, LineTimetablesViewModel> implements Providers {
 
-    public static final String TAG = "TimetableFragment";
-    public static TimetableFragment newInstance() {
-        return new TimetableFragment();
+
+    public static LineTimetablesFragment newInstance() {
+        return new LineTimetablesFragment();
     }
+
 
     @Override
     public int getLayoutRes() {
-        return R.layout.timetable_fragment;
+        return R.layout.line_timetables_fragment;
     }
 
     @Override
-    public Class<TimetableViewModel> getViewModelClass() {
-        return TimetableViewModel.class;
+    public Class<LineTimetablesViewModel> getViewModelClass() {
+        return LineTimetablesViewModel.class;
     }
 
     @Override
-    public void bindData(TimetableFragmentBinding binding) {
+    public void bindData(LineTimetablesFragmentBinding binding) {
         binding.setViewModel(viewModel);
-        viewModel.setProviders(this);
         viewModel.init();
     }
 
     @Override
     public int getToolbarType() {
-        return 1;
+        return 0;
     }
 
     @Override
     public int getBackPressType() {
-        return 1;
+        return 0;
     }
 
     @Override
     public String getToolbarName() {
-        return getContext().getString(R.string.timetable);
+        return null;
     }
 
     @Override
     public float getToolbarFontSize() {
-        return 18;
+        return 0;
     }
 
     @Override
     public Navigator getNavigator() {
-        return ((MainActivity)getActivity()).navigator;
+        return ((MainActivity)getActivity()).getNavigator();
     }
 
     @Override
@@ -65,7 +67,7 @@ public class TimetableFragment extends BaseFragment<TimetableFragmentBinding, Ti
 
     @Override
     public ViewDataBinding getActivityOrFragmentBinding() {
-        return ((MainActivity)getActivity()).binding;
+        return ((MainActivity)getActivity()).getBinding();
     }
 
     @Override
