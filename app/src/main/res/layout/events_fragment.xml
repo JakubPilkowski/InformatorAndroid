@@ -12,7 +12,7 @@
     <pl.android.informator.views.CalendarView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:setEvents="@{viewModel.events}"
+        app:setArrayItems="@{viewModel.events}"
         app:setNavigator="@{viewModel.navigator}"
         />
 </LinearLayout>

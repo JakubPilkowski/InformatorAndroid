@@ -37,7 +37,7 @@ public class LineTimetablesFragment extends BaseFragment<LineTimetablesFragmentB
 
     @Override
     public int getToolbarType() {
-        return 0;
+        return 2;
     }
 
     @Override
@@ -47,12 +47,12 @@ public class LineTimetablesFragment extends BaseFragment<LineTimetablesFragmentB
 
     @Override
     public String getToolbarName() {
-        return null;
+        return "ROZKŁADY LINII";
     }
 
     @Override
     public float getToolbarFontSize() {
-        return 0;
+        return 18;
     }
 
     @Override

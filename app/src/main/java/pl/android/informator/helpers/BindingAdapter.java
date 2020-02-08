@@ -25,6 +25,7 @@ import com.android.informator.R;
 import com.android.informator.databinding.AddNoticeFragmentBinding;
 import pl.android.informator.models.Event;
 import pl.android.informator.navigation.Navigator;
+import pl.android.informator.views.ArrayView;
 import pl.android.informator.views.CalendarView;
 
 import java.util.List;
@@ -155,14 +156,18 @@ public class BindingAdapter {
         }
     }
 
-    @androidx.databinding.BindingAdapter("setEvents")
-    public static void setEvents(CalendarView calendarView, List<Event> events) {
-        calendarView.setEvents(events);
+    @androidx.databinding.BindingAdapter("setArrayItems")
+    public static <I> void setArrayItems(View view, List<I> items) {
+        if(view instanceof ArrayView){
+            ((ArrayView) view).setItems(items);
+        }
     }
 
     @androidx.databinding.BindingAdapter("setNavigator")
-    public static void setNavigator(CalendarView calendarView, Navigator navigator) {
-        calendarView.setNavigator(navigator);
+    public static void setNavigator(View view, Navigator navigator) {
+        if(view instanceof ArrayView){
+            ((ArrayView) view).setNavigator(navigator);
+        }
     }
 
 }

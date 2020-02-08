@@ -23,7 +23,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class CalendarView extends LinearLayout {
+public class CalendarView extends ArrayView<Event>{
 
     TextView btnPrev;
     TextView btnNext;
@@ -32,81 +32,40 @@ public class CalendarView extends LinearLayout {
     SimpleDateFormat sdf = new SimpleDateFormat("MMMM yyyy",Locale.ENGLISH);
     Calendar calendar = Calendar.getInstance(Locale.ENGLISH);
     CalendarAdapter mAdapter;
-    Context context;
-    Navigator navigator;
-    List<Event>events = new ArrayList<>();
-    public CalendarView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        initControl(context, attrs);
-        this.context = context;
+//    Context context;
+//    Navigator navigator;
+//    List<Event>events = new ArrayList<>();
+    public CalendarView(Context context) {
+        super(context);
         setPreviousButtonClickEvent();
         setNextButtonClickEvent();
         setGridCellClickEvent();
     }
 
-    public void setNavigator(Navigator navigator) {
-        this.navigator = navigator;
+
+    @Override
+    public int getLayoutRes() {
+        return R.layout.calendar_view;
     }
 
-    public void setEvents(List<Event> events) {
-        this.events.clear();
-        this.events.addAll(events);
-        setUpCalendarAdapter();
-    }
-
-    private void assignUiElements() {
+    @Override
+    public void assignUiElements() {
         btnPrev = findViewById(R.id.calendar_prev_button);
         btnNext = findViewById(R.id.calendar_next_button);
         txtDisplayDate = findViewById(R.id.date_display_date);
         gridView = findViewById(R.id.calendar_grid);
     }
 
-    private void initControl(Context context, AttributeSet attrs)
-    {
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.calendar_view, this);
-        assignUiElements();
-    }
 
-    private void setGridCellClickEvent() {
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                RelativeLayout linearLayout = (RelativeLayout) view;
-                TextView textView = linearLayout.findViewById(R.id.event_id_holder);
-                if(!textView.getText().toString().isEmpty()){
-                    for (Event event :events) {
-                        if (event.getId()==Integer.parseInt(textView.getText().toString())){
-                            navigator.showEvent(event);
-                        }
+//    private void assignUiElements() {
+//        btnPrev = findViewById(R.id.calendar_prev_button);
+//        btnNext = findViewById(R.id.calendar_next_button);
+//        txtDisplayDate = findViewById(R.id.date_display_date);
+//        gridView = findViewById(R.id.calendar_grid);
+//    }
 
-                    }
-                }
-            }
-        });
-    }
-
-    private void setNextButtonClickEvent() {
-        btnNext.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                calendar.add(Calendar.MONTH,1);
-                setUpCalendarAdapter();
-            }
-        });
-    }
-
-    private void setPreviousButtonClickEvent() {
-        btnPrev.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                calendar.add(Calendar.MONTH,-1);
-                setUpCalendarAdapter();
-            }
-        });
-    }
-
-    private void setUpCalendarAdapter() {
+    @Override
+    public void setUpAdapter() {
         List<Date> dayValueInCells = new ArrayList<>();
         Calendar mCal = (Calendar)calendar.clone();
         mCal.set(Calendar.DAY_OF_MONTH, 1);
@@ -125,9 +84,58 @@ public class CalendarView extends LinearLayout {
         }
         String sDate = sdf.format(calendar.getTime());
         txtDisplayDate.setText(DateHelper.getPolishFormatDate(sDate));
-        mAdapter = new CalendarAdapter(context, dayValueInCells, calendar, events);
+        mAdapter = new CalendarAdapter(context, dayValueInCells, calendar, items);
         gridView.setAdapter(mAdapter);
-
     }
+
+//    private void initControl(Context context, AttributeSet attrs)
+//    {
+//        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//        inflater.inflate(R.layout.calendar_view, this);
+//        assignUiElements();
+//    }
+
+    private void setGridCellClickEvent() {
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                RelativeLayout linearLayout = (RelativeLayout) view;
+                TextView textView = linearLayout.findViewById(R.id.event_id_holder);
+                if(!textView.getText().toString().isEmpty()){
+                    for (Event event :items) {
+                        if (event.getId()==Integer.parseInt(textView.getText().toString())){
+                            getNavigator().showEvent(event);
+                        }
+
+                    }
+                }
+            }
+        });
+    }
+
+    private void setNextButtonClickEvent() {
+        btnNext.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                calendar.add(Calendar.MONTH,1);
+                setUpAdapter();
+            }
+        });
+    }
+
+    private void setPreviousButtonClickEvent() {
+        btnPrev.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                calendar.add(Calendar.MONTH,-1);
+                setUpAdapter();
+            }
+        });
+    }
+
+//    private void setUpCalendarAdapter() {
+//
+//
+//    }
 
 }
