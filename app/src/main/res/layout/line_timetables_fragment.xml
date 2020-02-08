@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -17,9 +17,18 @@
         <pl.android.informator.views.CommunicationLineView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:setArrayViewIcon="@{viewModel.tramIcon}"
+            app:setArrayViewTitle="@{viewModel.tramTitle}"
+            app:setNavigator="@{viewModel.navigator}"
+            app:setArrayItems="@{viewModel.tramList}"
             />
         <pl.android.informator.views.CommunicationLineView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            app:setArrayViewIcon="@{viewModel.busIcon}"
+            app:setArrayViewTitle="@{viewModel.busTitle}"
+            app:setNavigator="@{viewModel.navigator}"
+            app:setArrayItems="@{viewModel.busList}"
+            />
     </LinearLayout>
 </layout>

@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -27,6 +28,7 @@ import pl.android.informator.models.Event;
 import pl.android.informator.navigation.Navigator;
 import pl.android.informator.views.ArrayView;
 import pl.android.informator.views.CalendarView;
+import pl.android.informator.views.CommunicationLineView;
 
 import java.util.List;
 
@@ -170,5 +172,14 @@ public class BindingAdapter {
         }
     }
 
+    @androidx.databinding.BindingAdapter("setArrayViewTitle")
+    public static void setArrayViewTitle(CommunicationLineView view, String title){
+        view.setTitle(title);
+    }
+
+    @androidx.databinding.BindingAdapter("setArrayViewIcon")
+    public static void setArrayViewIcon(CommunicationLineView view, int icon){
+        view.setIcon(icon);
+    }
 }
 

@@ -20,6 +20,7 @@ import pl.android.informator.ui.notice_board.notice_details.NoticeDetailsFragmen
 import pl.android.informator.ui.offers.OffersFragment;
 import pl.android.informator.ui.offices.OfficesFragment;
 import pl.android.informator.ui.offices.post_offices.PostOfficesFragment;
+import pl.android.informator.ui.timetable.line_timetables.LineTimetablesFragment;
 import pl.android.informator.ui.timetable.main.TimetableFragment;
 import pl.android.informator.ui.weather.WeatherFragment;
 
@@ -134,6 +135,15 @@ public class Navigator {
                 .beginTransaction()
                 .addToBackStack(EventDetailsFragment.TAG)
                 .replace(R.id.main_container, EventDetailsFragment.newInstance(event), EventDetailsFragment.TAG)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .commit();
+    }
+
+    public void showLineTimetables() {
+        activity.getSupportFragmentManager()
+                .beginTransaction()
+                .addToBackStack(LineTimetablesFragment.TAG)
+                .replace(R.id.main_container, LineTimetablesFragment.newInstance(), LineTimetablesFragment.TAG)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit();
     }

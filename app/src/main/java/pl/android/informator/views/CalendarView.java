@@ -32,16 +32,12 @@ public class CalendarView extends ArrayView<Event>{
     SimpleDateFormat sdf = new SimpleDateFormat("MMMM yyyy",Locale.ENGLISH);
     Calendar calendar = Calendar.getInstance(Locale.ENGLISH);
     CalendarAdapter mAdapter;
-//    Context context;
-//    Navigator navigator;
-//    List<Event>events = new ArrayList<>();
-    public CalendarView(Context context) {
-        super(context);
+    public CalendarView(Context context, AttributeSet attr) {
+        super(context,attr);
         setPreviousButtonClickEvent();
         setNextButtonClickEvent();
         setGridCellClickEvent();
     }
-
 
     @Override
     public int getLayoutRes() {
@@ -56,13 +52,6 @@ public class CalendarView extends ArrayView<Event>{
         gridView = findViewById(R.id.calendar_grid);
     }
 
-
-//    private void assignUiElements() {
-//        btnPrev = findViewById(R.id.calendar_prev_button);
-//        btnNext = findViewById(R.id.calendar_next_button);
-//        txtDisplayDate = findViewById(R.id.date_display_date);
-//        gridView = findViewById(R.id.calendar_grid);
-//    }
 
     @Override
     public void setUpAdapter() {
@@ -88,12 +77,6 @@ public class CalendarView extends ArrayView<Event>{
         gridView.setAdapter(mAdapter);
     }
 
-//    private void initControl(Context context, AttributeSet attrs)
-//    {
-//        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//        inflater.inflate(R.layout.calendar_view, this);
-//        assignUiElements();
-//    }
 
     private void setGridCellClickEvent() {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

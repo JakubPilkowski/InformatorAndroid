@@ -1,10 +1,12 @@
 package pl.android.informator.views;
 
 import android.content.Context;
+import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 
 import androidx.annotation.LayoutRes;
+import androidx.annotation.Nullable;
 
 import com.android.informator.R;
 
@@ -18,15 +20,16 @@ public abstract class ArrayView<I> extends LinearLayout {
     public List<I> items = new ArrayList<>();
     private Navigator navigator;
 
+    public ArrayView(Context context, @Nullable AttributeSet attrs) {
+        super(context, attrs);
+        initControl(context);
+        this.context = context;
+    }
+
     public Navigator getNavigator() {
         return navigator;
     }
 
-    public ArrayView(Context context) {
-        super(context);
-        initControl(context);
-        this.context = context;
-    }
     public void setItems(List<I> items){
         this.items.clear();
         this.items.addAll(items);

@@ -13,7 +13,7 @@ import pl.android.informator.navigation.Navigator;
 
 public class LineTimetablesFragment extends BaseFragment<LineTimetablesFragmentBinding, LineTimetablesViewModel> implements Providers {
 
-
+    public static final String TAG = "LineTimetablesFragment";
     public static LineTimetablesFragment newInstance() {
         return new LineTimetablesFragment();
     }
@@ -32,6 +32,7 @@ public class LineTimetablesFragment extends BaseFragment<LineTimetablesFragmentB
     @Override
     public void bindData(LineTimetablesFragmentBinding binding) {
         binding.setViewModel(viewModel);
+        viewModel.setProviders(this);
         viewModel.init();
     }
 
