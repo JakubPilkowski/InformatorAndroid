@@ -33,7 +33,6 @@
         android:id="@+id/lines_grid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorWhite"
         android:verticalSpacing="6dp"
         android:numColumns="4" />
 </LinearLayout>

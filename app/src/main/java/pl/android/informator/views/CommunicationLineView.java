@@ -49,6 +49,7 @@ public class CommunicationLineView extends ArrayView<CommunicationLine> {
 
     @Override
     public void setUpAdapter() {
+        Log.d("itemy",String.valueOf(items));
         LinesAdapter mAdapter = new LinesAdapter(context,items);
         iconImageView.setImageResource(icon);
         titleTextView.setText(title);
@@ -61,15 +62,14 @@ public class CommunicationLineView extends ArrayView<CommunicationLine> {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 RelativeLayout linearLayout = (RelativeLayout) view;
-//                TextView textView = linearLayout.findViewById(R.id.event_id_holder);
-//                if(!textView.getText().toString().isEmpty()){
-//                    for (Event event : lines) {
-//                        if (event.getId()==Integer.parseInt(textView.getText().toString())){
-//                            navigator.showEvent(event);
-//                        }
-//
-//                    }
-//                }
+                TextView textView = linearLayout.findViewById(R.id.single_line_event_holder);
+                if(!textView.getText().toString().isEmpty()){
+                    for (CommunicationLine line : items) {
+                        if (line.getId()==Integer.parseInt(textView.getText().toString())){
+                            getNavigator().showLine(line);
+                        }
+                    }
+                }
             }
         });
     }

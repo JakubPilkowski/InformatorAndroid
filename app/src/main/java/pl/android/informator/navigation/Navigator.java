@@ -9,6 +9,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.android.informator.R;
 
+import pl.android.informator.models.BusStop;
+import pl.android.informator.models.CommunicationLine;
 import pl.android.informator.models.Event;
 import pl.android.informator.models.Notice;
 import pl.android.informator.ui.events.EventsFragment;
@@ -21,6 +23,8 @@ import pl.android.informator.ui.offers.OffersFragment;
 import pl.android.informator.ui.offices.OfficesFragment;
 import pl.android.informator.ui.offices.post_offices.PostOfficesFragment;
 import pl.android.informator.ui.timetable.line_timetables.LineTimetablesFragment;
+import pl.android.informator.ui.timetable.line_timetables.line_details.LineDetailsFragment;
+import pl.android.informator.ui.timetable.line_timetables.single_line.SingleLineFragment;
 import pl.android.informator.ui.timetable.main.TimetableFragment;
 import pl.android.informator.ui.weather.WeatherFragment;
 
@@ -144,6 +148,27 @@ public class Navigator {
                 .beginTransaction()
                 .addToBackStack(LineTimetablesFragment.TAG)
                 .replace(R.id.main_container, LineTimetablesFragment.newInstance(), LineTimetablesFragment.TAG)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .commit();
+    }
+
+    public void showLine(CommunicationLine line) {
+        activity.getSupportFragmentManager()
+                .beginTransaction()
+                .addToBackStack(SingleLineFragment.TAG)
+                .replace(R.id.main_container, SingleLineFragment.newInstance(line), SingleLineFragment.TAG)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .commit();
+    }
+
+    public void showMap(CommunicationLine line) {
+    }
+
+    public void showLineDetails(BusStop stop, CommunicationLine line) {
+        activity.getSupportFragmentManager()
+                .beginTransaction()
+                .addToBackStack(LineDetailsFragment.TAG)
+                .replace(R.id.main_container, LineDetailsFragment.newInstance(stop, line), LineDetailsFragment.TAG)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit();
     }

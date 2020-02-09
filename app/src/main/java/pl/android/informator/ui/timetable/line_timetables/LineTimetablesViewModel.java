@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pl.android.informator.base.BaseViewModel;
+import pl.android.informator.models.BusStop;
 import pl.android.informator.models.CommunicationLine;
 import pl.android.informator.navigation.Navigator;
 
@@ -33,18 +34,28 @@ public class LineTimetablesViewModel extends BaseViewModel {
        busTitle.set("Linie autobusowe");
        navigator.set(getNavigator());
        List<CommunicationLine> tramLines = new ArrayList<>();
-       tramLines.add(new CommunicationLine(1,1));
-       tramLines.add(new CommunicationLine(2,2));
-       tramLines.add(new CommunicationLine(3,3));
+       List<BusStop>stops = new ArrayList<>();
+       stops.add(new BusStop("Dworzec główny",0));
+        stops.add(new BusStop("Plac Bema",2));
+        stops.add(new BusStop("Kajki",2));
+        stops.add(new BusStop("Mickiewicza",4));
+        stops.add(new BusStop("Centrum",6));
+        stops.add(new BusStop("Wysoka Brama",8));
+        stops.add(new BusStop("Plac Roosevelta",10));
+        stops.add(new BusStop("Grunwaldzka",15));
+        stops.add(new BusStop("Jezioro Długie",16));
+        tramLines.add(new CommunicationLine(1,1, "Witosa", "Redykajny",stops));
+       tramLines.add(new CommunicationLine(2,2, "Witosa", "Redykajny" ,stops));
+       tramLines.add(new CommunicationLine(3,3, "Witosa", "Redykajny",stops));
        List<CommunicationLine> busLines = new ArrayList<>();
-       busLines.add(new CommunicationLine(4,101));
-       busLines.add(new CommunicationLine(5,103));
-        busLines.add(new CommunicationLine(6,105));
-        busLines.add(new CommunicationLine(7,106));
-        busLines.add(new CommunicationLine(4,101));
-        busLines.add(new CommunicationLine(5,103));
-        busLines.add(new CommunicationLine(6,105));
-        busLines.add(new CommunicationLine(7,106));
+       busLines.add(new CommunicationLine(4,101,"Dworzec główny","Redykajny",stops));
+       busLines.add(new CommunicationLine(5,103,"Dworzec główny","Redykajny",stops));
+        busLines.add(new CommunicationLine(6,105,"Dworzec główny","Redykajny",stops));
+        busLines.add(new CommunicationLine(7,106,"Dworzec główny","Redykajny",stops));
+        busLines.add(new CommunicationLine(8,101,"Dworzec główny","Redykajny",stops));
+        busLines.add(new CommunicationLine(9,103,"Dworzec główny","Redykajny",stops));
+        busLines.add(new CommunicationLine(10,105,"Dworzec główny","Redykajny",stops));
+        busLines.add(new CommunicationLine(11,106,"Dworzec główny","Redykajny",stops));
         tramList.set(tramLines);
         busList.set(busLines);
     }
