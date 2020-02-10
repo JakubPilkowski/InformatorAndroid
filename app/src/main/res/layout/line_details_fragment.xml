@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -8,228 +10,264 @@
             type="pl.android.informator.ui.timetable.line_timetables.line_details.LineDetailsViewModel" />
     </data>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <ScrollView
+        android:id="@+id/line_details"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context="pl.android.informator.ui.timetable.line_timetables.line_details.LineDetailsFragment">
-
+        android:layout_height="wrap_content"
+        >
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorWhite"
-            android:orientation="horizontal"
-            android:layout_marginBottom="12dp"
-            >
-            <TextView
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:background="@drawable/horizontal_main_gradient"
-                android:text="@{viewModel.lineNumber}"
-                android:gravity="center"
-                android:fontFamily="@font/montserrat"
-                android:textSize="24sp"
-                android:textColor="@color/colorWhite"
-                />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:context="pl.android.informator.ui.timetable.line_timetables.line_details.LineDetailsFragment">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_gravity="center_vertical"
-                android:orientation="vertical">
+                android:layout_marginBottom="12dp"
+                android:background="@color/colorWhite"
+                android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/post_office_main_info"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:background="@drawable/horizontal_main_gradient"
                     android:fontFamily="@font/montserrat"
-                    android:textColor="@color/colorBlack"
-                    android:text="@{viewModel.lineChosenBusStation}"
+                    android:gravity="center"
+                    android:text="@{viewModel.lineNumber}"
+                    android:textColor="@color/colorWhite"
                     android:textSize="24sp" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    >
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="12dp"
+                    android:orientation="vertical">
+
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:id="@+id/post_office_main_info"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
                         android:fontFamily="@font/montserrat"
+                        android:text="@{viewModel.lineChosenBusStation}"
                         android:textColor="@color/colorBlack"
-                        android:text="@{viewModel.lineDestinationFrom}"
-                        android:textSize="14sp" />
-                    <TextView
-                        android:layout_width="wrap_content"
+                        android:textSize="24sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/arrow_right_key_symbol"
-                        android:textColor="@color/colorGradientEnd"
-                        android:layout_margin="2dp"
-                        android:textSize="14sp"
-                        />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat"
-                        android:textColor="@color/colorBlack"
-                        android:text="@{viewModel.lineDestinationTo}"
-                        android:textSize="14sp" />
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/montserrat"
+                            android:text="@{viewModel.lineDestinationFrom}"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="2dp"
+                            android:text="@string/arrow_right_key_symbol"
+                            android:textColor="@color/colorGradientEnd"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/montserrat"
+                            android:text="@{viewModel.lineDestinationTo}"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="14sp" />
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:weightSum="2"
-            android:background="@color/colorWhite"
-            android:orientation="horizontal"
-            android:layout_marginBottom="12dp"
-            >
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:layout_marginStart="12dp"
-                android:fontFamily="@font/montserrat"
-                android:text="@string/working_days"
-                android:textSize="18sp"
-                android:textColor="@color/colorBlack"
-                />
-            <RelativeLayout
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_margin="8dp">
 
-                <Button
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginBottom="12dp"
+                android:background="@color/colorWhite"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/montserrat"
+                    android:text="@string/working_days"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="18sp" />
+
+                <RelativeLayout
                     android:layout_width="32dp"
                     android:layout_height="32dp"
-                    android:background="@drawable/oval_gradient_background"
-                    android:onClick="@{() -> viewModel.onWorkingDaysClick()}" />
+                    android:layout_margin="8dp">
 
-                <Button
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:layout_centerInParent="true"
-                    android:background="@drawable/ic_dol"
-                    android:onClick="@{() -> viewModel.onWorkingDaysClick()}"
-                    app:setOnShowLabelDrawable="@{viewModel.show}" />
-            </RelativeLayout>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:weightSum="2"
-            android:background="@color/colorWhite"
-            android:orientation="horizontal"
-            android:layout_marginBottom="12dp"
-            >
-            <TextView
-                android:layout_width="0dp"
+                    <Button
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:background="@drawable/oval_gradient_background"
+                        android:onClick="@{() -> viewModel.onWorkingDaysClick()}" />
+
+                    <Button
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/ic_dol"
+                        android:onClick="@{() -> viewModel.onWorkingDaysClick()}"
+                        app:setOnShowLabelDrawable="@{viewModel.show}" />
+                </RelativeLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/workingDaysContainer"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:layout_marginStart="12dp"
-                android:fontFamily="@font/montserrat"
-                android:text="@string/free_working_days"
-                android:textSize="18sp"
-                android:textColor="@color/colorBlack"
-                />
-            <RelativeLayout
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_margin="8dp">
+                android:orientation="vertical"
+                >
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginBottom="12dp"
+                android:background="@color/colorWhite"
+                android:orientation="horizontal"
+                android:weightSum="2">
 
-                <Button
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/montserrat"
+                    android:text="@string/free_working_days"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="18sp" />
+
+                <RelativeLayout
                     android:layout_width="32dp"
                     android:layout_height="32dp"
-                    android:background="@drawable/oval_gradient_background"
-                    android:onClick="@{() -> viewModel.onFreeDaysFromWorkingClick()}" />
+                    android:layout_margin="8dp">
 
-                <Button
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:layout_centerInParent="true"
-                    android:background="@drawable/ic_dol"
-                    android:onClick="@{() -> viewModel.onFreeDaysFromWorkingClick()}"
-                    app:setOnShowLabelDrawable="@{viewModel.show}" />
-            </RelativeLayout>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:weightSum="2"
-            android:background="@color/colorWhite"
-            android:orientation="horizontal"
-            android:layout_marginBottom="12dp"
-            >
-            <TextView
-                android:layout_width="0dp"
+                    <Button
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:background="@drawable/oval_gradient_background"
+                        android:onClick="@{() -> viewModel.onFreeDaysFromWorkingClick()}" />
+
+                    <Button
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/ic_dol"
+                        android:onClick="@{() -> viewModel.onFreeDaysFromWorkingClick()}"
+                        app:setOnShowLabelDrawable="@{viewModel.show}" />
+                </RelativeLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/freeDaysFromWorkingContainer"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:layout_marginStart="12dp"
-                android:fontFamily="@font/montserrat"
-                android:text="@string/saturdays"
-                android:textSize="18sp"
-                android:textColor="@color/colorBlack"
-                />
-            <RelativeLayout
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_margin="8dp">
+                android:orientation="vertical"
+                >
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginBottom="12dp"
+                android:background="@color/colorWhite"
+                android:orientation="horizontal"
+                android:weightSum="2">
 
-                <Button
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/montserrat"
+                    android:text="@string/saturdays"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="18sp" />
+
+                <RelativeLayout
                     android:layout_width="32dp"
                     android:layout_height="32dp"
-                    android:background="@drawable/oval_gradient_background"
-                    android:onClick="@{() -> viewModel.onSaturdayClick()}" />
+                    android:layout_margin="8dp">
 
-                <Button
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:layout_centerInParent="true"
-                    android:background="@drawable/ic_dol"
-                    android:onClick="@{() -> viewModel.onSaturdayClick()}"
-                    app:setOnShowLabelDrawable="@{viewModel.show}" />
-            </RelativeLayout>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:weightSum="2"
-            android:background="@color/colorWhite"
-            android:orientation="horizontal"
-            android:layout_marginBottom="12dp"
-            >
-            <TextView
-                android:layout_width="0dp"
+                    <Button
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:background="@drawable/oval_gradient_background"
+                        android:onClick="@{() -> viewModel.onSaturdayClick()}" />
+
+                    <Button
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/ic_dol"
+                        android:onClick="@{() -> viewModel.onSaturdayClick()}"
+                        app:setOnShowLabelDrawable="@{viewModel.show}" />
+                </RelativeLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/saturdaysContainer"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:layout_marginStart="12dp"
-                android:fontFamily="@font/montserrat"
-                android:text="@string/sundaysAndBreaks"
-                android:textSize="18sp"
-                android:textColor="@color/colorBlack"
-                />
-            <RelativeLayout
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_margin="8dp">
+                android:orientation="vertical"
+                >
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginBottom="12dp"
+                android:background="@color/colorWhite"
+                android:orientation="horizontal"
+                android:weightSum="2">
 
-                <Button
-                    android:id="@+id/post_office_extend_info"
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/montserrat"
+                    android:text="@string/sundaysAndBreaks"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="18sp" />
+
+                <RelativeLayout
                     android:layout_width="32dp"
                     android:layout_height="32dp"
-                    android:background="@drawable/oval_gradient_background"
-                    android:onClick="@{() -> viewModel.onSundayAndBreaks()}" />
+                    android:layout_margin="8dp">
 
-                <Button
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:layout_centerInParent="true"
-                    android:background="@drawable/ic_dol"
-                    android:onClick="@{() -> viewModel.onSundayAndBreaks()}"
-                    app:setOnShowLabelDrawable="@{viewModel.show}" />
-            </RelativeLayout>
+                    <Button
+                        android:id="@+id/post_office_extend_info"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:background="@drawable/oval_gradient_background"
+                        android:onClick="@{() -> viewModel.onSundayAndBreaks()}" />
+
+                    <Button
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/ic_dol"
+                        android:onClick="@{() -> viewModel.onSundayAndBreaks()}"
+                        app:setOnShowLabelDrawable="@{viewModel.show}" />
+                </RelativeLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/sundaysAndBreaksContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+    </ScrollView>
 </layout>

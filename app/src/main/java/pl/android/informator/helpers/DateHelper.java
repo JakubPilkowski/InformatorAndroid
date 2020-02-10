@@ -4,8 +4,10 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 public class DateHelper {
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -246,5 +248,17 @@ public class DateHelper {
                 break;
         }
         return month + dates[0];
+    }
+
+    public static String getHour(Date date){
+        SimpleDateFormat format = new SimpleDateFormat("hh-mm");
+        String formattedDate = format.format(date);
+        return formattedDate.substring(0,2);
+    }
+
+    public static String getMinute(Date date){
+        SimpleDateFormat format = new SimpleDateFormat("hh-mm");
+        String formattedDate = format.format(date);
+        return formattedDate.substring(3,5);
     }
 }
