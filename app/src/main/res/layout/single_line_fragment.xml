@@ -33,16 +33,29 @@
             android:layout_marginStart="12dp"
             android:layout_gravity="center_vertical"
             android:orientation="vertical">
-
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
             <TextView
                 android:id="@+id/post_office_main_info"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat"
                 android:text="@{viewModel.lineName}"
                 android:textColor="@color/colorBlack"
                 android:textSize="14sp" />
-
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/arrow_right_key_symbol"
+                    android:textColor="@color/colorGradientEnd"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginBottom="6dp"
+                    android:textSize="14sp"
+                    />
+            </LinearLayout>
             <TextView
                 android:id="@+id/post_office_secondary_info"
                 android:layout_width="match_parent"

@@ -42,8 +42,13 @@ public class LineTimetablesViewModel extends BaseViewModel {
         stops.add(new BusStop("Centrum",6));
         stops.add(new BusStop("Wysoka Brama",8));
         stops.add(new BusStop("Plac Roosevelta",10));
-        stops.add(new BusStop("Grunwaldzka",15));
-        stops.add(new BusStop("Jezioro Długie",16));
+        stops.add(new BusStop("Grunwaldzka",12));
+        stops.add(new BusStop("Jezioro Długie",15));
+        stops.add(new BusStop("Jeziorna",16));
+        stops.add(new BusStop("Zespół Szkół Ekonomicznych",17));
+        stops.add(new BusStop("Grabowa",19));
+        stops.add(new BusStop("Wędkarska",20));
+        stops.add(new BusStop("Letniskowa",21));
         tramLines.add(new CommunicationLine(1,1, "Witosa", "Redykajny",stops));
        tramLines.add(new CommunicationLine(2,2, "Witosa", "Redykajny" ,stops));
        tramLines.add(new CommunicationLine(3,3, "Witosa", "Redykajny",stops));

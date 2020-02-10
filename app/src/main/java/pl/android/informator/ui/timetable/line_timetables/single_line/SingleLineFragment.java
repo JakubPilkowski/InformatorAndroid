@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -111,6 +112,14 @@ public class SingleLineFragment extends BaseFragment<SingleLineFragmentBinding,S
             BusStop stop = line.getBusStops().get(i);
             View busStopView = LayoutInflater.from(getContext()).inflate(R.layout.single_bus_stop,view,false);
             SingleBusStopBinding binding = SingleBusStopBinding.bind(busStopView);
+            TextView busStopNameBackground = busStopView.findViewById(R.id.single_bus_name);
+            if(i==0 || i+1==line.getBusStops().size())
+                busStopNameBackground.setBackgroundResource(R.color.colorBlackLight);
+            else{
+                if(i % 2==1)
+                    busStopNameBackground.setBackgroundResource(R.color.colorGrayBackgroundDay);
+                if(i%2==0) busStopNameBackground.setBackgroundResource(R.color.colorGray2);
+            }
             BusStationViewModel viewModel = new BusStationViewModel();
             binding.setViewModel(viewModel);
             viewModel.init(stop,line,getNavigator());
