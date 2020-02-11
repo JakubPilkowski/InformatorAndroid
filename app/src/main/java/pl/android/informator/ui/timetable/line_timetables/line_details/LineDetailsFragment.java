@@ -1,6 +1,8 @@
 package pl.android.informator.ui.timetable.line_timetables.line_details;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -67,46 +69,11 @@ public class LineDetailsFragment extends BaseFragment<LineDetailsFragmentBinding
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initHours();
+        viewModel.initHoursView(getContext());
     }
 
-    private void initHours() {
-        LinearLayout workingDays = binding.workingDaysContainer;
-        LinearLayout freeFromWorkingDays = binding.freeDaysFromWorkingContainer;
-        LinearLayout saturdays = binding.saturdaysContainer;
-        LinearLayout sundaysAndBreaks = binding.sundaysAndBreaksContainer;
-        createHoursForContainer(workingDays);
-        createHoursForContainer(freeFromWorkingDays);
-        createHoursForContainer(saturdays);
-        createHoursForContainer(sundaysAndBreaks);
-    }
-    private void createHoursForContainer(LinearLayout layout, List<Date>hours){
-        String currentHour = DateHelper.getHour(hours.get(0));
-        LinearLayout singleDepartureTimeHour = (LinearLayout) LayoutInflater.from(getContext()).inflate(R.layout.single_departure_time_hour,layout,false);
-        View singleDepartureTimeMinute = LayoutInflater.from(getContext()).inflate(R.layout.single_departure_time_minute, singleDepartureTimeHour,false);
-        LinearLayout minutesContainer = singleDepartureTimeHour.findViewById(R.id.single_departure_time_minutes_container);
-        SingleDepartureTimeHourBinding singleDepartureTimeHourBinding = SingleDepartureTimeHourBinding.bind(singleDepartureTimeHour);
-        SingleDepartureTimeHourViewModel singleDepartureTimeHourViewModel = new SingleDepartureTimeHourViewModel();
-        singleDepartureTimeHourBinding.setViewModel(singleDepartureTimeHourViewModel);
-        singleDepartureTimeHourViewModel.init(currentHour);
-        for (int i=0; i<hours.size();i++){
-            String hour =DateHelper.getHour(hours.get(i));
-            if(!hour.equals(currentHour)){
-                layout.addView(singleDepartureTimeHour);
-                currentHour=hour;
-                singleDepartureTimeHour = (LinearLayout) LayoutInflater.from(getContext()).inflate(R.layout.single_departure_time_hour,layout,false);
-                singleDepartureTimeHourBinding = SingleDepartureTimeHourBinding.bind(singleDepartureTimeHour);
-                singleDepartureTimeHourViewModel = new SingleDepartureTimeHourViewModel();
-                singleDepartureTimeHourBinding.setViewModel(singleDepartureTimeHourViewModel);
-                singleDepartureTimeHourViewModel.init(currentHour);
-            }
-            SingleDepartureTimeMinuteBinding singleDepartureTimeMinuteBinding = SingleDepartureTimeMinuteBinding.bind(singleDepartureTimeMinute);
-            SingleDepartureTimeMinuteViewModel singleDepartureTimeMinuteViewModel = new SingleDepartureTimeMinuteViewModel();
-            singleDepartureTimeMinuteBinding.setViewModel(singleDepartureTimeMinuteViewModel);
-            singleDepartureTimeMinuteViewModel.init(DateHelper.getMinute(hours.get(i)));
-            minutesContainer.addView(singleDepartureTimeMinute);
-        }
-    }
+
+
     @Override
     public int getToolbarType() {
         return 2;
@@ -129,7 +96,7 @@ public class LineDetailsFragment extends BaseFragment<LineDetailsFragmentBinding
 
     @Override
     public Navigator getNavigator() {
-        return ((MainActivity)getActivity()).navigator;
+        return ((MainActivity) getActivity()).navigator;
     }
 
     @Override
@@ -139,7 +106,7 @@ public class LineDetailsFragment extends BaseFragment<LineDetailsFragmentBinding
 
     @Override
     public ViewDataBinding getActivityOrFragmentBinding() {
-        return ((MainActivity)getActivity()).binding;
+        return ((MainActivity) getActivity()).binding;
     }
 
     @Override

@@ -13,8 +13,8 @@
     <ScrollView
         android:id="@+id/line_details"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -90,8 +90,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:layout_marginBottom="12dp"
                 android:background="@color/colorWhite"
+                android:onClick="@{() -> viewModel.onWorkingDaysClick()}"
                 android:orientation="horizontal"
                 android:weightSum="2">
 
@@ -122,21 +122,25 @@
                         android:layout_centerInParent="true"
                         android:background="@drawable/ic_dol"
                         android:onClick="@{() -> viewModel.onWorkingDaysClick()}"
-                        app:setOnShowLabelDrawable="@{viewModel.show}" />
+                        app:setOnShowLabelDrawable="@{viewModel.show1}" />
                 </RelativeLayout>
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/workingDaysContainer"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:orientation="vertical"
-                >
-            </LinearLayout>
+                app:size="@{viewModel.size1}"
+                app:slideAnim="@{viewModel.show1}"></LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="12dp"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:layout_marginBottom="12dp"
                 android:background="@color/colorWhite"
+                android:onClick="@{() -> viewModel.onFreeDaysFromWorkingClick()}"
                 android:orientation="horizontal"
                 android:weightSum="2">
 
@@ -167,21 +171,25 @@
                         android:layout_centerInParent="true"
                         android:background="@drawable/ic_dol"
                         android:onClick="@{() -> viewModel.onFreeDaysFromWorkingClick()}"
-                        app:setOnShowLabelDrawable="@{viewModel.show}" />
+                        app:setOnShowLabelDrawable="@{viewModel.show2}" />
                 </RelativeLayout>
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/freeDaysFromWorkingContainer"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:orientation="vertical"
-                >
-            </LinearLayout>
+                app:size="@{viewModel.size2}"
+                app:slideAnim="@{viewModel.show2}"></LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="12dp"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:layout_marginBottom="12dp"
                 android:background="@color/colorWhite"
+                android:onClick="@{() -> viewModel.onSaturdayClick()}"
                 android:orientation="horizontal"
                 android:weightSum="2">
 
@@ -212,21 +220,25 @@
                         android:layout_centerInParent="true"
                         android:background="@drawable/ic_dol"
                         android:onClick="@{() -> viewModel.onSaturdayClick()}"
-                        app:setOnShowLabelDrawable="@{viewModel.show}" />
+                        app:setOnShowLabelDrawable="@{viewModel.show3}" />
                 </RelativeLayout>
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/saturdaysContainer"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:orientation="vertical"
-                >
-            </LinearLayout>
+                app:size="@{viewModel.size3}"
+                app:slideAnim="@{viewModel.show3}"></LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="12dp"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:layout_marginBottom="12dp"
                 android:background="@color/colorWhite"
+                android:onClick="@{() -> viewModel.onSundayAndBreaks()}"
                 android:orientation="horizontal"
                 android:weightSum="2">
 
@@ -258,16 +270,20 @@
                         android:layout_centerInParent="true"
                         android:background="@drawable/ic_dol"
                         android:onClick="@{() -> viewModel.onSundayAndBreaks()}"
-                        app:setOnShowLabelDrawable="@{viewModel.show}" />
+                        app:setOnShowLabelDrawable="@{viewModel.show4}" />
                 </RelativeLayout>
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/sundaysAndBreaksContainer"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:orientation="vertical"
-                >
-            </LinearLayout>
+                app:size="@{viewModel.size4}"
+                app:slideAnim="@{viewModel.show4}"></LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="12dp"/>
         </LinearLayout>
     </ScrollView>
 </layout>

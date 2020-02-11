@@ -6,7 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -24,10 +24,9 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.android.informator.R;
 import com.android.informator.databinding.AddNoticeFragmentBinding;
-import pl.android.informator.models.Event;
+
 import pl.android.informator.navigation.Navigator;
 import pl.android.informator.views.ArrayView;
-import pl.android.informator.views.CalendarView;
 import pl.android.informator.views.CommunicationLineView;
 
 import java.util.List;
@@ -71,6 +70,40 @@ public class BindingAdapter {
         }
         if (show == -1) {
             view.setVisibility(View.GONE);
+        }
+    }
+    @androidx.databinding.BindingAdapter({"slideAnim","size"})
+    public static void setSlideAnim(final View view, int show, int size){
+        if (show == -1)
+        {
+            view.setVisibility(View.GONE);
+        }
+        if(show==1)
+        {
+            view.setVisibility(View.VISIBLE);
+            ToggleSlideAnim toggleSlideAnim = new ToggleSlideAnim(view,TextHelper.getPixels(TypedValue.COMPLEX_UNIT_DIP,size),0);
+            toggleSlideAnim.setDuration(400);
+            view.startAnimation(toggleSlideAnim);
+        }
+        if(show==0){
+            ToggleSlideAnim toggleSlideAnim = new ToggleSlideAnim(view,0,TextHelper.getPixels(TypedValue.COMPLEX_UNIT_DIP,size));
+            toggleSlideAnim.setDuration(400);
+            toggleSlideAnim.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+                }
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    view.setVisibility(View.GONE);
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+                    onAnimationEnd(animation);
+                }
+            });
+            view.startAnimation(toggleSlideAnim);
         }
     }
 

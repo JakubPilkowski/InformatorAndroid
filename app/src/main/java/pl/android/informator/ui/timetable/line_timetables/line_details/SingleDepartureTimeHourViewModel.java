@@ -7,6 +7,6 @@ public class SingleDepartureTimeHourViewModel extends ViewModel {
 
     public ObservableField<String>hour = new ObservableField<>();
     public void init(String hour){
-        this.hour.set(hour);
+        this.hour.set(hour+":");
     }
 }
