@@ -116,9 +116,4 @@ public class CalendarView extends ArrayView<Event>{
         });
     }
 
-//    private void setUpCalendarAdapter() {
-//
-//
-//    }
-
 }

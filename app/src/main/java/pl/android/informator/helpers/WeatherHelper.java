@@ -20,10 +20,8 @@ import static pl.android.informator.models.Weather.ZACHMURZONE_NIEBO;
 
 public class WeatherHelper {
 
-    public static final String DAY ="Day";
     public static final String NIGHT = "Night";
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     public static String getDayType(){
         String date = DateHelper.getDate();
         int actualHour = Integer.parseInt(DateHelper.getHour(date));
@@ -33,7 +31,6 @@ public class WeatherHelper {
             return "Night";
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     static Drawable getWeatherDrawable(Context context, String type){
         String date = DateHelper.getDate();
         int actualHour = Integer.parseInt(DateHelper.getHour(date));
@@ -83,8 +80,7 @@ public class WeatherHelper {
         return null;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public static Drawable getWeatherToolbarBackground(Context context, String type){
+    static Drawable getWeatherToolbarBackground(Context context, String type){
 
         String date = DateHelper.getDate();
         int actualHour = Integer.parseInt(DateHelper.getHour(date));
