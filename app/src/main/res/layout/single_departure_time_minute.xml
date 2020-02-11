@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="viewModel"
+            type="pl.android.informator.ui.timetable.line_timetables.line_details.SingleDepartureTimeMinuteViewModel" />
+    </data>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="36dp"
+        android:layout_height="32dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/single_departure_time_minute"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center"
+            android:text="@{viewModel.minute}"
+            android:textColor="@color/colorWhite"
+            android:textSize="18sp" />
+    </LinearLayout>
+</layout>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="pl.android.informator.ui.timetable.line_timetables.single_line.BusStationViewModel" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <TextView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@color/colorBlackOffers"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center"
+            android:text="@{viewModel.timeFromStart}"
+            android:textColor="@color/colorWhite"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/single_bus_name"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="2"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center_vertical"
+            android:text="@{viewModel.busStationName}"
+            android:onClick="@{() -> viewModel.onClick()}"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:textColor="@color/colorWhite"
+            android:textSize="18sp" />
+    </LinearLayout>
+</layout>

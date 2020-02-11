@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="pl.android.informator.ui.timetable.line_timetables.LineTimetablesViewModel" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.timetable.line_timetables.LineTimetablesFragment">
+        <pl.android.informator.views.CommunicationLineView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:setArrayViewIcon="@{viewModel.tramIcon}"
+            app:setArrayViewTitle="@{viewModel.tramTitle}"
+            app:setNavigator="@{viewModel.navigator}"
+            app:setArrayItems="@{viewModel.tramList}"
+            />
+        <pl.android.informator.views.CommunicationLineView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:setArrayViewIcon="@{viewModel.busIcon}"
+            app:setArrayViewTitle="@{viewModel.busTitle}"
+            app:setNavigator="@{viewModel.navigator}"
+            app:setArrayItems="@{viewModel.busList}"
+            />
+    </LinearLayout>
+</layout>

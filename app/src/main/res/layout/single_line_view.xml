@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="48dp"
+    android:layout_width="90dp"
     android:layout_height="48dp"
+    android:background="@color/colorWhite"
     >
     <TextView
-        android:id="@+id/calendar_day_value"
-        android:layout_width="46dp"
-        android:layout_height="46dp"
+        android:id="@+id/single_line_number"
+        android:layout_width="90dp"
+        android:layout_height="48dp"
         android:layout_centerInParent="true"
         android:fontFamily="@font/montserrat"
-        android:gravity="center_vertical"
+        android:gravity="center"
         android:textAlignment="center"
+        android:textColor="@color/colorBlackOffers"
         android:textSize="18sp" />
     <TextView
-        android:id="@+id/event_id_holder"
+        android:id="@+id/single_line_event_holder"
         android:layout_width="0dp"
         android:layout_height="0dp"
         />
