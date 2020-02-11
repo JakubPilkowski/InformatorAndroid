@@ -9,15 +9,15 @@ public class Notice {
     private String mainImgUrl;
     private List<String> imgUrls;
     private String description;
-    private LocalDate date;
+//    private LocalDate date;
 
-    public Notice(String title, String price, String mainImgUrl, List<String> imgUrls, String description, LocalDate date) {
+    public Notice(String title, String price, String mainImgUrl, List<String> imgUrls, String description) {
         this.title = title;
         this.price = price;
         this.mainImgUrl = mainImgUrl;
         this.imgUrls = imgUrls;
         this.description = description;
-        this.date = date;
+//        this.date = date;
     }
 
     public String getTitle() {
@@ -40,7 +40,7 @@ public class Notice {
         return description;
     }
 
-    public LocalDate getDate() {
-        return date;
-    }
+//    public LocalDate getDate() {
+//        return date;
+//    }
 }
