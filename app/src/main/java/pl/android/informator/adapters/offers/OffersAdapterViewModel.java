@@ -1,5 +1,7 @@
 package pl.android.informator.adapters.offers;
 
+import android.util.Log;
+
 import androidx.databinding.ObservableField;
 import androidx.databinding.ObservableInt;
 
@@ -18,10 +20,13 @@ public class OffersAdapterViewModel extends BaseAdapterViewModel {
     public ObservableField<String> logoUrl = new ObservableField<>();
     public ObservableField<String> descTitle = new ObservableField<>();
     public ObservableField<String> desc = new ObservableField<>();
+    public ObservableInt size = new ObservableInt();
     private Offer offer;
     private Navigator navigator;
+
     @Override
     public void init(Object[] values) {
+        Log.d("init","halo");
         offer = (Offer) values[0];
         navigator = (Navigator) values[1];
         brand.set(offer.getBrand());
@@ -32,14 +37,26 @@ public class OffersAdapterViewModel extends BaseAdapterViewModel {
         desc.set(offer.getDesc());
         show.set(NOTHING);
     }
-    public void onClick(){
-        if(show.get()!=VISIBLE)
+
+    public void onClick() {
+        if (show.get() != VISIBLE)
             show.set(VISIBLE);
         else
             show.set(GONE);
     }
 
-    public void onLinkClick(){
+    public void onLinkClick() {
         navigator.openSite(offer.getSiteUri());
+    }
+
+    public void setSize(int size) {
+        this.size.set(size);
+    }
+
+    void refreshView() {
+        if (show.get()==VISIBLE){
+            show.set(NOTHING);
+            onClick();
+        }
     }
 }

@@ -1,7 +1,14 @@
 package pl.android.informator.adapters.offers;
 
+import android.app.ActionBar;
+import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+
+import androidx.annotation.NonNull;
 
 import com.android.informator.R;
 import pl.android.informator.base.BaseRecyclerViewAdapter;
@@ -34,17 +41,41 @@ public class OffersAdapter extends BaseRecyclerViewAdapter<Offer, BaseViewHolder
     }
 
     @Override
+    public void onViewDetachedFromWindow(@NonNull BaseViewHolder holder) {
+        super.onViewDetachedFromWindow(holder);
+        ((OffersAdapterViewModel)holder.getViewModel()).refreshView();
+    }
+
+    @Override
     public void onBindView(BaseViewHolder holder, int position) {
+        OffersAdapterViewModel viewModel;
         if(viewModels.size()<=position){
-            OffersAdapterViewModel viewModel = new OffersAdapterViewModel();
+            viewModel = new OffersAdapterViewModel();
+            viewModels.add(viewModel);
             holder.setViewModel(viewModel);
             ((SingleOfferBinding)holder.getBinding()).setViewModel(viewModel);
-            viewModels.add(viewModel);
             holder.setElement(items.get(position),navigator);
+            LinearLayout offersDetails = ((SingleOfferBinding)holder.getBinding()).offerDetails;
+//            Context context = offersDetails.getContext();
+//            ((SingleOfferBinding)holder.getBinding()).arrowDown.setBackground(context.getDrawable(R.drawable.ic_dol));
+            offersDetails.measure(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+            int size = offersDetails.getMeasuredHeight();
+            viewModel.setSize(size);
+            offersDetails.getLayoutParams().height = 0;
+            offersDetails.requestLayout();
+            viewModel.refreshView();
         }
         else {
-            OffersAdapterViewModel viewModel = viewModels.get(position);
+            Log.d("click","halo");
+            viewModel = viewModels.get(position);
             ((SingleOfferBinding)holder.getBinding()).setViewModel(viewModel);
+            LinearLayout offersDetails = ((SingleOfferBinding)holder.getBinding()).offerDetails;
+            offersDetails.measure(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+            int size = offersDetails.getMeasuredHeight();
+            viewModel.setSize(size);
+            offersDetails.getLayoutParams().height = 0;
+            offersDetails.requestLayout();
         }
     }
+
 }

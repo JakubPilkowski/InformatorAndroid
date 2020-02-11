@@ -81,12 +81,12 @@ public class BindingAdapter {
         if(show==1)
         {
             view.setVisibility(View.VISIBLE);
-            ToggleSlideAnim toggleSlideAnim = new ToggleSlideAnim(view,TextHelper.getPixels(TypedValue.COMPLEX_UNIT_DIP,size),0);
+            ToggleSlideAnim toggleSlideAnim = new ToggleSlideAnim(view,size,0);
             toggleSlideAnim.setDuration(400);
             view.startAnimation(toggleSlideAnim);
         }
         if(show==0){
-            ToggleSlideAnim toggleSlideAnim = new ToggleSlideAnim(view,0,TextHelper.getPixels(TypedValue.COMPLEX_UNIT_DIP,size));
+            ToggleSlideAnim toggleSlideAnim = new ToggleSlideAnim(view,0,size);
             toggleSlideAnim.setDuration(400);
             toggleSlideAnim.setAnimationListener(new Animation.AnimationListener() {
                 @Override
@@ -127,18 +127,51 @@ public class BindingAdapter {
     }
 
     @androidx.databinding.BindingAdapter("setOnShowLabelDrawable")
-    public static void setOnShowLabelDrawable(View view, int show) {
+    public static void setOnShowLabelDrawable(final View view, int show) {
         Animation animation;
         switch (show) {
             case 1:
                 animation = AnimationUtils.loadAnimation(view.getContext(), R.anim.rotate_0_180);
                 view.startAnimation(animation);
+//                animation.setAnimationListener(new Animation.AnimationListener() {
+//                    @Override
+//                    public void onAnimationStart(Animation animation) {
+//                    }
+//
+//                    @Override
+//                    public void onAnimationEnd(Animation animation) {
+//                        view.setBackground(view.getContext().getDrawable(R.drawable.ic_gora));
+//                        view.clearAnimation();
+//                    }
+//
+//                    @Override
+//                    public void onAnimationRepeat(Animation animation) {
+//                        onAnimationEnd(animation);
+//                    }
+//                });
                 break;
             case 0:
                 animation = AnimationUtils.loadAnimation(view.getContext(), R.anim.rotate_180_360);
                 view.startAnimation(animation);
+//                animation.setAnimationListener(new Animation.AnimationListener() {
+//                    @Override
+//                    public void onAnimationStart(Animation animation) {
+//                    }
+//
+//                    @Override
+//                    public void onAnimationEnd(Animation animation) {
+//                        view.setBackground(view.getContext().getDrawable(R.drawable.ic_dol));
+//                        view.clearAnimation();
+//                    }
+//
+//                    @Override
+//                    public void onAnimationRepeat(Animation animation) {
+//                        onAnimationEnd(animation);
+//                    }
+//                });
                 break;
             case -1:
+                view.setBackground(view.getContext().getDrawable(R.drawable.ic_dol));
                 break;
         }
     }
