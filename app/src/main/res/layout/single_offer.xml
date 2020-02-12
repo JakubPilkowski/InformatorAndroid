@@ -13,7 +13,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/offer_main_info"
-            app:showViewWithAnim="@{viewModel.show}"
+            app:slideAnim="@{viewModel.show}"
+            app:size="@{viewModel.size}"
             android:orientation="vertical"
             android:background="@color/colorBlackLight"
             >

@@ -1,6 +1,7 @@
 package pl.android.informator.ui.timetable.line_timetables.line_details;
 
 import android.content.Context;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 
@@ -17,6 +18,7 @@ import java.util.List;
 
 import pl.android.informator.base.BaseViewModel;
 import pl.android.informator.helpers.DateHelper;
+import pl.android.informator.helpers.TextHelper;
 import pl.android.informator.models.BusStop;
 import pl.android.informator.models.CommunicationLine;
 
@@ -116,16 +118,16 @@ public class LineDetailsViewModel extends BaseViewModel {
     private void setSize(int size, int type) {
         switch (type){
             case 1:
-                size1.set(size);
+                size1.set(TextHelper.getPixels(TypedValue.COMPLEX_UNIT_DIP,size));
                 break;
             case 2:
-                size2.set(size);
+                size2.set(TextHelper.getPixels(TypedValue.COMPLEX_UNIT_DIP,size));
                 break;
             case 3:
-                size3.set(size);
+                size3.set(TextHelper.getPixels(TypedValue.COMPLEX_UNIT_DIP,size));
                 break;
             case 4:
-                size4.set(size);
+                size4.set(TextHelper.getPixels(TypedValue.COMPLEX_UNIT_DIP,size));
         }
     }
 
