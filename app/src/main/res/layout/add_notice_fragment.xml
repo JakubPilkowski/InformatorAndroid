@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
 <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -214,7 +213,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:layout_marginBottom="42dp"
             android:orientation="horizontal">
             <Button
                 android:layout_width="match_parent"
@@ -234,8 +232,14 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginBottom="42dp"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="48dp"
             android:weightSum="10"
+            android:layout_gravity="bottom"
             android:orientation="horizontal">
             <Button
                 android:layout_width="0dp"
@@ -249,7 +253,6 @@
                 android:fontFamily="@font/montserrat"
                 android:background="@drawable/white_ripple"
                 android:backgroundTint="@color/colorBlackLight"
-
                 />
             <Button
                 android:layout_width="0dp"
