@@ -31,7 +31,10 @@ public class EventsViewModel extends BaseViewModel {
         eventsList.add(new Event(
                 2, "https://gfx.antyradio.pl/var/antyradio/storage/images/muzyka/koncerty/enigma-zagra-pierwszy-raz-w-polsce-w-2019-27308/1919440-1-pol-PL/Enigma-zagra-pierwszy-raz-w-Polsce-w-2019.-Zespol-zapowiedzial-7-koncertow_article.jpg",
                 "Koncert",
-                "Koncert zespołu XYZ, nie możesz tego ominąć. Wstęp od 10zł. Wpadaj, nie możesz tego przegapić",
+                "Koncert zespołu XYZ, nie możesz tego ominąć. Wstęp od 10zł. Wpadaj, nie możesz tego przegapić." +
+                        "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" +
+                        "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" +
+                        "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
                 calendars.get(1)
         ));
         eventsList.add(new Event(

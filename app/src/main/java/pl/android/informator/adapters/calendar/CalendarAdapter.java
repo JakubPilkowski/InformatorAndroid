@@ -31,7 +31,6 @@ public class CalendarAdapter extends ArrayAdapter {
         this.events = events;
         mInflater = LayoutInflater.from(context);
     }
-    @RequiresApi(api = Build.VERSION_CODES.M)
     @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -50,11 +49,11 @@ public class CalendarAdapter extends ArrayAdapter {
         TextView cell = view.findViewById(R.id.calendar_day_value);
         TextView id_holder = view.findViewById(R.id.event_id_holder);
         if(displayMonth == currentMonth && displayYear == currentYear){
-            cell.setBackgroundColor(view.getContext().getColor(R.color.colorGrayBackgroundDay));
-            cell.setTextColor(view.getContext().getColor(R.color.colorCalendarDayName));
+            cell.setBackground(view.getResources().getDrawable(R.drawable.white_ripple_with_gray_light_background));
+            cell.setTextColor(view.getResources().getColor(R.color.colorCalendarDayName));
         }else{
-            cell.setBackgroundColor(view.getContext().getColor(R.color.colorBlackLight));
-            cell.setTextColor(view.getContext().getColor(R.color.colorGray2));
+            cell.setBackgroundColor(view.getResources().getColor(R.color.colorBlackLight));
+            cell.setTextColor(view.getResources().getColor(R.color.colorGray2));
         }
         cell.setText(String.valueOf(dayValue));
         Calendar eventCalendar = Calendar.getInstance();
@@ -62,8 +61,8 @@ public class CalendarAdapter extends ArrayAdapter {
             eventCalendar.setTime(events.get(i).getDate());
             if(dayValue == eventCalendar.get(Calendar.DAY_OF_MONTH) && displayMonth == currentMonth
                     && displayYear == eventCalendar.get(Calendar.YEAR)){
-                cell.setBackgroundColor(view.getContext().getColor(R.color.colorWhite));
-                cell.setTextColor(view.getContext().getColor(R.color.colorGray2));
+                cell.setBackground(view.getResources().getDrawable(R.drawable.gray_ripple_with_white_background));
+                cell.setTextColor(view.getResources().getColor(R.color.colorGray2));
                 id_holder.setText(String.valueOf(events.get(i).getId()));
             }
         }

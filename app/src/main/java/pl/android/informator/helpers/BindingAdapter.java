@@ -128,6 +128,7 @@ public class BindingAdapter {
         Glide.with(context)
                 .load(url)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .thumbnail(0.1f)
                 .into(imageView);
     }
 

@@ -5,6 +5,7 @@
 <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorWhite"
     >
     <LinearLayout xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
@@ -211,27 +212,25 @@
             />
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="12dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
             android:layout_marginBottom="42dp"
             android:orientation="horizontal">
             <Button
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:onClick="@{() -> viewModel.onAddPhoto()}"
-                android:background="@drawable/add_with_background" />
-            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
+                android:layout_height="48dp"
+                android:drawableStart="@drawable/add_with_background"
                 android:text="@string/add_photos"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:textAllCaps="false"
                 android:textColor="@color/colorTextGray"
                 android:textSize="18sp"
                 android:fontFamily="@font/montserrat"
+                android:onClick="@{() -> viewModel.onAddPhoto()}"
+                android:background="@drawable/gray_ripple"
+                android:backgroundTint="@color/colorWhite"
                 />
-
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -248,12 +247,15 @@
                 android:textSize="18sp"
                 android:onClick="@{() -> viewModel.onCancel()}"
                 android:fontFamily="@font/montserrat"
-                android:background="@color/colorBlackLight" />
+                android:background="@drawable/white_ripple"
+                android:backgroundTint="@color/colorBlackLight"
+
+                />
             <Button
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="7"
-                android:background="@drawable/horizontal_main_gradient"
+                android:background="@drawable/gradient_with_ripple"
                 android:text="@string/publish_notice"
                 android:textAllCaps="false"
                 android:onClick="@{() -> viewModel.onPublishOffer()}"

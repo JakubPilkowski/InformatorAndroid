@@ -138,7 +138,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:background="@drawable/horizontal_main_gradient"
+                android:background="@drawable/gradient_with_ripple"
                 android:fontFamily="@font/montserrat"
                 android:text="@string/edit_notice"
                 android:onClick="@{() -> viewModel.onClick()}"

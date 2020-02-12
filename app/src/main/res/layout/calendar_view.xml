@@ -126,7 +126,8 @@
             android:id="@+id/calendar_prev_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@color/colorBlackOffers"
+            android:background="@drawable/white_ripple"
+            android:backgroundTint="@color/colorBlackOffers"
             android:textColor="@color/colorWhite"
             android:paddingTop="12dp"
             android:paddingBottom="12dp"
@@ -147,7 +148,7 @@
             android:textColor="@color/colorWhite"
             android:text="@string/next_month"
             android:gravity="center"
-            android:background="@drawable/horizontal_main_gradient"
+            android:background="@drawable/gradient_with_ripple"
             android:layout_weight="1"
             />
     </LinearLayout>

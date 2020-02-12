@@ -92,7 +92,8 @@
         <Button
             android:layout_width="0dp"
             android:layout_height="48dp"
-            android:background="@color/colorBlackLight"
+            android:backgroundTint="@color/colorBlackLight"
+            android:background="@drawable/white_ripple"
             android:layout_weight="1"
             android:paddingStart="12dp"
             android:paddingEnd="12dp"
@@ -108,7 +109,7 @@
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
-            android:background="@drawable/horizontal_main_gradient"
+            android:background="@drawable/gradient_with_ripple"
             android:text="@string/show_map"
             android:onClick="@{() -> viewModel.onShowMapClick()}"
             android:textColor="@color/colorWhite"
