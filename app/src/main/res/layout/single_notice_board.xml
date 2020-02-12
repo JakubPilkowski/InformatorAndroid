@@ -10,8 +10,9 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            app:imageUrl="@{viewModel.imgUrl}"
             android:scaleType="fitXY"
-            app:imageUrl="@{viewModel.imgUrl}" />
+            />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,6 +29,7 @@
                 android:background="@drawable/horizontal_main_gradient"
                 android:textAllCaps="false"
                 android:text="@{viewModel.title}"
+                android:onClick="@{()-> viewModel.onDetailsClick()}"
                 android:fontFamily="@font/montserrat"
                 android:textSize="15sp"
                 android:textColor="@color/colorWhite"

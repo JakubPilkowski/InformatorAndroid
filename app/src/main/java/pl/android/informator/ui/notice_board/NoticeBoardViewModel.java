@@ -1,18 +1,14 @@
 package pl.android.informator.ui.notice_board;
 
-import android.os.Build;
-
-import androidx.annotation.RequiresApi;
 import androidx.databinding.ObservableField;
 import androidx.databinding.ObservableInt;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import pl.android.informator.adapters.notice_board.NoticeBoardAdapter;
 import pl.android.informator.base.BaseViewModel;
 import pl.android.informator.models.Notice;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 public class NoticeBoardViewModel extends BaseViewModel {
     public ObservableField<NoticeBoardAdapter> adapter = new ObservableField<>();

@@ -1,5 +1,6 @@
 package pl.android.informator.ui.timetable.line_timetables.single_line;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -114,11 +115,11 @@ public class SingleLineFragment extends BaseFragment<SingleLineFragmentBinding,S
             SingleBusStopBinding binding = SingleBusStopBinding.bind(busStopView);
             TextView busStopNameBackground = busStopView.findViewById(R.id.single_bus_name);
             if(i==0 || i+1==line.getBusStops().size())
-                busStopNameBackground.setBackgroundResource(R.color.colorBlackLight);
+                busStopNameBackground.setBackground(getResources().getDrawable(R.drawable.white_ripple_with_dark_background));
             else{
                 if(i % 2==1)
-                    busStopNameBackground.setBackgroundResource(R.color.colorGrayBackgroundDay);
-                if(i%2==0) busStopNameBackground.setBackgroundResource(R.color.colorGray2);
+                    busStopNameBackground.setBackground(getResources().getDrawable(R.drawable.white_ripple_with_gray_background));
+                if(i%2==0) busStopNameBackground.setBackground(getResources().getDrawable(R.drawable.white_ripple_with_gray_light_background));
             }
             BusStationViewModel viewModel = new BusStationViewModel();
             binding.setViewModel(viewModel);
