@@ -9,7 +9,6 @@ public class Notice {
     private String mainImgUrl;
     private List<String> imgUrls;
     private String description;
-//    private LocalDate date;
 
     public Notice(String title, String price, String mainImgUrl, List<String> imgUrls, String description) {
         this.title = title;
@@ -17,7 +16,6 @@ public class Notice {
         this.mainImgUrl = mainImgUrl;
         this.imgUrls = imgUrls;
         this.description = description;
-//        this.date = date;
     }
 
     public String getTitle() {
