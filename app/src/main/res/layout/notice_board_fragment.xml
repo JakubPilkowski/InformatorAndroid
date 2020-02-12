@@ -4,12 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="pl.android.informator.ui.offices.post_offices.PostOfficesFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/post_offices_list"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/notice_board_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_manager="@{context}"
-        app:recyclerViewAdapter="@{viewModel.adapter}" />
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/post_offices_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_manager="@{context}"
+            app:onScrollListener="@{viewModel.binding}"
+            app:recyclerViewAdapter="@{viewModel.adapter}" />
+
+        <Button
+            android:id="@+id/notice_board_add_button"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_centerInParent="true"
+            android:layout_margin="16dp"
+            android:background="@drawable/add_with_background"
+            android:onClick="@{() -> viewModel.onClick()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <data>
 
