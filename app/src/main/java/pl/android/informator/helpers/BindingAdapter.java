@@ -4,22 +4,28 @@ package pl.android.informator.helpers;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.databinding.ViewDataBinding;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.informator.databinding.NoticeBoardFragmentBinding;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.android.informator.R;
@@ -72,21 +78,20 @@ public class BindingAdapter {
             view.setVisibility(View.GONE);
         }
     }
-    @androidx.databinding.BindingAdapter({"slideAnim","size"})
-    public static void setSlideAnim(final View view, int show, int size){
-        if (show == -1)
-        {
+
+    @androidx.databinding.BindingAdapter({"slideAnim", "size"})
+    public static void setSlideAnim(final View view, int show, int size) {
+        if (show == -1) {
             view.setVisibility(View.GONE);
         }
-        if(show==1)
-        {
+        if (show == 1) {
             view.setVisibility(View.VISIBLE);
-            ToggleSlideAnim toggleSlideAnim = new ToggleSlideAnim(view,size,0);
+            ToggleSlideAnim toggleSlideAnim = new ToggleSlideAnim(view, size, 0);
             toggleSlideAnim.setDuration(400);
             view.startAnimation(toggleSlideAnim);
         }
-        if(show==0){
-            ToggleSlideAnim toggleSlideAnim = new ToggleSlideAnim(view,0,size);
+        if (show == 0) {
+            ToggleSlideAnim toggleSlideAnim = new ToggleSlideAnim(view, 0, size);
             toggleSlideAnim.setDuration(400);
             toggleSlideAnim.setAnimationListener(new Animation.AnimationListener() {
                 @Override
@@ -133,42 +138,10 @@ public class BindingAdapter {
             case 1:
                 animation = AnimationUtils.loadAnimation(view.getContext(), R.anim.rotate_0_180);
                 view.startAnimation(animation);
-//                animation.setAnimationListener(new Animation.AnimationListener() {
-//                    @Override
-//                    public void onAnimationStart(Animation animation) {
-//                    }
-//
-//                    @Override
-//                    public void onAnimationEnd(Animation animation) {
-//                        view.setBackground(view.getContext().getDrawable(R.drawable.ic_gora));
-//                        view.clearAnimation();
-//                    }
-//
-//                    @Override
-//                    public void onAnimationRepeat(Animation animation) {
-//                        onAnimationEnd(animation);
-//                    }
-//                });
                 break;
             case 0:
                 animation = AnimationUtils.loadAnimation(view.getContext(), R.anim.rotate_180_360);
                 view.startAnimation(animation);
-//                animation.setAnimationListener(new Animation.AnimationListener() {
-//                    @Override
-//                    public void onAnimationStart(Animation animation) {
-//                    }
-//
-//                    @Override
-//                    public void onAnimationEnd(Animation animation) {
-//                        view.setBackground(view.getContext().getDrawable(R.drawable.ic_dol));
-//                        view.clearAnimation();
-//                    }
-//
-//                    @Override
-//                    public void onAnimationRepeat(Animation animation) {
-//                        onAnimationEnd(animation);
-//                    }
-//                });
                 break;
             case -1:
                 break;
@@ -225,26 +198,74 @@ public class BindingAdapter {
 
     @androidx.databinding.BindingAdapter("setArrayItems")
     public static <I> void setArrayItems(View view, List<I> items) {
-        if(view instanceof ArrayView){
+        if (view instanceof ArrayView) {
             ((ArrayView) view).setItems(items);
         }
     }
 
     @androidx.databinding.BindingAdapter("setNavigator")
     public static void setNavigator(View view, Navigator navigator) {
-        if(view instanceof ArrayView){
+        if (view instanceof ArrayView) {
             ((ArrayView) view).setNavigator(navigator);
         }
     }
 
     @androidx.databinding.BindingAdapter("setArrayViewTitle")
-    public static void setArrayViewTitle(CommunicationLineView view, String title){
+    public static void setArrayViewTitle(CommunicationLineView view, String title) {
         view.setTitle(title);
     }
 
     @androidx.databinding.BindingAdapter("setArrayViewIcon")
-    public static void setArrayViewIcon(CommunicationLineView view, int icon){
+    public static void setArrayViewIcon(CommunicationLineView view, int icon) {
         view.setIcon(icon);
+    }
+
+    @androidx.databinding.BindingAdapter("onScrollListener")
+    public static void setOnScrollListener(RecyclerView recyclerView, ViewDataBinding binding) {
+        final Button button = ((NoticeBoardFragmentBinding) binding).noticeBoardAddButton;
+        final Animation[] animation = new Animation[1];
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                if (dy < -12 && button.getVisibility()==View.GONE) {
+                    animation[0] = AnimationUtils.loadAnimation(recyclerView.getContext(), R.anim.translate_up);
+                    animation[0].setAnimationListener(new Animation.AnimationListener() {
+                        @Override
+                        public void onAnimationStart(Animation animation) {
+                            button.setVisibility(View.VISIBLE);
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animation animation) {
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animation animation) {
+                            onAnimationEnd(animation);
+                        }
+                    });
+                    button.startAnimation(animation[0]);
+                } else if (dy > 12 && button.getVisibility()==View.VISIBLE) {
+                    animation[0] = AnimationUtils.loadAnimation(recyclerView.getContext(), R.anim.translate_down);
+                    animation[0].setAnimationListener(new Animation.AnimationListener() {
+                        @Override
+                        public void onAnimationStart(Animation animation) {
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animation animation) {
+                            button.setVisibility(View.GONE);
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animation animation) {
+                            onAnimationEnd(animation);
+                        }
+                    });
+                    button.startAnimation(animation[0]);
+                }
+            }
+        });
     }
 }
 
