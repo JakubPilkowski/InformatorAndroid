@@ -44,6 +44,12 @@ public class OffersAdapter extends BaseRecyclerViewAdapter<Offer, BaseViewHolder
     public void onViewDetachedFromWindow(@NonNull BaseViewHolder holder) {
         super.onViewDetachedFromWindow(holder);
         ((OffersAdapterViewModel)holder.getViewModel()).refreshView();
+        LinearLayout offersDetails = ((SingleOfferBinding)holder.getBinding()).offerDetails;
+        offersDetails.measure(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        int size = offersDetails.getMeasuredHeight();
+        ((OffersAdapterViewModel)holder.getViewModel()).setSize(size);
+        offersDetails.getLayoutParams().height = 0;
+        offersDetails.requestLayout();
     }
 
     @Override

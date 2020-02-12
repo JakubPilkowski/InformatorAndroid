@@ -171,7 +171,6 @@ public class BindingAdapter {
 //                });
                 break;
             case -1:
-                view.setBackground(view.getContext().getDrawable(R.drawable.ic_dol));
                 break;
         }
     }
