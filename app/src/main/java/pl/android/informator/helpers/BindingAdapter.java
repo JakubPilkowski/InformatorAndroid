@@ -25,9 +25,11 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
 import androidx.databinding.ViewDataBinding;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import com.android.informator.databinding.NoticeBoardFragmentBinding;
 import com.bumptech.glide.Glide;
@@ -35,7 +37,9 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.android.informator.R;
 import com.android.informator.databinding.AddNoticeFragmentBinding;
 
+import pl.android.informator.adapters.notice_board.ViewPagerAdapter;
 import pl.android.informator.navigation.Navigator;
+import pl.android.informator.ui.notice_board.notice_details.NoticeDetailsViewModel;
 import pl.android.informator.views.ArrayView;
 import pl.android.informator.views.CommunicationLineView;
 
@@ -270,5 +274,49 @@ public class BindingAdapter {
             }
         });
     }
+    @androidx.databinding.BindingAdapter({"viewPagerAdapter","viewModel"})
+    public static void createViewPagerAdapter(ViewPager viewPager, List<String>imgUrls, NoticeDetailsViewModel viewModel){
+//        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(viewPager.getContext(),imgUrls,viewModel);
+//        viewPager.setAdapter(viewPagerAdapter);
+    }
+    @androidx.databinding.BindingAdapter("dots")
+    public static void createDots(final LinearLayout layout, ViewPager viewPager){
+        ViewPagerAdapter adapter = (ViewPagerAdapter) viewPager.getAdapter();
+        final int dotsCount = adapter.getCount();
+        final ImageView[] dots = new ImageView[dotsCount];
+        for (int i = 0; i <dotsCount ; i++) {
+            dots[i] = new ImageView(layout.getContext());
+            dots[i].setImageDrawable(layout.getResources().getDrawable(R.drawable.non_active_dot));
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
+            params.setMargins(8,0,8,0);
+            layout.addView(dots[i],params);
+        }
+        dots[0].setImageDrawable(layout.getResources().getDrawable(R.drawable.active_dot));
+
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+                for(int i = 0; i< dotsCount; i++){
+                    dots[i].setImageDrawable(layout.getResources().getDrawable(R.drawable.non_active_dot));
+                }
+
+                dots[position].setImageDrawable(layout.getResources().getDrawable(R.drawable.active_dot));
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+    }
+
 }
 

@@ -19,5 +19,7 @@
     <color name="colorGrayBackgroundDay">#4F4F4F</color>
     <color name="colorGray2">#444444</color>
     <color name="background">#4a5c71</color>
+    <color name="colorLawngreen">#7CFC00</color>
+    <color name="colorLightBlue">#99cfe0</color>
 
 </resources>
