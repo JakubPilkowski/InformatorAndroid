@@ -153,6 +153,7 @@
                     android:textColor="@color/colorTextBlack"
                     />
                 <Button
+                    android:contentDescription="@string/cd_button_phone_call"
                     android:layout_width="48dp"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/square_phone_with_ripple"
@@ -163,6 +164,7 @@
                     android:layout_marginTop="4dp"
                     />
                 <Button
+                    android:contentDescription="@string/cd_button_send_sms"
                     android:layout_width="48dp"
                     android:layout_marginBottom="4dp"
                     android:layout_marginTop="4dp"

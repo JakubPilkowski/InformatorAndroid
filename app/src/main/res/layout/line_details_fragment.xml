@@ -17,7 +17,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             tools:context="pl.android.informator.ui.timetable.line_timetables.line_details.LineDetailsFragment">
 
@@ -99,6 +99,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:layout_marginStart="12dp"
                     android:layout_weight="2"
                     android:fontFamily="@font/montserrat"
@@ -118,6 +119,7 @@
                         android:onClick="@{() -> viewModel.onWorkingDaysClick()}" />
 
                     <Button
+                        android:contentDescription="@string/cd_more_info"
                         android:layout_width="16dp"
                         android:layout_height="16dp"
                         android:layout_centerInParent="true"
@@ -151,6 +153,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
                     android:layout_weight="2"
+                    android:layout_gravity="center_vertical"
                     android:fontFamily="@font/montserrat"
                     android:text="@string/free_working_days"
                     android:textColor="@color/colorBlack"
@@ -168,6 +171,7 @@
                         android:onClick="@{() -> viewModel.onFreeDaysFromWorkingClick()}" />
 
                     <Button
+                        android:contentDescription="@string/cd_more_info"
                         android:layout_width="16dp"
                         android:layout_height="16dp"
                         android:layout_centerInParent="true"
@@ -201,6 +205,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
                     android:layout_weight="2"
+                    android:layout_gravity="center_vertical"
                     android:fontFamily="@font/montserrat"
                     android:text="@string/saturdays"
                     android:textColor="@color/colorBlack"
@@ -218,6 +223,7 @@
                         android:onClick="@{() -> viewModel.onSaturdayClick()}" />
 
                     <Button
+                        android:contentDescription="@string/cd_more_info"
                         android:layout_width="16dp"
                         android:layout_height="16dp"
                         android:layout_centerInParent="true"
@@ -252,6 +258,7 @@
                     android:layout_marginStart="12dp"
                     android:layout_weight="2"
                     android:fontFamily="@font/montserrat"
+                    android:layout_gravity="center_vertical"
                     android:text="@string/sundaysAndBreaks"
                     android:textColor="@color/colorBlack"
                     android:textSize="18sp" />
@@ -269,6 +276,7 @@
                         android:onClick="@{() -> viewModel.onSundayAndBreaks()}" />
 
                     <Button
+                        android:contentDescription="@string/cd_more_info"
                         android:layout_width="16dp"
                         android:layout_height="16dp"
                         android:layout_centerInParent="true"

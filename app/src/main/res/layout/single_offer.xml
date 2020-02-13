@@ -125,6 +125,7 @@
                 android:onClick="@{()-> viewModel.onClick()}"
                 android:layout_margin="8dp">
                 <Button
+                    android:contentDescription="@string/cd_more_info"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     android:padding="8dp"

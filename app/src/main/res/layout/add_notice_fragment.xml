@@ -23,7 +23,8 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_tytul" />
+                android:src="@drawable/ic_tytul"
+                android:contentDescription="@string/cd_icon_notice_title" />
 
             <TextView
                 android:layout_width="0dp"
@@ -44,7 +45,7 @@
                 android:textAlignment="textEnd"
                 android:layout_gravity="bottom"
                 android:textSize="12sp"
-                android:text="0/30"
+                android:text="@string/_0from30"
                 android:textColor="@color/colorGradientEnd"
                 android:fontFamily="@font/montserrat"
                 />
@@ -55,6 +56,7 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginStart="12dp"
+            android:hint="@string/notice_title"
             android:tag="TitleTag"
             android:layout_marginEnd="12dp"
             android:textAlignment="center"
@@ -76,6 +78,7 @@
             android:orientation="horizontal">
 
             <ImageView
+                android:contentDescription="@string/cd_icon_notice_price"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_gravity="center_vertical"
@@ -99,7 +102,7 @@
                 android:layout_weight="2"
                 android:textAlignment="textEnd"
                 android:layout_gravity="bottom"
-                android:text="0/30"
+                android:text="@string/_0from30"
                 android:textSize="12sp"
                 android:textColor="@color/colorGradientEnd"
                 android:fontFamily="@font/montserrat"
@@ -111,6 +114,7 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:tag="PriceTag"
+            android:hint="@string/price"
             android:layout_marginStart="12dp"
             android:layout_marginEnd="12dp"
             android:background="@drawable/gradient_bottom_border_background"
@@ -131,6 +135,7 @@
             android:orientation="horizontal">
 
             <ImageView
+                android:contentDescription="@string/cd_icon_notice_desc"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_gravity="center_vertical"
@@ -154,7 +159,7 @@
                 android:layout_weight="3"
                 android:textAlignment="textEnd"
                 android:layout_gravity="bottom"
-                android:text="0/1000"
+                android:text="@string/_0from1000"
                 android:textSize="12sp"
                 android:textColor="@color/colorGradientEnd"
                 android:fontFamily="@font/montserrat"
@@ -166,6 +171,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:tag="DescriptionTag"
+            android:hint="@string/description"
             android:padding="2dp"
             android:layout_marginStart="12dp"
             android:layout_marginEnd="12dp"
@@ -188,6 +194,7 @@
             android:orientation="horizontal">
 
             <ImageView
+                android:contentDescription="@string/cd_icon_notice_images"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_gravity="center_vertical"
@@ -242,6 +249,7 @@
             android:layout_gravity="bottom"
             android:orientation="horizontal">
             <Button
+                android:contentDescription="@string/dc_decline_notice"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
@@ -255,6 +263,7 @@
                 android:backgroundTint="@color/colorBlackLight"
                 />
             <Button
+                android:contentDescription="@string/publish_notice"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="7"

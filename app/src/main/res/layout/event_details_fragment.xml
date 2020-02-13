@@ -63,6 +63,7 @@
             </LinearLayout>
 
             <ImageView
+                android:contentDescription="@string/cd_event_image"
                 android:id="@+id/event_photo"
                 android:layout_width="match_parent"
                 android:layout_height="360dp"
@@ -95,7 +96,6 @@
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:layout_margin="8dp">
-
                     <Button
                         android:id="@+id/post_office_extend_info"
                         android:layout_width="64dp"
@@ -104,6 +104,7 @@
                         android:onClick="@{() -> viewModel.onClick()}" />
 
                     <Button
+                        android:contentDescription="@string/cd_more_info"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:layout_centerInParent="true"

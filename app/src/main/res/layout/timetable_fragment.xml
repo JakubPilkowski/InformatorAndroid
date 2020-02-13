@@ -13,12 +13,14 @@
             android:layout_height="0dp"
             android:layout_weight="1">
             <ImageView
+                android:contentDescription="@string/cd_photo_chose_destination"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/wyznacz_trase"
                 android:scaleType="fitXY"
                 />
             <Button
+                android:contentDescription="@string/cd_button_chose_destination"
                 android:layout_width="264dp"
                 android:layout_height="48dp"
                 android:layout_alignParentBottom="true"
@@ -38,12 +40,14 @@
             android:layout_height="0dp"
             android:layout_weight="1">
             <ImageView
+                android:contentDescription="@string/cd_photo_lines"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/rozklady_linii_2"
                 android:scaleType="fitXY"
                 />
             <Button
+                android:contentDescription="@string/cd_button_lines"
                 android:layout_width="264dp"
                 android:layout_height="48dp"
                 android:layout_alignParentBottom="true"
