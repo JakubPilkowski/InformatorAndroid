@@ -1,5 +1,13 @@
 package pl.android.informator.ui.notice_board.notice_details;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.provider.Telephony;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.databinding.ObservableField;
 import androidx.databinding.ObservableInt;
 import androidx.viewpager.widget.ViewPager;
@@ -9,33 +17,57 @@ import com.android.informator.databinding.NoticeDetailsFragmentBinding;
 import java.util.ArrayList;
 import java.util.List;
 
+import pl.android.informator.activities.MainActivity;
+import pl.android.informator.adapters.notice_board.ViewPagerAdapter;
 import pl.android.informator.base.BaseViewModel;
 import pl.android.informator.models.Notice;
 
 public class NoticeDetailsViewModel extends BaseViewModel {
+    private static final int REQUEST_CALL = 1;
+
     public ObservableField<String> title = new ObservableField<>();
-    public ObservableField<String> imgUrl = new ObservableField<>();
-    public ObservableField<List<String>> imgUrls = new ObservableField<>();
     public ObservableField<String> price = new ObservableField<>();
     public ObservableField<String> desc = new ObservableField<>();
     public ObservableField<ViewPager> viewPager = new ObservableField<>();
-    public ObservableField<NoticeDetailsViewModel> viewModel = new ObservableField<>();
+    public String phoneNumber;
 
     public void init(Notice notice) {
         title.set(notice.getTitle());
-        imgUrls.set(notice.getImgUrls());
-        viewModel.set(this);
+        ViewPager viewPager = ((NoticeDetailsFragmentBinding)getBinding()).noticeDetailsViewpager;
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(viewPager.getContext(), notice.getImgUrls(),this);
+        viewPager.setAdapter(viewPagerAdapter);
+        viewPager.setPageMargin(0);
+        phoneNumber = String.valueOf(notice.getPhoneNumber());
         price.set(notice.getPrice());
         desc.set(notice.getDescription());
-        viewPager.set(((NoticeDetailsFragmentBinding) getBinding()).noticeDetailsViewpager);
+        this.viewPager.set(viewPager);
     }
 
-    public void onClick() {
+    public void onEditClick() {
 
     }
-
-    public void setImage(String imgUrl) {
-        this.imgUrl.set(imgUrl);
+    public void onPhoneClick(){
+        if(ContextCompat.checkSelfPermission(getActivity().getApplicationContext(), Manifest.permission.CALL_PHONE)!= PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.CALL_PHONE}, MainActivity.REQUEST_CALL);
+        }
+        else {
+            String dial="tel:"+phoneNumber;
+            getActivity().startActivity(new Intent(Intent.ACTION_CALL, Uri.parse(dial)));
+        }
     }
-    // TODO: Implement the ViewModel
+    public void onMessageClick(){
+        if(ContextCompat.checkSelfPermission(getActivity().getApplicationContext(), Manifest.permission.SEND_SMS)!= PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.SEND_SMS}, MainActivity.REQUEST_SMS);
+        }
+        else {
+            String dial="sms:"+phoneNumber;
+            Intent smsIntent = new Intent(Intent.ACTION_VIEW);
+            String defaultSmsPackageName = Telephony.Sms.getDefaultSmsPackage(getActivity().getApplicationContext()); // Need to change the build to API 19
+            if(defaultSmsPackageName!=null){
+                smsIntent.setPackage(defaultSmsPackageName);
+            }
+            smsIntent.setData(Uri.parse(dial));
+            getActivity().startActivity(smsIntent);
+        }
+    }
 }

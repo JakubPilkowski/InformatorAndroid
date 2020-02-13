@@ -9,13 +9,15 @@ public class Notice {
     private String mainImgUrl;
     private List<String> imgUrls;
     private String description;
+    private int phoneNumber;
 
-    public Notice(String title, String price, String mainImgUrl, List<String> imgUrls, String description) {
+    public Notice(String title, String price, String mainImgUrl, List<String> imgUrls, String description, int phoneNumber) {
         this.title = title;
         this.price = price;
         this.mainImgUrl = mainImgUrl;
         this.imgUrls = imgUrls;
         this.description = description;
+        this.phoneNumber = phoneNumber;
     }
 
     public String getTitle() {
@@ -38,7 +40,8 @@ public class Notice {
         return description;
     }
 
-//    public LocalDate getDate() {
-//        return date;
-//    }
+    public int getPhoneNumber() {
+        return phoneNumber;
+    }
+
 }

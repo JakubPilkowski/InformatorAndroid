@@ -276,9 +276,8 @@ public class BindingAdapter {
     }
     @androidx.databinding.BindingAdapter({"viewPagerAdapter","viewModel"})
     public static void createViewPagerAdapter(ViewPager viewPager, List<String>imgUrls, NoticeDetailsViewModel viewModel){
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(viewPager.getContext(),imgUrls,viewModel);
-        viewPager.setAdapter(viewPagerAdapter);
-
+//        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(viewPager.getContext(),imgUrls,viewModel);
+//        viewPager.setAdapter(viewPagerAdapter);
     }
     @androidx.databinding.BindingAdapter("dots")
     public static void createDots(final LinearLayout layout, ViewPager viewPager){
@@ -286,6 +285,7 @@ public class BindingAdapter {
         final int dotsCount = adapter.getCount();
         final ImageView[] dots = new ImageView[dotsCount];
         for (int i = 0; i <dotsCount ; i++) {
+            dots[i] = new ImageView(layout.getContext());
             dots[i].setImageDrawable(layout.getResources().getDrawable(R.drawable.non_active_dot));
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
             params.setMargins(8,0,8,0);

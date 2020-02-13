@@ -22,6 +22,8 @@ import com.android.informator.databinding.ActivityMainBinding;
 import pl.android.informator.interfaces.ImageListener;
 import pl.android.informator.interfaces.Providers;
 import pl.android.informator.navigation.Navigator;
+import pl.android.informator.ui.notice_board.notice_details.NoticeDetailsFragment;
+
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends BaseActivity<ActivityMainBinding, MainActivityViewModel> implements NavigationView.OnNavigationItemSelectedListener, Providers, ImageListener {
@@ -30,7 +32,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainActivity
     NavigationView navigationView;
     public static final int REQUEST_ACCEPTED = 1;
     public static final int RESULT_LOAD_IMAGE = 1001;
-
+    public static final int REQUEST_CALL = 1002;
+    public static final int REQUEST_SMS = 1003;
     @Override
     protected void initActivity(ActivityMainBinding binding) {
         binding.setViewModel(viewModel);
@@ -142,6 +145,16 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainActivity
                 startActivityForResult(i, RESULT_LOAD_IMAGE);
             } else {
                 finish();
+            }
+        }
+        if(requestCode == REQUEST_CALL){
+            if (grantResults[1] == PackageManager.PERMISSION_GRANTED){
+                ((NoticeDetailsFragment)getCurrentFragment()).viewModel.onPhoneClick();
+            }
+        }
+        if(requestCode == REQUEST_SMS){
+            if (grantResults[1] == PackageManager.PERMISSION_GRANTED){
+                ((NoticeDetailsFragment)getCurrentFragment()).viewModel.onMessageClick();
             }
         }
     }

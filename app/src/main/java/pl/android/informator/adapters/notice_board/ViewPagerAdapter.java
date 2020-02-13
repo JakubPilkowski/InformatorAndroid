@@ -4,16 +4,16 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.android.informator.R;
-import com.android.informator.databinding.SingleViewpagerViewBinding;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import pl.android.informator.ui.notice_board.notice_details.NoticeDetailsViewModel;
@@ -40,13 +40,14 @@ public class ViewPagerAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = layoutInflater.inflate(R.layout.single_viewpager_view,container,false);
-        SingleViewpagerViewBinding binding = SingleViewpagerViewBinding.bind(view);
-        binding.setViewModel(viewModel);
-        viewModel.setImage(imgUrls.get(position));
+        ImageView view = (ImageView) layoutInflater.inflate(R.layout.single_viewpager_view,container,false);
+        Glide.with(context)
+                .load(imgUrls.get(position))
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .thumbnail(0.1f)
+                .into(view);
         ViewPager vp = (ViewPager) container;
         vp.addView(view);
-
         return view;
     }
         @Override
