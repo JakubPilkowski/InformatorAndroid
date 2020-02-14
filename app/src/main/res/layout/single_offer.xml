@@ -47,19 +47,13 @@
                 android:onClick="@{() -> viewModel.onLinkClick()}"
                 android:background="@drawable/gradient_with_ripple"
                 >
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_link"
-                    android:layout_toStartOf="@id/check_offer"
-                    android:layout_margin="12dp"
-                    />
                 <TextView
                     android:id="@+id/check_offer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/check_offer"
-                    android:textAllCaps="false"
+                    android:drawablePadding="12dp"
+                    android:drawableStart="@drawable/ic_link"
                     android:layout_centerInParent="true"
                     android:textAlignment="center"
                     android:textColor="@color/colorWhite"
@@ -69,6 +63,7 @@
             </RelativeLayout>
         </LinearLayout>
     <ImageView
+        android:contentDescription="@string/cd_offer_photo"
         android:id="@+id/offer_main_img"
         android:layout_width="match_parent"
         android:layout_height="450dp"
@@ -86,6 +81,7 @@
             android:orientation="horizontal">
 
             <ImageView
+                android:contentDescription="@string/cd_icon_logo_photo"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_margin="8dp"

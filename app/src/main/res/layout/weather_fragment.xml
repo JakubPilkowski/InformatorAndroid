@@ -79,30 +79,22 @@
                     android:layout_marginBottom="16dp"
                     android:layout_alignParentBottom="true"
                     android:orientation="horizontal">
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_marginStart="12dp"
-                        android:src="@drawable/ic_wilgotnosc2"
-                        />
                     <TextView
                         android:layout_width="64dp"
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
+                        android:drawableStart="@drawable/ic_wilgotnosc2"
+                        android:padding="12dp"
                         android:fontFamily="@font/montserrat"
                         android:textColor="@color/colorWhite"
                         android:text="@{viewModel.humidity}"
-                        />
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_marginStart="12dp"
-                        android:src="@drawable/ic_cisnienie2"
                         />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
+                        android:drawableStart="@drawable/ic_cisnienie2"
+                        android:padding="12dp"
                         android:fontFamily="@font/montserrat"
                         android:textColor="@color/colorWhite"
                         android:text="@{viewModel.pressure}"
@@ -113,6 +105,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:baselineAligned="false"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="7"
@@ -136,6 +129,7 @@
                     android:textColor="@color/colorBlack"
                     />
                 <ImageView
+                    android:contentDescription="@string/cd_weather_tomorrow"
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:layout_gravity="center_horizontal"
@@ -180,6 +174,7 @@
                     android:textColor="@color/colorBlack"
                     />
                 <ImageView
+                    android:contentDescription="@string/cd_weather_overmorrow"
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:layout_gravity="center_horizontal"

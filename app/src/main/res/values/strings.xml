@@ -74,4 +74,8 @@
     <string name="cd_button_chose_destination">Przycisk wyznacz trasę</string>
     <string name="cd_photo_lines">Zdjęcie rozkładów linii</string>
     <string name="cd_button_lines">Przycisk rozkłady linii</string>
+    <string name="cd_icon_logo_photo">Ikonka loga firmy</string>
+    <string name="cd_offer_photo">Zdjęcie oferty</string>
+    <string name="cd_weather_tomorrow">Pogoda jutro</string>
+    <string name="cd_weather_overmorrow">Pogoda pojutrze</string>
 </resources>

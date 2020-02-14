@@ -7,15 +7,11 @@
         android:layout_height="48dp"
         android:background="@drawable/horizontal_main_gradient"
         >
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_margin="12dp"
-            android:src="@drawable/ic_wydarzenia"
-            android:contentDescription="@string/cd_icon_events" />
         <TextView
             android:id="@+id/date_display_date"
             android:layout_width="match_parent"
+            android:drawablePadding="12dp"
+            android:drawableStart="@drawable/ic_wydarzenia"
             android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
             android:textSize="24sp"
