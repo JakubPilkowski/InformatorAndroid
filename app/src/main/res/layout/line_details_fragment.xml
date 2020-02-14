@@ -90,8 +90,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:backgroundTint="@color/colorWhite"
                 android:background="@drawable/gray_ripple"
+                android:backgroundTint="@color/colorWhite"
                 android:onClick="@{() -> viewModel.onWorkingDaysClick()}"
                 android:orientation="horizontal"
                 android:weightSum="2">
@@ -107,26 +107,15 @@
                     android:textColor="@color/colorBlack"
                     android:textSize="18sp" />
 
-                <RelativeLayout
+                <Button
                     android:layout_width="32dp"
                     android:layout_height="32dp"
-                    android:layout_margin="8dp">
-
-                    <Button
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:background="@drawable/oval_gradient_background"
-                        android:onClick="@{() -> viewModel.onWorkingDaysClick()}" />
-
-                    <Button
-                        android:contentDescription="@string/cd_more_info"
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:layout_centerInParent="true"
-                        android:background="@drawable/ic_dol"
-                        android:onClick="@{() -> viewModel.onWorkingDaysClick()}"
-                        app:setOnShowLabelDrawable="@{viewModel.show1}" />
-                </RelativeLayout>
+                    android:layout_margin="8dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/oval_gradient_arrow_down"
+                    android:contentDescription="@string/cd_more_info"
+                    android:onClick="@{() -> viewModel.onWorkingDaysClick()}"
+                    app:setOnShowLabelDrawable="@{viewModel.show1}" />
             </LinearLayout>
 
             <LinearLayout
@@ -136,14 +125,14 @@
                 android:orientation="vertical"
                 app:size="@{viewModel.size1}"
                 app:slideAnim="@{viewModel.show1}"></LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="12dp"/>
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:backgroundTint="@color/colorWhite"
+                android:layout_marginTop="12dp"
                 android:background="@drawable/gray_ripple"
+                android:backgroundTint="@color/colorWhite"
                 android:onClick="@{() -> viewModel.onFreeDaysFromWorkingClick()}"
                 android:orientation="horizontal"
                 android:weightSum="2">
@@ -151,34 +140,23 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:layout_marginStart="12dp"
                     android:layout_weight="2"
-                    android:layout_gravity="center_vertical"
                     android:fontFamily="@font/montserrat"
                     android:text="@string/free_working_days"
                     android:textColor="@color/colorBlack"
                     android:textSize="18sp" />
 
-                <RelativeLayout
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_margin="8dp">
-
                     <Button
                         android:layout_width="32dp"
                         android:layout_height="32dp"
-                        android:background="@drawable/oval_gradient_background"
-                        android:onClick="@{() -> viewModel.onFreeDaysFromWorkingClick()}" />
-
-                    <Button
+                        android:layout_margin="8dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/oval_gradient_arrow_down"
                         android:contentDescription="@string/cd_more_info"
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:layout_centerInParent="true"
-                        android:background="@drawable/ic_dol"
                         android:onClick="@{() -> viewModel.onFreeDaysFromWorkingClick()}"
                         app:setOnShowLabelDrawable="@{viewModel.show2}" />
-                </RelativeLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -188,14 +166,13 @@
                 android:orientation="vertical"
                 app:size="@{viewModel.size2}"
                 app:slideAnim="@{viewModel.show2}"></LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="12dp"/>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:backgroundTint="@color/colorWhite"
+                android:layout_marginTop="12dp"
                 android:background="@drawable/gray_ripple"
+                android:backgroundTint="@color/colorWhite"
                 android:onClick="@{() -> viewModel.onSaturdayClick()}"
                 android:orientation="horizontal"
                 android:weightSum="2">
@@ -203,34 +180,22 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:layout_marginStart="12dp"
                     android:layout_weight="2"
-                    android:layout_gravity="center_vertical"
                     android:fontFamily="@font/montserrat"
                     android:text="@string/saturdays"
                     android:textColor="@color/colorBlack"
                     android:textSize="18sp" />
-
-                <RelativeLayout
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_margin="8dp">
-
                     <Button
                         android:layout_width="32dp"
                         android:layout_height="32dp"
-                        android:background="@drawable/oval_gradient_background"
-                        android:onClick="@{() -> viewModel.onSaturdayClick()}" />
-
-                    <Button
+                        android:background="@drawable/oval_gradient_arrow_down"
+                        android:layout_margin="8dp"
+                        android:layout_gravity="center_vertical"
                         android:contentDescription="@string/cd_more_info"
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:layout_centerInParent="true"
-                        android:background="@drawable/ic_dol"
                         android:onClick="@{() -> viewModel.onSaturdayClick()}"
                         app:setOnShowLabelDrawable="@{viewModel.show3}" />
-                </RelativeLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -240,14 +205,13 @@
                 android:orientation="vertical"
                 app:size="@{viewModel.size3}"
                 app:slideAnim="@{viewModel.show3}"></LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="12dp"/>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:backgroundTint="@color/colorWhite"
                 android:background="@drawable/gray_ripple"
+                android:layout_marginTop="12dp"
+                android:backgroundTint="@color/colorWhite"
                 android:onClick="@{() -> viewModel.onSundayAndBreaks()}"
                 android:orientation="horizontal"
                 android:weightSum="2">
@@ -255,35 +219,22 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:layout_marginStart="12dp"
                     android:layout_weight="2"
                     android:fontFamily="@font/montserrat"
-                    android:layout_gravity="center_vertical"
                     android:text="@string/sundaysAndBreaks"
                     android:textColor="@color/colorBlack"
                     android:textSize="18sp" />
-
-                <RelativeLayout
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_margin="8dp">
-
                     <Button
-                        android:id="@+id/post_office_extend_info"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
-                        android:background="@drawable/oval_gradient_background"
-                        android:onClick="@{() -> viewModel.onSundayAndBreaks()}" />
-
-                    <Button
+                        android:layout_margin="8dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/oval_gradient_arrow_down"
                         android:contentDescription="@string/cd_more_info"
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:layout_centerInParent="true"
-                        android:background="@drawable/ic_dol"
                         android:onClick="@{() -> viewModel.onSundayAndBreaks()}"
                         app:setOnShowLabelDrawable="@{viewModel.show4}" />
-                </RelativeLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -293,9 +244,6 @@
                 android:orientation="vertical"
                 app:size="@{viewModel.size4}"
                 app:slideAnim="@{viewModel.show4}"></LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="12dp"/>
         </LinearLayout>
     </ScrollView>
 </layout>

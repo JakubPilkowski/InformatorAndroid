@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/colorWhite">
+    <item>
+        <layer-list>
+            <item>
+                <shape android:shape="oval">
+                    <gradient
+                        android:endColor="@color/colorGradientEnd"
+                        android:startColor="@color/colorGradientStart" />
+                    <padding
+                        android:bottom="8dp"
+                        android:left="8dp"
+                        android:right="8dp"
+                        android:top="8dp" />
+                </shape>
+            </item>
+            <item android:drawable="@drawable/ic_dol" />
+        </layer-list>
+    </item>
+</ripple>

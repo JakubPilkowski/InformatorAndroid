@@ -21,5 +21,6 @@
     <color name="background">#4a5c71</color>
     <color name="colorLawngreen">#7CFC00</color>
     <color name="colorLightBlue">#99cfe0</color>
+    <color name="colorTransparent">#00FFFFFF</color>
 
 </resources>

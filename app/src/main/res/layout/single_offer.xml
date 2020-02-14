@@ -2,17 +2,75 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:background="@color/colorGrayOffers"
-        android:paddingBottom="12dp"
-        >
+        android:paddingBottom="12dp">
+    <ImageView
+        android:contentDescription="@string/cd_offer_photo"
+        android:id="@+id/offer_main_img"
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        android:scaleType="fitXY"
+        app:imageUrl="@{viewModel.imgUrl}"
+        />
+
+        <LinearLayout
+            android:id="@+id/offer_main_info"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:weightSum="2"
+            android:background="@color/colorBlackOffers"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:contentDescription="@string/cd_icon_logo_photo"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_margin="8dp"
+                android:scaleType="fitXY"
+                app:imageUrl="@{viewModel.logoUrl}" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:fontFamily="@font/montserrat"
+                    android:text="@{viewModel.brand}"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:fontFamily="@font/montserrat"
+                    android:text="@{viewModel.title}"
+                    android:textColor="@color/colorGrayOffers"
+                    android:textSize="18sp" />
+            </LinearLayout>
+            <Button
+                android:contentDescription="@string/cd_more_info"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/oval_gradient_arrow_down"
+                android:onClick="@{() -> viewModel.onClick()}"
+                app:setOnShowLabelDrawable="@{viewModel.show}" />
+        </LinearLayout>
         <LinearLayout
             android:id="@+id/offer_details"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/offer_main_info"
             app:slideAnim="@{viewModel.show}"
             app:size="@{viewModel.size}"
             android:orientation="vertical"
@@ -62,76 +120,7 @@
                     />
             </RelativeLayout>
         </LinearLayout>
-    <ImageView
-        android:contentDescription="@string/cd_offer_photo"
-        android:id="@+id/offer_main_img"
-        android:layout_width="match_parent"
-        android:layout_height="450dp"
-        android:scaleType="fitXY"
-        app:imageUrl="@{viewModel.imgUrl}"
-        />
-
-        <LinearLayout
-            android:id="@+id/offer_main_info"
-            android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:layout_below="@id/offer_main_img"
-            android:weightSum="2"
-            android:background="@color/colorBlackOffers"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:contentDescription="@string/cd_icon_logo_photo"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_margin="8dp"
-                android:scaleType="fitXY"
-                app:imageUrl="@{viewModel.logoUrl}" />
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:layout_gravity="center_vertical"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="3dp"
-                    android:fontFamily="@font/montserrat"
-                    android:text="@{viewModel.brand}"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
-                    android:fontFamily="@font/montserrat"
-                    android:text="@{viewModel.title}"
-                    android:textColor="@color/colorGrayOffers"
-                    android:textSize="18sp" />
-            </LinearLayout>
-
-            <RelativeLayout
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="@drawable/oval_gradient_with_ripple"
-                android:onClick="@{()-> viewModel.onClick()}"
-                android:layout_margin="8dp">
-                <Button
-                    android:contentDescription="@string/cd_more_info"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:padding="8dp"
-                    android:layout_centerInParent="true"
-                    android:background="@drawable/ic_dol"
-                    android:onClick="@{() -> viewModel.onClick()}"
-                    app:setOnShowLabelDrawable="@{viewModel.show}" />
-            </RelativeLayout>
-        </LinearLayout>
-    </RelativeLayout>
+    </LinearLayout>
     <data>
         <variable
             name="viewModel"
