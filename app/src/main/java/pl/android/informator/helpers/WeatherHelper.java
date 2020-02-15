@@ -31,90 +31,90 @@ public class WeatherHelper {
             return "Night";
     }
 
-    static Drawable getWeatherDrawable(Context context, String type){
+    public static int getWeatherDrawable(String type){
         String date = DateHelper.getDate();
         int actualHour = Integer.parseInt(DateHelper.getHour(date));
         if (Integer.parseInt(DateHelper.getHourToBeginSun(date)) <= actualHour && actualHour <= Integer.parseInt(DateHelper.getHourToEndSun(date)))
         {
             switch (type){
                 case BURZA:
-                    return context.getDrawable(R.drawable.ic_burzaislonce);
+                    return R.drawable.ic_burzaislonce;
                 case DESZCZ:
-                    return context.getDrawable(R.drawable.ic_deszczislonce);
+                    return R.drawable.ic_deszczislonce;
                 case GRAD:
-                    return context.getDrawable(R.drawable.ic_grad);
+                    return R.drawable.ic_grad;
                 case SLONCE:
-                    return context.getDrawable(R.drawable.ic_slonce);
+                    return R.drawable.ic_slonce;
                 case MZAWKA:
-                    return context.getDrawable(R.drawable.ic_mzawka);
+                    return R.drawable.ic_mzawka;
                 case SNIEG:
-                    return context.getDrawable(R.drawable.ic_sniegislonce);
+                    return R.drawable.ic_sniegislonce;
                 case ZACHMURZONE_NIEBO:
                 case CZESCIOWE_ZACHMURZENIE:
-                    return context.getDrawable(R.drawable.ic_chmuryislonce);
+                    return R.drawable.ic_chmuryislonce;
                 case MGLA:
-                    return context.getDrawable(R.drawable.ic_mgla);
+                    return R.drawable.ic_mgla;
             }
         }
         else {
             switch (type){
                 case BURZA:
-                    return context.getDrawable(R.drawable.ic_burzaiksiezyc);
+                    return R.drawable.ic_burzaiksiezyc;
                 case DESZCZ:
-                    return context.getDrawable(R.drawable.ic_deszcziksiezyc);
+                    return R.drawable.ic_deszcziksiezyc;
                 case GRAD:
-                    return context.getDrawable(R.drawable.ic_grad);
+                    return R.drawable.ic_grad;
                 case SLONCE:
-                    return context.getDrawable(R.drawable.ic_ksiezyc);
+                    return R.drawable.ic_ksiezyc;
                 case MZAWKA:
-                    return context.getDrawable(R.drawable.ic_mzawka);
+                    return R.drawable.ic_mzawka;
                 case SNIEG:
-                    return context.getDrawable(R.drawable.ic_sniegiksiezyc);
+                    return R.drawable.ic_sniegiksiezyc;
                 case ZACHMURZONE_NIEBO:
                 case CZESCIOWE_ZACHMURZENIE:
-                    return context.getDrawable(R.drawable.ic_chmuryiksiezyc);
+                    return R.drawable.ic_chmuryiksiezyc;
                 case MGLA:
-                    return context.getDrawable(R.drawable.ic_mgla);
+                    return R.drawable.ic_mgla;
             }
         }
-        return null;
+        return 0;
     }
 
-    static Drawable getWeatherToolbarBackground(Context context, String type){
+    public static int getWeatherToolbarBackground(String type){
 
         String date = DateHelper.getDate();
         int actualHour = Integer.parseInt(DateHelper.getHour(date));
-        if(type.equals(BURZA)) return context.getDrawable(R.drawable.burza);
-        if(type.equals(DESZCZ)||type.equals(GRAD)||type.equals(MZAWKA)) return context.getDrawable(R.drawable.deszcz);
+        if(type.equals(BURZA)) return R.drawable.burza;
+        if(type.equals(DESZCZ)||type.equals(GRAD)||type.equals(MZAWKA)) return R.drawable.deszcz;
         if (Integer.parseInt(DateHelper.getHourToBeginSun(date)) <= actualHour && actualHour <= Integer.parseInt(DateHelper.getHourToEndSun(date)))
         {
             switch (type){
                 case SLONCE:
-                    return context.getDrawable(R.drawable.sloneczna_pogoda);
+                    return R.drawable.sloneczna_pogoda;
                 case SNIEG:
-                    return context.getDrawable(R.drawable.opady_sniegu);
+                    return R.drawable.opady_sniegu;
                 case ZACHMURZONE_NIEBO:
-                    return context.getDrawable(R.drawable.zachmurzone_niebo);
+                    return R.drawable.zachmurzone_niebo;
                 case CZESCIOWE_ZACHMURZENIE:
-                    return context.getDrawable(R.drawable.czesciowe_zachmurzenie_2);
+                    return R.drawable.czesciowe_zachmurzenie_2;
                 case MGLA:
-                    return context.getDrawable(R.drawable.mgla);
+                    return R.drawable.mgla;
             }
         }
         else {
             switch (type){
                 case SLONCE:
-                    return context.getDrawable(R.drawable.bezchmurna_noc);
+                    return R.drawable.bezchmurna_noc;
                 case SNIEG:
-                    return context.getDrawable(R.drawable.opady_sniegu_2);
+                    return R.drawable.opady_sniegu_2;
                 case ZACHMURZONE_NIEBO:
-                    return context.getDrawable(R.drawable.zachmurzone_niebo_2);
+                    return R.drawable.zachmurzone_niebo_2;
                 case CZESCIOWE_ZACHMURZENIE:
-                    return context.getDrawable(R.drawable.czesciowe_zachmurzenie);
+                    return R.drawable.czesciowe_zachmurzenie;
                 case MGLA:
-                    return context.getDrawable(R.drawable.mgla_2);
+                    return R.drawable.mgla_2;
             }
         }
-        return null;
+        return 0;
     }
 }

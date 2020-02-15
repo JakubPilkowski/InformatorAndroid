@@ -2,6 +2,9 @@ package pl.android.informator.helpers;
 
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Handler;
@@ -11,6 +14,7 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
@@ -34,6 +38,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.android.informator.databinding.NoticeBoardFragmentBinding;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.gifdecoder.GifDecoder;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.android.informator.R;
 import com.android.informator.databinding.AddNoticeFragmentBinding;
@@ -192,22 +197,21 @@ public class BindingAdapter {
             }
         });
     }
-
+    @androidx.databinding.BindingAdapter("setImageById")
+    public static void setImageById(View view,int drawableId)
+    {
+        ((ImageView) view).setImageResource(drawableId);
+    }
     @RequiresApi(api = Build.VERSION_CODES.O)
     @androidx.databinding.BindingAdapter("setDrawable")
-    public static void setImageDrawable(final View view, String type) {
-        if (view instanceof ImageView) {
-            Drawable drawable = WeatherHelper.getWeatherDrawable(view.getContext(), type);
-            Glide.with(view.getContext())
-                    .load(drawable)
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .into((ImageView) view);
-        }
+    public static void setImageDrawable(final View view, Bitmap bitmap) {
         if (view instanceof LinearLayout) {
-            Drawable drawable = WeatherHelper.getWeatherToolbarBackground(view.getContext(), type);
             Glide.with(view.getContext())
-                    .load(drawable)
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .load(bitmap)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .skipMemoryCache(true)
+                    .override(500,500)
+                    .thumbnail(0.1f)
                     .into(new CustomTarget<Drawable>() {
                         @Override
                         public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
@@ -220,6 +224,13 @@ public class BindingAdapter {
                         }
                     });
         }
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                Glide.get(view.getContext()).clearDiskCache();
+//            }
+//        }).start();
+//        Glide.get(view.getContext()).clearMemory();
     }
 
     @androidx.databinding.BindingAdapter("setArrayItems")
@@ -253,7 +264,7 @@ public class BindingAdapter {
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                if (dy < -12 && button.getVisibility()==View.GONE) {
+                if (dy < -12 && button.getVisibility() == View.GONE) {
                     animation[0] = AnimationUtils.loadAnimation(recyclerView.getContext(), R.anim.translate_up);
                     animation[0].setAnimationListener(new Animation.AnimationListener() {
                         @Override
@@ -271,7 +282,7 @@ public class BindingAdapter {
                         }
                     });
                     button.startAnimation(animation[0]);
-                } else if (dy > 12 && button.getVisibility()==View.VISIBLE) {
+                } else if (dy > 12 && button.getVisibility() == View.VISIBLE) {
                     animation[0] = AnimationUtils.loadAnimation(recyclerView.getContext(), R.anim.translate_down);
                     animation[0].setAnimationListener(new Animation.AnimationListener() {
                         @Override
@@ -295,16 +306,16 @@ public class BindingAdapter {
     }
 
     @androidx.databinding.BindingAdapter("dots")
-    public static void createDots(final LinearLayout layout, ViewPager viewPager){
+    public static void createDots(final LinearLayout layout, ViewPager viewPager) {
         ViewPagerAdapter adapter = (ViewPagerAdapter) viewPager.getAdapter();
         final int dotsCount = adapter.getCount();
         final ImageView[] dots = new ImageView[dotsCount];
-        for (int i = 0; i <dotsCount ; i++) {
+        for (int i = 0; i < dotsCount; i++) {
             dots[i] = new ImageView(layout.getContext());
             dots[i].setImageDrawable(layout.getResources().getDrawable(R.drawable.non_active_dot));
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
-            params.setMargins(8,0,8,0);
-            layout.addView(dots[i],params);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            params.setMargins(8, 0, 8, 0);
+            layout.addView(dots[i], params);
         }
         dots[0].setImageDrawable(layout.getResources().getDrawable(R.drawable.active_dot));
 
@@ -317,7 +328,7 @@ public class BindingAdapter {
             @Override
             public void onPageSelected(int position) {
 
-                for(int i = 0; i< dotsCount; i++){
+                for (int i = 0; i < dotsCount; i++) {
                     dots[i].setImageDrawable(layout.getResources().getDrawable(R.drawable.non_active_dot));
                 }
 
@@ -332,13 +343,24 @@ public class BindingAdapter {
         });
 
     }
+
     @androidx.databinding.BindingAdapter("imageSrc")
-    public static void setImageSrc(ImageView imageView, Drawable drawable) {
-        Context context = imageView.getContext();
+    public static void setImageSrc(final ImageView imageView, final Drawable drawable) {
+        final Context context = imageView.getContext();
         Glide.with(context)
                 .load(drawable)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true)
+                .override(500,500)
+                .thumbnail(0.1f)
                 .into(imageView);
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                Glide.get(context).clearDiskCache();
+//            }
+//        }).start();
+//        Glide.get(context).clearMemory();
     }
 }
 

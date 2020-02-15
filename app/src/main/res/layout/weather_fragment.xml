@@ -10,6 +10,7 @@
         tools:context="pl.android.informator.ui.weather.WeatherFragment">
 
         <LinearLayout
+            android:id="@+id/weather_main_image"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:setDrawable="@{viewModel.weatherType}"
@@ -128,10 +129,11 @@
                     android:textColor="@color/colorBlack"
                     />
                 <ImageView
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
+                    android:id="@+id/weather_tomorrow_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    app:setDrawable="@{viewModel.weatherTypeTomorrow}"
+                    app:setImageById="@{viewModel.weatherTypeTomorrow}"
                     />
                 <TextView
                     android:layout_width="match_parent"
@@ -172,10 +174,11 @@
                     android:textColor="@color/colorBlack"
                     />
                 <ImageView
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
+                    android:id="@+id/weather_overmorrow_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    app:setDrawable="@{viewModel.weatherTypeOvermorrow}"
+                    app:setImageById="@{viewModel.weatherTypeOvermorrow}"
                     />
                 <TextView
                     android:layout_width="match_parent"

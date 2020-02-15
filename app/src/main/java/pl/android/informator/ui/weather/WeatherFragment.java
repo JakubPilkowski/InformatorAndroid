@@ -1,5 +1,11 @@
 package pl.android.informator.ui.weather;
 
+import android.os.Bundle;
+import android.os.Handler;
+import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.databinding.ViewDataBinding;
 
 import com.android.informator.R;
@@ -35,6 +41,16 @@ public class WeatherFragment extends BaseFragment<WeatherFragmentBinding, Weathe
         viewModel.init();
     }
 
+    @Override
+    public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                viewModel.setMainImage();
+            }
+        }).start();
+    }
     @Override
     public int getToolbarType() {
         return 0;

@@ -1,13 +1,16 @@
 package pl.android.informator.ui.weather;
 
-import android.os.Build;
+import android.graphics.Bitmap;
+import android.view.View;
 
-import androidx.annotation.RequiresApi;
 import androidx.databinding.ObservableField;
+import androidx.databinding.ObservableInt;
 
 import pl.android.informator.activities.MainActivity;
 import pl.android.informator.base.BaseViewModel;
 import com.android.informator.databinding.WeatherFragmentBinding;
+
+import pl.android.informator.helpers.ImageHelper;
 import pl.android.informator.helpers.WeatherHelper;
 import pl.android.informator.models.Weather;
 
@@ -17,18 +20,17 @@ public class WeatherViewModel extends BaseViewModel {
 
 
     public ObservableField<String> temp = new ObservableField<>();
-    public ObservableField<String> weatherType = new ObservableField<>();
+    public ObservableField<Bitmap> weatherType = new ObservableField<>();
     public ObservableField<String> weatherTypeName = new ObservableField<>();
     public ObservableField<String> humidity = new ObservableField<>();
     public ObservableField<String> pressure = new ObservableField<>();
-    public ObservableField<String> weatherTypeTomorrow = new ObservableField<>();
+    public ObservableInt weatherTypeTomorrow = new ObservableInt();
     public ObservableField<String> tempTomorrow = new ObservableField<>();
     public ObservableField<String> maxTempTomorrow = new ObservableField<>();
-    public ObservableField<String> weatherTypeOvermorrow = new ObservableField<>();
+    public ObservableInt weatherTypeOvermorrow = new ObservableInt();
     public ObservableField<String> tempOvermorrow = new ObservableField<>();
     public ObservableField<String> maxTempOvermorrow = new ObservableField<>();
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
+    public Weather weather1;
     public void init() {
         ((MainActivity) getActivity()).setSupportActionBar(((WeatherFragmentBinding) getBinding()).toolbar);
         ((MainActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -85,19 +87,27 @@ public class WeatherViewModel extends BaseViewModel {
                 weather3 = new Weather("22", "24", Weather.SLONCE, "70%", "995hPa");
 
         }
+        this.weather1 = weather1;
         temp.set(weather1.getTemp() + "℃");
-        weatherType.set(weather1.getWeatherType());
         if(weather1.getWeatherType().equals(Weather.SLONCE) && WeatherHelper.getDayType().equals(WeatherHelper.NIGHT))
             weatherTypeName.set(Weather.BEZCHMURNA_NOC);
         else
             weatherTypeName.set(weather1.getWeatherType());
         humidity.set(weather1.getHumidity());
         pressure.set(weather1.getPressure());
-        weatherTypeTomorrow.set(weather2.getWeatherType());
+        int drawableTomorrow = WeatherHelper.getWeatherDrawable(weather2.getWeatherType());
+        weatherTypeTomorrow.set(drawableTomorrow);
         tempTomorrow.set(weather2.getTemp() + "℃");
         maxTempTomorrow.set(weather2.getTempMax() + "℃");
-        weatherTypeOvermorrow.set(weather3.getWeatherType());
+        int drawableOvermorrow = WeatherHelper.getWeatherDrawable(weather3.getWeatherType());
+        weatherTypeOvermorrow.set(drawableOvermorrow);
         tempOvermorrow.set(weather3.getTemp() + "℃");
         maxTempOvermorrow.set(weather3.getTempMax() + "℃");
+    }
+
+    public void setMainImage() {
+        View view = ((WeatherFragmentBinding)getBinding()).weatherMainImage;
+        Bitmap bitmap =ImageHelper.getScaledBitmap(view,weather1);
+        weatherType.set(bitmap);
     }
 }
