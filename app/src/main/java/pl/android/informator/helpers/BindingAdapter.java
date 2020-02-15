@@ -195,7 +195,10 @@ public class BindingAdapter {
     public static void setImageDrawable(View view, String type) {
         if (view instanceof ImageView) {
             Drawable drawable = WeatherHelper.getWeatherDrawable(view.getContext(), type);
-            ((ImageView) view).setImageDrawable(drawable);
+            Glide.with(view.getContext())
+                    .load(drawable)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into((ImageView) view);
         }
         if (view instanceof LinearLayout) {
             Drawable drawable = WeatherHelper.getWeatherToolbarBackground(view.getContext(), type);
@@ -274,11 +277,7 @@ public class BindingAdapter {
             }
         });
     }
-    @androidx.databinding.BindingAdapter({"viewPagerAdapter","viewModel"})
-    public static void createViewPagerAdapter(ViewPager viewPager, List<String>imgUrls, NoticeDetailsViewModel viewModel){
-//        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(viewPager.getContext(),imgUrls,viewModel);
-//        viewPager.setAdapter(viewPagerAdapter);
-    }
+
     @androidx.databinding.BindingAdapter("dots")
     public static void createDots(final LinearLayout layout, ViewPager viewPager){
         ViewPagerAdapter adapter = (ViewPagerAdapter) viewPager.getAdapter();
@@ -317,6 +316,13 @@ public class BindingAdapter {
         });
 
     }
-
+    @androidx.databinding.BindingAdapter("imageSrc")
+    public static void setImageSrc(ImageView imageView, Drawable drawable) {
+        Context context = imageView.getContext();
+        Glide.with(context)
+                .load(drawable)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(imageView);
+    }
 }
 
