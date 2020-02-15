@@ -24,6 +24,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.ViewDataBinding;
@@ -36,6 +37,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.android.informator.R;
 import com.android.informator.databinding.AddNoticeFragmentBinding;
+import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.transition.Transition;
 
 import pl.android.informator.adapters.notice_board.ViewPagerAdapter;
 import pl.android.informator.navigation.Navigator;
@@ -192,7 +195,7 @@ public class BindingAdapter {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @androidx.databinding.BindingAdapter("setDrawable")
-    public static void setImageDrawable(View view, String type) {
+    public static void setImageDrawable(final View view, String type) {
         if (view instanceof ImageView) {
             Drawable drawable = WeatherHelper.getWeatherDrawable(view.getContext(), type);
             Glide.with(view.getContext())
@@ -202,7 +205,20 @@ public class BindingAdapter {
         }
         if (view instanceof LinearLayout) {
             Drawable drawable = WeatherHelper.getWeatherToolbarBackground(view.getContext(), type);
-            view.setBackground(drawable);
+            Glide.with(view.getContext())
+                    .load(drawable)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(new CustomTarget<Drawable>() {
+                        @Override
+                        public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                            view.setBackground(resource);
+                        }
+
+                        @Override
+                        public void onLoadCleared(@Nullable Drawable placeholder) {
+
+                        }
+                    });
         }
     }
 
