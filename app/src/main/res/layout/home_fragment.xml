@@ -19,11 +19,12 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
+            android:id="@+id/main_image"
             android:contentDescription="@string/cd_main_background"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="fitXY"
-            app:imageSrc="@{ViewModel.mainImage}"
+            android:src="@drawable/informator_olsztyn_z_napisem"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

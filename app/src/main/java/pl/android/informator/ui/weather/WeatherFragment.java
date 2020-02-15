@@ -2,6 +2,7 @@ package pl.android.informator.ui.weather;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -51,6 +52,14 @@ public class WeatherFragment extends BaseFragment<WeatherFragmentBinding, Weathe
             }
         }).start();
     }
+
+    @Override
+    public void onPause() {
+        Log.d("fragmenty", "pogoda onPause się wykonało ");
+//        getNavigator().clearFragment(TAG);
+        super.onPause();
+    }
+
     @Override
     public int getToolbarType() {
         return 0;

@@ -1,5 +1,7 @@
 package pl.android.informator.ui.timetable.line_timetables;
 
+import android.util.Log;
+
 import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.Fragment;
 

@@ -13,10 +13,11 @@
             android:layout_height="0dp"
             android:layout_weight="1">
             <ImageView
+                android:id="@+id/route_image_view"
                 android:contentDescription="@string/cd_photo_chose_destination"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:imageSrc="@{viewModel.routeImage}"
+                android:src="@drawable/wyznacz_trase"
                 android:scaleType="fitXY"
                 />
             <Button
@@ -40,10 +41,10 @@
             android:layout_height="0dp"
             android:layout_weight="1">
             <ImageView
+                android:id="@+id/line_distribution_view"
                 android:contentDescription="@string/cd_photo_lines"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:imageSrc="@{viewModel.lineDistributionImage}"
                 android:src="@drawable/rozklady_linii"
                 android:scaleType="fitXY"
                 />

@@ -345,12 +345,12 @@ public class BindingAdapter {
     }
 
     @androidx.databinding.BindingAdapter("imageSrc")
-    public static void setImageSrc(final ImageView imageView, final Drawable drawable) {
+    public static void setImageSrc(final ImageView imageView, final Bitmap bitmap) {
         final Context context = imageView.getContext();
+
         Glide.with(context)
-                .load(drawable)
+                .load(bitmap)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .skipMemoryCache(true)
                 .override(500,500)
                 .thumbnail(0.1f)
                 .into(imageView);
