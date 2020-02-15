@@ -83,20 +83,20 @@ public class Navigator {
 
     public void showWeather() {
         deleteUselessFragments(WeatherFragment.TAG);
-//        if (!isAvailable(WeatherFragment.TAG)) {
+        if (!isAvailable(WeatherFragment.TAG)) {
             activity.getSupportFragmentManager()
                     .beginTransaction()
                     .addToBackStack(WeatherFragment.TAG)
                     .replace(R.id.main_container, WeatherFragment.newInstance(), WeatherFragment.TAG)
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                     .commit();
+        } else {
+            Fragment fragment = activity.getSupportFragmentManager().findFragmentByTag(WeatherFragment.TAG);
+            activity.getSupportFragmentManager().beginTransaction().replace(R.id.main_container, fragment, WeatherFragment.TAG)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                    .commit();
         }
-//        else {
-//            Fragment fragment = activity.getSupportFragmentManager().findFragmentByTag(WeatherFragment.TAG);
-//            activity.getSupportFragmentManager().beginTransaction().replace(R.id.main_container,fragment,WeatherFragment.TAG)
-//            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();
-//        }
-//    }
+    }
 
     public void showEvents() {
         deleteUselessFragments(EventDetailsFragment.TAG);
@@ -159,8 +159,8 @@ public class Navigator {
         deleteUselessFragments(NoticeBoardFragment.TAG);
         activity.getSupportFragmentManager()
                 .beginTransaction()
-                .addToBackStack(NoticeBoardFragment.TAG+AddNoticeFragment.TAG)
-                .replace(R.id.main_container, AddNoticeFragment.newInstance(), NoticeBoardFragment.TAG+AddNoticeFragment.TAG)
+                .addToBackStack(NoticeBoardFragment.TAG + AddNoticeFragment.TAG)
+                .replace(R.id.main_container, AddNoticeFragment.newInstance(), NoticeBoardFragment.TAG + AddNoticeFragment.TAG)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit();
     }
@@ -169,8 +169,8 @@ public class Navigator {
         deleteUselessFragments(NoticeBoardFragment.TAG);
         activity.getSupportFragmentManager()
                 .beginTransaction()
-                .addToBackStack(NoticeBoardFragment.TAG+NoticeDetailsFragment.TAG)
-                .replace(R.id.main_container, NoticeDetailsFragment.newInstance(notice), NoticeBoardFragment.TAG+NoticeDetailsFragment.TAG)
+                .addToBackStack(NoticeBoardFragment.TAG + NoticeDetailsFragment.TAG)
+                .replace(R.id.main_container, NoticeDetailsFragment.newInstance(notice), NoticeBoardFragment.TAG + NoticeDetailsFragment.TAG)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit();
     }
@@ -185,8 +185,8 @@ public class Navigator {
         deleteUselessFragments(EventsFragment.TAG);
         activity.getSupportFragmentManager()
                 .beginTransaction()
-                .addToBackStack(EventsFragment.TAG+EventDetailsFragment.TAG)
-                .replace(R.id.main_container, EventDetailsFragment.newInstance(event), EventsFragment.TAG+EventDetailsFragment.TAG)
+                .addToBackStack(EventsFragment.TAG + EventDetailsFragment.TAG)
+                .replace(R.id.main_container, EventDetailsFragment.newInstance(event), EventsFragment.TAG + EventDetailsFragment.TAG)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit();
     }
@@ -195,8 +195,8 @@ public class Navigator {
         deleteUselessFragments(TimetableFragment.TAG);
         activity.getSupportFragmentManager()
                 .beginTransaction()
-                .addToBackStack(TimetableFragment.TAG+LineTimetablesFragment.TAG)
-                .replace(R.id.main_container, LineTimetablesFragment.newInstance(), TimetableFragment.TAG+LineTimetablesFragment.TAG)
+                .addToBackStack(TimetableFragment.TAG + LineTimetablesFragment.TAG)
+                .replace(R.id.main_container, LineTimetablesFragment.newInstance(), TimetableFragment.TAG + LineTimetablesFragment.TAG)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit();
     }
@@ -205,8 +205,8 @@ public class Navigator {
         deleteUselessFragments(TimetableFragment.TAG);
         activity.getSupportFragmentManager()
                 .beginTransaction()
-                .addToBackStack(TimetableFragment.TAG+SingleLineFragment.TAG)
-                .replace(R.id.main_container, SingleLineFragment.newInstance(line), TimetableFragment.TAG+SingleLineFragment.TAG)
+                .addToBackStack(TimetableFragment.TAG + SingleLineFragment.TAG)
+                .replace(R.id.main_container, SingleLineFragment.newInstance(line), TimetableFragment.TAG + SingleLineFragment.TAG)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit();
     }
@@ -218,8 +218,8 @@ public class Navigator {
         deleteUselessFragments(TimetableFragment.TAG);
         activity.getSupportFragmentManager()
                 .beginTransaction()
-                .addToBackStack(TimetableFragment.TAG+LineDetailsFragment.TAG)
-                .replace(R.id.main_container, LineDetailsFragment.newInstance(stop, line), TimetableFragment.TAG+LineDetailsFragment.TAG)
+                .addToBackStack(TimetableFragment.TAG + LineDetailsFragment.TAG)
+                .replace(R.id.main_container, LineDetailsFragment.newInstance(stop, line), TimetableFragment.TAG + LineDetailsFragment.TAG)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit();
     }
