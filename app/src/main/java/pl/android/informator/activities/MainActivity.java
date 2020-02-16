@@ -56,7 +56,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainActivity
 
     @Override
     public int getLayoutRes() {
-
         return R.layout.activity_main;
     }
 

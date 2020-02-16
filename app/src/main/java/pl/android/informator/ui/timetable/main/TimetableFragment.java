@@ -1,5 +1,7 @@
 package pl.android.informator.ui.timetable.main;
 
+import android.util.Log;
+
 import androidx.databinding.ViewDataBinding;
 
 import com.android.informator.R;
@@ -32,7 +34,6 @@ public class TimetableFragment extends BaseFragment<TimetableFragmentBinding, Ti
         viewModel.setProviders(this);
         viewModel.init();
     }
-
     @Override
     public int getToolbarType() {
         return 1;

@@ -90,6 +90,7 @@
         android:weightSum="2"
         >
         <Button
+            android:contentDescription="@string/cd_button_change_direction"
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:backgroundTint="@color/colorBlackLight"
@@ -106,6 +107,7 @@
             android:textAllCaps="false"
             />
         <Button
+            android:contentDescription="@string/cd_button_show_map"
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"

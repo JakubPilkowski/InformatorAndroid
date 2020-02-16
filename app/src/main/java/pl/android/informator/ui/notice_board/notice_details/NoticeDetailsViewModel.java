@@ -9,13 +9,9 @@ import android.provider.Telephony;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.ObservableField;
-import androidx.databinding.ObservableInt;
 import androidx.viewpager.widget.ViewPager;
 
 import com.android.informator.databinding.NoticeDetailsFragmentBinding;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import pl.android.informator.activities.MainActivity;
 import pl.android.informator.adapters.notice_board.ViewPagerAdapter;
@@ -23,7 +19,6 @@ import pl.android.informator.base.BaseViewModel;
 import pl.android.informator.models.Notice;
 
 public class NoticeDetailsViewModel extends BaseViewModel {
-    private static final int REQUEST_CALL = 1;
 
     public ObservableField<String> title = new ObservableField<>();
     public ObservableField<String> price = new ObservableField<>();
@@ -62,7 +57,8 @@ public class NoticeDetailsViewModel extends BaseViewModel {
         else {
             String dial="sms:"+phoneNumber;
             Intent smsIntent = new Intent(Intent.ACTION_VIEW);
-            String defaultSmsPackageName = Telephony.Sms.getDefaultSmsPackage(getActivity().getApplicationContext()); // Need to change the build to API 19
+
+            String defaultSmsPackageName = Telephony.Sms.getDefaultSmsPackage(getActivity().getApplicationContext());
             if(defaultSmsPackageName!=null){
                 smsIntent.setPackage(defaultSmsPackageName);
             }

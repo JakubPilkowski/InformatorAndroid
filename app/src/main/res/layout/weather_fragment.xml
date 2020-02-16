@@ -10,9 +10,10 @@
         tools:context="pl.android.informator.ui.weather.WeatherFragment">
 
         <LinearLayout
+            android:id="@+id/weather_main_image"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:setDrawable="@{viewModel.weatherType}"
+            app:imageSrc="@{viewModel.weatherType}"
             android:layout_weight="13"
             android:orientation="vertical">
 
@@ -75,34 +76,26 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="24dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     android:layout_alignParentBottom="true"
                     android:orientation="horizontal">
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_marginStart="12dp"
-                        android:src="@drawable/ic_wilgotnosc2"
-                        />
                     <TextView
-                        android:layout_width="64dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
+                        android:drawableStart="@drawable/ic_wilgotnosc2"
+                        android:layout_marginStart="12dp"
                         android:fontFamily="@font/montserrat"
                         android:textColor="@color/colorWhite"
                         android:text="@{viewModel.humidity}"
-                        />
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_marginStart="12dp"
-                        android:src="@drawable/ic_cisnienie2"
                         />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
+                        android:drawableStart="@drawable/ic_cisnienie2"
+                        android:layout_marginStart="12dp"
                         android:fontFamily="@font/montserrat"
                         android:textColor="@color/colorWhite"
                         android:text="@{viewModel.pressure}"
@@ -136,10 +129,11 @@
                     android:textColor="@color/colorBlack"
                     />
                 <ImageView
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
+                    android:id="@+id/weather_tomorrow_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    app:setDrawable="@{viewModel.weatherTypeTomorrow}"
+                    app:setImageById="@{viewModel.weatherTypeTomorrow}"
                     />
                 <TextView
                     android:layout_width="match_parent"
@@ -180,10 +174,11 @@
                     android:textColor="@color/colorBlack"
                     />
                 <ImageView
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
+                    android:id="@+id/weather_overmorrow_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    app:setDrawable="@{viewModel.weatherTypeOvermorrow}"
+                    app:setImageById="@{viewModel.weatherTypeOvermorrow}"
                     />
                 <TextView
                     android:layout_width="match_parent"

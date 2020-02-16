@@ -1,5 +1,10 @@
 package pl.android.informator.ui.home;
 
+import android.os.Bundle;
+import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.databinding.ViewDataBinding;
 
 import com.android.informator.R;
@@ -31,7 +36,19 @@ public class HomeFragment extends BaseFragment<HomeFragmentBinding, HomeViewMode
     public void bindData(HomeFragmentBinding binding) {
         binding.setViewModel(viewModel);
         viewModel.setProviders(this);
-        viewModel.init();
+//        viewModel.init();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                viewModel.init();
+            }
+        }).start();
+
     }
 
     @Override
@@ -64,14 +81,12 @@ public class HomeFragment extends BaseFragment<HomeFragmentBinding, HomeViewMode
 
     @Override
     public ViewDataBinding getBinding() {
-        if((getActivity() !=null))
-            return ((MainActivity)getActivity()).binding;
-        return null;
+      return binding;
     }
 
     @Override
     public ViewDataBinding getActivityOrFragmentBinding() {
-        return null;
+        return ((MainActivity)getActivity()).binding;
     }
 
     @Override

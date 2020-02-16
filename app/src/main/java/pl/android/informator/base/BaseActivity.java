@@ -42,7 +42,7 @@ public abstract class BaseActivity<B extends ViewDataBinding, VM extends BaseVie
                     break;
                 case 1:
                     navigator.clearBackStack();
-                    navigator.showHome();
+//                    navigator.showHome();
                     break;
             }
         }

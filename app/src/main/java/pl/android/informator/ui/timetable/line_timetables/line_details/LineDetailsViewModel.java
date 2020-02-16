@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.databinding.ObservableField;
 import androidx.databinding.ObservableInt;
@@ -64,7 +65,7 @@ public class LineDetailsViewModel extends BaseViewModel {
         String currentHour = DateHelper.getHour(hours.get(0));
         LinearLayout singleDepartureTimeHour = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.single_departure_time_hour, layout, false);
         LinearLayout minutesContainer = singleDepartureTimeHour.findViewById(R.id.single_departure_time_minutes_container);
-        LinearLayout singleDepartureTimeMinute;
+        TextView singleDepartureTimeMinute;
         SingleDepartureTimeMinuteBinding singleDepartureTimeMinuteBinding;
         SingleDepartureTimeHourBinding singleDepartureTimeHourBinding = SingleDepartureTimeHourBinding.bind(singleDepartureTimeHour);
         SingleDepartureTimeHourViewModel singleDepartureTimeHourViewModel = new SingleDepartureTimeHourViewModel();
@@ -91,7 +92,7 @@ public class LineDetailsViewModel extends BaseViewModel {
                     minutesContainer.setBackgroundResource(R.color.colorTextBlack);
                 }
             }
-            singleDepartureTimeMinute = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.single_departure_time_minute, layout, false);
+            singleDepartureTimeMinute = (TextView) LayoutInflater.from(context).inflate(R.layout.single_departure_time_minute, layout, false);
             singleDepartureTimeMinuteBinding = SingleDepartureTimeMinuteBinding.bind(singleDepartureTimeMinute);
             SingleDepartureTimeMinuteViewModel singleDepartureTimeMinuteViewModel = new SingleDepartureTimeMinuteViewModel();
             singleDepartureTimeMinuteBinding.setViewModel(singleDepartureTimeMinuteViewModel);

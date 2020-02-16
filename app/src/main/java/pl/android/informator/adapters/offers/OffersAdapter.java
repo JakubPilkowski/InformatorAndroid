@@ -62,8 +62,6 @@ public class OffersAdapter extends BaseRecyclerViewAdapter<Offer, BaseViewHolder
             ((SingleOfferBinding)holder.getBinding()).setViewModel(viewModel);
             holder.setElement(items.get(position),navigator);
             LinearLayout offersDetails = ((SingleOfferBinding)holder.getBinding()).offerDetails;
-//            Context context = offersDetails.getContext();
-//            ((SingleOfferBinding)holder.getBinding()).arrowDown.setBackground(context.getDrawable(R.drawable.ic_dol));
             offersDetails.measure(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
             int size = offersDetails.getMeasuredHeight();
             viewModel.setSize(size);

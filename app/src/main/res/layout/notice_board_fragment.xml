@@ -19,6 +19,7 @@
 
         <Button
             android:id="@+id/notice_board_add_button"
+            android:contentDescription="@string/cd_icon_add_notice"
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:layout_centerInParent="true"

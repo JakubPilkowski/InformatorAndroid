@@ -18,19 +18,13 @@
             android:layout_margin="12dp"
             android:weightSum="11"
             android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_tytul" />
-
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="9"
+                android:drawablePadding="12dp"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="12dp"
+                android:drawableStart="@drawable/ic_tytul"
                 android:layout_marginEnd="12dp"
                 android:fontFamily="@font/montserrat"
                 android:text="@string/notice_title"
@@ -42,9 +36,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:textAlignment="textEnd"
-                android:layout_gravity="bottom"
+                android:layout_gravity="bottom|end"
                 android:textSize="12sp"
-                android:text="0/30"
+                android:text="@string/_0from30"
                 android:textColor="@color/colorGradientEnd"
                 android:fontFamily="@font/montserrat"
                 />
@@ -55,6 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginStart="12dp"
+            android:hint="@string/notice_title"
             android:tag="TitleTag"
             android:layout_marginEnd="12dp"
             android:textAlignment="center"
@@ -75,18 +70,13 @@
             android:weightSum="11"
             android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_cena" />
-
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="9"
+                android:drawablePadding="12dp"
+                android:drawableStart="@drawable/ic_cena"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="12dp"
                 android:layout_marginEnd="12dp"
                 android:fontFamily="@font/montserrat"
                 android:text="@string/price"
@@ -98,8 +88,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:textAlignment="textEnd"
-                android:layout_gravity="bottom"
-                android:text="0/30"
+                android:layout_gravity="bottom|end"
+                android:text="@string/_0from30"
                 android:textSize="12sp"
                 android:textColor="@color/colorGradientEnd"
                 android:fontFamily="@font/montserrat"
@@ -111,6 +101,7 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:tag="PriceTag"
+            android:hint="@string/price"
             android:layout_marginStart="12dp"
             android:layout_marginEnd="12dp"
             android:background="@drawable/gradient_bottom_border_background"
@@ -130,18 +121,13 @@
             android:weightSum="12"
             android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_opis" />
-
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="9"
+                android:drawablePadding="12dp"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="12dp"
+                android:drawableStart="@drawable/ic_opis"
                 android:layout_marginEnd="12dp"
                 android:fontFamily="@font/montserrat"
                 android:text="@string/description"
@@ -153,8 +139,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
                 android:textAlignment="textEnd"
-                android:layout_gravity="bottom"
-                android:text="0/1000"
+                android:layout_gravity="bottom|end"
+                android:text="@string/_0from1000"
                 android:textSize="12sp"
                 android:textColor="@color/colorGradientEnd"
                 android:fontFamily="@font/montserrat"
@@ -166,6 +152,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:tag="DescriptionTag"
+            android:hint="@string/description"
             android:padding="2dp"
             android:layout_marginStart="12dp"
             android:layout_marginEnd="12dp"
@@ -181,29 +168,19 @@
             android:minLines="5"
             />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="12dp"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_zdjecia" />
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="12dp"
+                android:layout_margin="12dp"
+                android:drawablePadding="12dp"
+                android:drawableStart="@drawable/ic_zdjecia"
                 android:layout_marginEnd="12dp"
                 android:fontFamily="@font/montserrat"
                 android:text="@string/photos"
                 android:textColor="@color/colorTextBlack"
                 android:textSize="24sp" />
-        </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -242,6 +219,7 @@
             android:layout_gravity="bottom"
             android:orientation="horizontal">
             <Button
+                android:contentDescription="@string/dc_decline_notice"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
@@ -255,6 +233,7 @@
                 android:backgroundTint="@color/colorBlackLight"
                 />
             <Button
+                android:contentDescription="@string/publish_notice"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="7"

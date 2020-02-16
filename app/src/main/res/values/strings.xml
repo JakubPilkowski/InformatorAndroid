@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">Informator</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="menu_title">Menu Główne</string>
     <string name="timetable">Rozkład jazdy</string>
@@ -49,4 +47,31 @@
     <string name="arrow_right_key_symbol">►</string>
     <string name="phone">Telefon</string>
     <string name="contact">Kontakt</string>
+    <string name="cd_main_background">Główne tło</string>
+    <string name="cd_menu_button">Przycisk menu</string>
+    <string name="cd_icon_notice_title">Ikonka tytuł oferty</string>
+    <string name="_0from30">0/30</string>
+    <string name="cd_icon_notice_price">Ikonka cena</string>
+    <string name="cd_icon_notice_desc">Ikonka opis</string>
+    <string name="_0from1000">0/1000</string>
+    <string name="cd_icon_notice_images">Ikonka zdjęć</string>
+    <string name="dc_decline_notice">Anuluj tworzenie oferty</string>
+    <string name="cd_icon_events">Ikonka wydarzenia</string>
+    <string name="cd_event_image">Zdjęcie wydarzenia</string>
+    <string name="cd_more_info">Przycisk więcej informacji</string>
+    <string name="cd_icon_line_type">Ikonka rodzaju linii</string>
+    <string name="cd_icon_add_notice">Przycisk dodaj ofertę</string>
+    <string name="cd_button_phone_call">Przycisk zadzwoń do tego numeru</string>
+    <string name="cd_button_send_sms">Przycisk wyślisz sms</string>
+    <string name="cd_button_last_month">Przycisk poprzedni miesiąc</string>
+    <string name="cd_button_next_month">Przycisk następny miesiąc</string>
+    <string name="cd_button_change_direction">Przycisk zamień kierunek</string>
+    <string name="cd_button_show_map">Przycisk wyświetl mapę</string>
+    <string name="cd_notice_photo">Zdjęcie ogłoszenia</string>
+    <string name="cd_photo_chose_destination">Zdjęcie wyznacz trasę</string>
+    <string name="cd_button_chose_destination">Przycisk wyznacz trasę</string>
+    <string name="cd_photo_lines">Zdjęcie rozkładów linii</string>
+    <string name="cd_button_lines">Przycisk rozkłady linii</string>
+    <string name="cd_icon_logo_photo">Ikonka loga firmy</string>
+    <string name="cd_offer_photo">Zdjęcie oferty</string>
 </resources>

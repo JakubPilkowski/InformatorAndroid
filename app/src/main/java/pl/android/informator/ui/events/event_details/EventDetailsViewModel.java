@@ -1,10 +1,16 @@
 package pl.android.informator.ui.events.event_details;
 
 import android.os.Build;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 import androidx.databinding.ObservableField;
 import androidx.databinding.ObservableInt;
+
+import com.android.informator.databinding.EventDetailsFragmentBinding;
+import com.android.informator.databinding.SingleOfferBinding;
 
 import pl.android.informator.base.BaseViewModel;
 import pl.android.informator.helpers.DateHelper;
@@ -24,7 +30,7 @@ public class EventDetailsViewModel extends BaseViewModel {
     public ObservableField<String>day = new ObservableField<>();
     public ObservableField<String>monthAndYear = new ObservableField<>();
     public ObservableInt show = new ObservableInt();
-
+    public ObservableInt size = new ObservableInt();
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void init(Event event) {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -35,6 +41,16 @@ public class EventDetailsViewModel extends BaseViewModel {
         desc.set(event.getDesc());
         imgUrl.set(event.getImgUrl());
         show.set(NOTHING);
+        LinearLayout offersDetails = ((EventDetailsFragmentBinding) getBinding()).eventDetailsDesc;
+        offersDetails.measure(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        int size = offersDetails.getMeasuredHeight();
+        setSize(size);
+        offersDetails.getLayoutParams().height = 0;
+        offersDetails.requestLayout();
+    }
+
+    private void setSize(int size) {
+        this.size.set(size);
     }
 
     public void onClick(){
