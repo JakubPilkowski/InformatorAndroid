@@ -1,36 +1,38 @@
 package pl.android.informator.activities;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.provider.MediaStore;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.view.GravityCompat;
 import androidx.databinding.ViewDataBinding;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.provider.MediaStore;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.Toast;
-
 import com.android.informator.R;
+import com.android.informator.databinding.ActivityMainBinding;
+import com.google.android.material.navigation.NavigationView;
+
 import pl.android.informator.base.BaseActivity;
 import pl.android.informator.base.BaseFragment;
 import pl.android.informator.base.BaseViewModel;
-import com.android.informator.databinding.ActivityMainBinding;
 import pl.android.informator.interfaces.ImageListener;
 import pl.android.informator.interfaces.Providers;
 import pl.android.informator.navigation.Navigator;
+import pl.android.informator.ui.notice_board.add_notice.AddNoticeFragment;
+import pl.android.informator.ui.notice_board.add_notice.AddNoticeViewModel;
 import pl.android.informator.ui.notice_board.notice_details.NoticeDetailsFragment;
-
-import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends BaseActivity<ActivityMainBinding, MainActivityViewModel> implements NavigationView.OnNavigationItemSelectedListener, Providers, ImageListener {
 
     DrawerLayout drawerLayout;
     NavigationView navigationView;
-    public static final int REQUEST_ACCEPTED = 1;
     public static final int RESULT_LOAD_IMAGE = 1001;
     public static final int REQUEST_CALL = 1002;
     public static final int REQUEST_SMS = 1003;
@@ -137,7 +139,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainActivity
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode == REQUEST_ACCEPTED) {
+        if (requestCode == RESULT_LOAD_IMAGE) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Intent i = new Intent(Intent.ACTION_PICK,
                         MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -161,8 +163,11 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainActivity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK)
-            Toast.makeText(getApplicationContext(), "Dodano zdjęcie", Toast.LENGTH_SHORT).show();
+        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK){
+            if(data!=null){
+                ((AddNoticeFragment)getCurrentFragment()).viewModel.addPhoto(data.getData());
+            }
+        }
     }
 
     @Override
