@@ -35,12 +35,6 @@ public class TimetableFragment extends BaseFragment<TimetableFragmentBinding, Ti
         viewModel.init();
     }
     @Override
-    public void onPause() {
-        Log.d("fragmenty", "rozkłady onPause się wykonało ");
-//        getNavigator().clearFragment(TAG);
-        super.onPause();
-    }
-    @Override
     public int getToolbarType() {
         return 1;
     }

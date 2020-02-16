@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import androidx.databinding.ObservableField;
+import androidx.databinding.ObservableInt;
 
 import com.android.informator.R;
 import com.android.informator.databinding.TimetableFragmentBinding;
@@ -19,10 +20,12 @@ import pl.android.informator.helpers.ImageHelper;
 
 public class TimetableViewModel extends BaseViewModel {
 
-    public ObservableField<Bitmap> routeImage = new ObservableField<>();
-    public ObservableField<Bitmap> lineDistributionImage = new ObservableField<>();
+    public ObservableInt routeImage = new ObservableInt();
+    public ObservableInt lineDistributionImage = new ObservableInt();
 
     public void init() {
+        routeImage.set(R.drawable.wyznacz_trase);
+        lineDistributionImage.set(R.drawable.rozklady_linii);
     }
 
     public void onSetRouteClick() {

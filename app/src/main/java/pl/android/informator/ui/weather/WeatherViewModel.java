@@ -1,26 +1,22 @@
 package pl.android.informator.ui.weather;
 
-import android.graphics.Bitmap;
-import android.view.View;
-
 import androidx.databinding.ObservableField;
 import androidx.databinding.ObservableInt;
 
-import pl.android.informator.activities.MainActivity;
-import pl.android.informator.base.BaseViewModel;
 import com.android.informator.databinding.WeatherFragmentBinding;
 
-import pl.android.informator.helpers.ImageHelper;
+import java.util.Random;
+
+import pl.android.informator.activities.MainActivity;
+import pl.android.informator.base.BaseViewModel;
 import pl.android.informator.helpers.WeatherHelper;
 import pl.android.informator.models.Weather;
-
-import java.util.Random;
 
 public class WeatherViewModel extends BaseViewModel {
 
 
     public ObservableField<String> temp = new ObservableField<>();
-    public ObservableField<Bitmap> weatherType = new ObservableField<>();
+    public ObservableInt weatherType = new ObservableInt();
     public ObservableField<String> weatherTypeName = new ObservableField<>();
     public ObservableField<String> humidity = new ObservableField<>();
     public ObservableField<String> pressure = new ObservableField<>();
@@ -30,7 +26,7 @@ public class WeatherViewModel extends BaseViewModel {
     public ObservableInt weatherTypeOvermorrow = new ObservableInt();
     public ObservableField<String> tempOvermorrow = new ObservableField<>();
     public ObservableField<String> maxTempOvermorrow = new ObservableField<>();
-    public Weather weather1;
+
     public void init() {
         ((MainActivity) getActivity()).setSupportActionBar(((WeatherFragmentBinding) getBinding()).toolbar);
         ((MainActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -87,9 +83,9 @@ public class WeatherViewModel extends BaseViewModel {
                 weather3 = new Weather("22", "24", Weather.SLONCE, "70%", "995hPa");
 
         }
-        this.weather1 = weather1;
         temp.set(weather1.getTemp() + "℃");
-        if(weather1.getWeatherType().equals(Weather.SLONCE) && WeatherHelper.getDayType().equals(WeatherHelper.NIGHT))
+        weatherType.set(WeatherHelper.getWeatherToolbarBackground(weather1.getWeatherType()));
+        if (weather1.getWeatherType().equals(Weather.SLONCE) && WeatherHelper.getDayType().equals(WeatherHelper.NIGHT))
             weatherTypeName.set(Weather.BEZCHMURNA_NOC);
         else
             weatherTypeName.set(weather1.getWeatherType());
@@ -103,11 +99,5 @@ public class WeatherViewModel extends BaseViewModel {
         weatherTypeOvermorrow.set(drawableOvermorrow);
         tempOvermorrow.set(weather3.getTemp() + "℃");
         maxTempOvermorrow.set(weather3.getTempMax() + "℃");
-    }
-
-    public void setMainImage() {
-        View view = ((WeatherFragmentBinding)getBinding()).weatherMainImage;
-        Bitmap bitmap =ImageHelper.getScaledBitmap(view,weather1);
-        weatherType.set(bitmap);
     }
 }

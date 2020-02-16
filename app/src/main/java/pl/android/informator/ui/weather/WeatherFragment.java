@@ -42,16 +42,16 @@ public class WeatherFragment extends BaseFragment<WeatherFragmentBinding, Weathe
         viewModel.init();
     }
 
-    @Override
-    public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                viewModel.setMainImage();
-            }
-        }).start();
-    }
+//    @Override
+//    public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
+//        super.onViewCreated(view, savedInstanceState);
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                viewModel.setMainImage();
+//            }
+//        }).start();
+//    }
 
     @Override
     public void onPause() {

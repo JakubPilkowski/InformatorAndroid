@@ -197,33 +197,15 @@ public class BindingAdapter {
             }
         });
     }
+
     @androidx.databinding.BindingAdapter("setImageById")
-    public static void setImageById(View view,int drawableId)
-    {
+    public static void setImageById(View view, int drawableId) {
         ((ImageView) view).setImageResource(drawableId);
     }
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     @androidx.databinding.BindingAdapter("setDrawable")
     public static void setImageDrawable(final View view, Bitmap bitmap) {
-        if (view instanceof LinearLayout) {
-            Glide.with(view.getContext())
-                    .load(bitmap)
-                    .diskCacheStrategy(DiskCacheStrategy.NONE)
-                    .skipMemoryCache(true)
-                    .override(500,500)
-                    .thumbnail(0.1f)
-                    .into(new CustomTarget<Drawable>() {
-                        @Override
-                        public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
-                            view.setBackground(resource);
-                        }
-
-                        @Override
-                        public void onLoadCleared(@Nullable Drawable placeholder) {
-
-                        }
-                    });
-        }
 //        new Thread(new Runnable() {
 //            @Override
 //            public void run() {
@@ -345,22 +327,41 @@ public class BindingAdapter {
     }
 
     @androidx.databinding.BindingAdapter("imageSrc")
-    public static void setImageSrc(final ImageView imageView, final Bitmap bitmap) {
-        final Context context = imageView.getContext();
+    public static void setImageSrc(final View view, final int drawableID) {
+        final Context context = view.getContext();
+        Drawable drawable = context.getResources().getDrawable(drawableID);
+        if (view instanceof LinearLayout) {
+            Glide.with(view.getContext())
+                    .load(drawable)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .skipMemoryCache(true)
+                    .thumbnail(0.1f)
+                    .into(new CustomTarget<Drawable>() {
+                        @Override
+                        public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                            view.setBackground(resource);
+                        }
 
-        Glide.with(context)
-                .load(bitmap)
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .override(500,500)
-                .thumbnail(0.1f)
-                .into(imageView);
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                Glide.get(context).clearDiskCache();
-//            }
-//        }).start();
-//        Glide.get(context).clearMemory();
+                        @Override
+                        public void onLoadCleared(@Nullable Drawable placeholder) {
+
+                        }
+                    });
+        }
+        if (view instanceof ImageView) {
+            Glide.with(context)
+                    .load(drawable)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .thumbnail(0.1f)
+                    .into((ImageView) view);
+        }
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Glide.get(context).clearDiskCache();
+            }
+        }).start();
+        Glide.get(context).clearMemory();
     }
 }
 

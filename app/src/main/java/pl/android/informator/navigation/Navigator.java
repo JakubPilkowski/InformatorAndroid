@@ -40,29 +40,24 @@ public class Navigator {
     }
 
     public void clearBackStack() {
-        activity.getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        for (int i = 1; i < activity.getSupportFragmentManager().getBackStackEntryCount(); i++) {
+            FragmentManager.BackStackEntry entry = activity.getSupportFragmentManager().getBackStackEntryAt(i);
+            activity.getSupportFragmentManager().popBackStack(entry.getName(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        }
+        Fragment fragment = activity.getSupportFragmentManager().findFragmentByTag(HomeFragment.TAG);
+        activity.getSupportFragmentManager().beginTransaction().replace(R.id.main_container, fragment, HomeFragment.TAG)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                .commit();
     }
 
     public void clearFragment(String tag) {
         activity.getSupportFragmentManager().popBackStack(tag, FragmentManager.POP_BACK_STACK_INCLUSIVE);
     }
 
-    public void showNoticeBoard() {
-        deleteUselessFragments(NoticeBoardFragment.TAG);
-        activity.getSupportFragmentManager()
-                .beginTransaction()
-                .addToBackStack(NoticeBoardFragment.TAG)
-                .replace(R.id.main_container, NoticeBoardFragment.newInstance(), NoticeBoardFragment.TAG)
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                .commit();
-    }
-
     public void deleteUselessFragments(String tag) {
-        Log.d("fragmenty", String.valueOf(activity.getSupportFragmentManager().getBackStackEntryCount()));
         for (int i = 0; i < activity.getSupportFragmentManager().getBackStackEntryCount(); i++) {
             FragmentManager.BackStackEntry backStackEntry = activity.getSupportFragmentManager().getBackStackEntryAt(i);
             String tmpTag = backStackEntry.getName();
-            Log.d("fragmenty", tmpTag);
             if (!tmpTag.contains(tag) && !tmpTag.equals(HomeFragment.TAG)) {
                 activity.getSupportFragmentManager().popBackStack(tmpTag, FragmentManager.POP_BACK_STACK_INCLUSIVE);
             }
@@ -73,13 +68,30 @@ public class Navigator {
         for (int i = 0; i < activity.getSupportFragmentManager().getBackStackEntryCount(); i++) {
             FragmentManager.BackStackEntry backStackEntry = activity.getSupportFragmentManager().getBackStackEntryAt(i);
             String tmpTag = backStackEntry.getName();
-            Log.d("fragmenty", tmpTag);
             if (tmpTag.equals(tag)) {
                 return true;
             }
         }
         return false;
     }
+
+    public void showNoticeBoard() {
+        deleteUselessFragments(NoticeBoardFragment.TAG);
+        if (!isAvailable(NoticeBoardFragment.TAG)) {
+            activity.getSupportFragmentManager()
+                    .beginTransaction()
+                    .addToBackStack(NoticeBoardFragment.TAG)
+                    .replace(R.id.main_container, NoticeBoardFragment.newInstance(), NoticeBoardFragment.TAG)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                    .commit();
+        } else {
+            Fragment fragment = activity.getSupportFragmentManager().findFragmentByTag(NoticeBoardFragment.TAG);
+            activity.getSupportFragmentManager().beginTransaction().replace(R.id.main_container, fragment, NoticeBoardFragment.TAG)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                    .commit();
+        }
+    }
+
 
     public void showWeather() {
         deleteUselessFragments(WeatherFragment.TAG);
@@ -99,33 +111,56 @@ public class Navigator {
     }
 
     public void showEvents() {
-        deleteUselessFragments(EventDetailsFragment.TAG);
-        activity.getSupportFragmentManager()
-                .beginTransaction()
-                .addToBackStack(EventsFragment.TAG)
-                .replace(R.id.main_container, EventsFragment.newInstance(), EventsFragment.TAG)
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                .commit();
+        deleteUselessFragments(EventsFragment.TAG);
+        if (!isAvailable(EventsFragment.TAG)){
+            activity.getSupportFragmentManager()
+                    .beginTransaction()
+                    .addToBackStack(EventsFragment.TAG)
+                    .replace(R.id.main_container, EventsFragment.newInstance(), EventsFragment.TAG)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                    .commit();
+        }
+        else {
+            Fragment fragment = activity.getSupportFragmentManager().findFragmentByTag(EventsFragment.TAG);
+            activity.getSupportFragmentManager().beginTransaction().replace(R.id.main_container, fragment, EventsFragment.TAG)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                    .commit();
+        }
     }
 
     public void showOffers() {
         deleteUselessFragments(OffersFragment.TAG);
-        activity.getSupportFragmentManager()
-                .beginTransaction()
-                .addToBackStack(OffersFragment.TAG)
-                .replace(R.id.main_container, OffersFragment.newInstance(), OffersFragment.TAG)
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                .commit();
+        if (!isAvailable(OffersFragment.TAG)) {
+            activity.getSupportFragmentManager()
+                    .beginTransaction()
+                    .addToBackStack(OffersFragment.TAG)
+                    .replace(R.id.main_container, OffersFragment.newInstance(), OffersFragment.TAG)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                    .commit();
+
+        } else {
+            Fragment fragment = activity.getSupportFragmentManager().findFragmentByTag(OffersFragment.TAG);
+            activity.getSupportFragmentManager().beginTransaction().replace(R.id.main_container, fragment, OffersFragment.TAG)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                    .commit();
+        }
     }
 
     public void showTimetable() {
         deleteUselessFragments(TimetableFragment.TAG);
-        activity.getSupportFragmentManager()
-                .beginTransaction()
-                .addToBackStack(TimetableFragment.TAG)
-                .replace(R.id.main_container, TimetableFragment.newInstance(), TimetableFragment.TAG)
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                .commit();
+        if (!isAvailable(TimetableFragment.TAG)) {
+            activity.getSupportFragmentManager()
+                    .beginTransaction()
+                    .addToBackStack(TimetableFragment.TAG)
+                    .replace(R.id.main_container, TimetableFragment.newInstance(), TimetableFragment.TAG)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                    .commit();
+        } else {
+            Fragment fragment = activity.getSupportFragmentManager().findFragmentByTag(TimetableFragment.TAG);
+            activity.getSupportFragmentManager().beginTransaction().replace(R.id.main_container, fragment, TimetableFragment.TAG)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                    .commit();
+        }
     }
 
     public void showOffices() {

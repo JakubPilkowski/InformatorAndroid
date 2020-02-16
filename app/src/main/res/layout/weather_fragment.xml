@@ -13,7 +13,7 @@
             android:id="@+id/weather_main_image"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:setDrawable="@{viewModel.weatherType}"
+            app:imageSrc="@{viewModel.weatherType}"
             android:layout_weight="13"
             android:orientation="vertical">
 
