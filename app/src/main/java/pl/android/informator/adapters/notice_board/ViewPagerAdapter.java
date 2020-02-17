@@ -24,6 +24,8 @@ public class ViewPagerAdapter extends PagerAdapter {
     private NoticeDetailsViewModel viewModel;
     @Override
     public int getCount() {
+        if(imgUrls.size()==0)
+            return 1;
         return imgUrls.size();
     }
     public ViewPagerAdapter(Context context, List<String>imgUrls, NoticeDetailsViewModel viewModel){
@@ -40,12 +42,18 @@ public class ViewPagerAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        ImageView view = (ImageView) layoutInflater.inflate(R.layout.single_viewpager_view,container,false);
-        Glide.with(context)
-                .load(imgUrls.get(position))
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .thumbnail(0.1f)
-                .into(view);
+        View view = null;
+        if(imgUrls.size()>0) {
+            view = layoutInflater.inflate(R.layout.single_viewpager_view, container, false);
+            Glide.with(context)
+                    .load(imgUrls.get(position))
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .thumbnail(0.1f)
+                    .into((ImageView) view);
+        }
+        if(imgUrls.size()==0){
+            view = layoutInflater.inflate(R.layout.image_placeholder,container,false);
+        }
         ViewPager vp = (ViewPager) container;
         vp.addView(view);
         return view;

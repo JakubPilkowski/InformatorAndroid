@@ -12,6 +12,9 @@ import android.provider.MediaStore;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.databinding.ObservableField;
+import androidx.databinding.ObservableInt;
+import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.android.informator.databinding.AddNoticeFragmentBinding;
@@ -26,13 +29,16 @@ import pl.android.informator.base.BaseViewModel;
 import pl.android.informator.helpers.ImageHelper;
 
 public class AddNoticeViewModel extends BaseViewModel {
-
-    AddImagesViewPagerAdapter viewPagerAdapter;
+    public ObservableField<ViewPager>viewPagerObservableField = new ObservableField<>();
+    private AddImagesViewPagerAdapter viewPagerAdapter;
+    private ViewPager viewPager;
     public void init() {
         ViewPager viewPager = ((AddNoticeFragmentBinding)getBinding()).noticeDetailsViewpager;
         viewPagerAdapter = new AddImagesViewPagerAdapter(viewPager.getContext());
         viewPager.setAdapter(viewPagerAdapter);
         viewPager.setPageMargin(0);
+        this.viewPager = viewPager;
+        this.viewPagerObservableField.set(viewPager);
     }
 
     public void onAddPhoto(){
@@ -65,6 +71,7 @@ public class AddNoticeViewModel extends BaseViewModel {
                 }
                 Bitmap compressedImage = BitmapFactory.decodeStream(image);
                 viewPagerAdapter.addItem(compressedImage);
+                viewPagerObservableField.set(viewPager);
             }
         }).start();
         }

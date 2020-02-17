@@ -74,4 +74,5 @@
     <string name="cd_button_lines">Przycisk rozkłady linii</string>
     <string name="cd_icon_logo_photo">Ikonka loga firmy</string>
     <string name="cd_offer_photo">Zdjęcie oferty</string>
+    <string name="image_placeholder_text">Coś tu pusto</string>
 </resources>

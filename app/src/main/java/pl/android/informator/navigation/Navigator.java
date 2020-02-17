@@ -44,10 +44,7 @@ public class Navigator {
             FragmentManager.BackStackEntry entry = activity.getSupportFragmentManager().getBackStackEntryAt(i);
             activity.getSupportFragmentManager().popBackStack(entry.getName(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
         }
-        Fragment fragment = activity.getSupportFragmentManager().findFragmentByTag(HomeFragment.TAG);
-        activity.getSupportFragmentManager().beginTransaction().replace(R.id.main_container, fragment, HomeFragment.TAG)
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                .commit();
+
     }
 
     public void clearFragment(String tag) {
@@ -58,6 +55,7 @@ public class Navigator {
         for (int i = 0; i < activity.getSupportFragmentManager().getBackStackEntryCount(); i++) {
             FragmentManager.BackStackEntry backStackEntry = activity.getSupportFragmentManager().getBackStackEntryAt(i);
             String tmpTag = backStackEntry.getName();
+            Log.d("fragmenty",tmpTag);
             if (!tmpTag.contains(tag) && !tmpTag.equals(HomeFragment.TAG)) {
                 activity.getSupportFragmentManager().popBackStack(tmpTag, FragmentManager.POP_BACK_STACK_INCLUSIVE);
             }
@@ -85,8 +83,8 @@ public class Navigator {
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                     .commit();
         } else {
-            Fragment fragment = activity.getSupportFragmentManager().findFragmentByTag(NoticeBoardFragment.TAG);
-            activity.getSupportFragmentManager().beginTransaction().replace(R.id.main_container, fragment, NoticeBoardFragment.TAG)
+            activity.getSupportFragmentManager().popBackStack(NoticeBoardFragment.TAG,FragmentManager.POP_BACK_STACK_INCLUSIVE);
+            activity.getSupportFragmentManager().beginTransaction().addToBackStack(NoticeBoardFragment.TAG).replace(R.id.main_container, NoticeBoardFragment.newInstance(), EventsFragment.TAG)
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                     .commit();
         }
@@ -103,8 +101,8 @@ public class Navigator {
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                     .commit();
         } else {
-            Fragment fragment = activity.getSupportFragmentManager().findFragmentByTag(WeatherFragment.TAG);
-            activity.getSupportFragmentManager().beginTransaction().replace(R.id.main_container, fragment, WeatherFragment.TAG)
+            activity.getSupportFragmentManager().popBackStack(WeatherFragment.TAG,FragmentManager.POP_BACK_STACK_INCLUSIVE);
+            activity.getSupportFragmentManager().beginTransaction().addToBackStack(WeatherFragment.TAG).replace(R.id.main_container, WeatherFragment.newInstance(), EventsFragment.TAG)
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                     .commit();
         }
@@ -121,8 +119,11 @@ public class Navigator {
                     .commit();
         }
         else {
-            Fragment fragment = activity.getSupportFragmentManager().findFragmentByTag(EventsFragment.TAG);
-            activity.getSupportFragmentManager().beginTransaction().replace(R.id.main_container, fragment, EventsFragment.TAG)
+//            Fragment fragment = activity.getSupportFragmentManager().findFragmentByTag(EventsFragment.TAG);
+//            int count = activity.getSupportFragmentManager().getBackStackEntryCount();
+//            FragmentManager.BackStackEntry backStackEntry = activity.getSupportFragmentManager().getBackStackEntryAt(count-1);
+            activity.getSupportFragmentManager().popBackStack(EventsFragment.TAG,FragmentManager.POP_BACK_STACK_INCLUSIVE);
+            activity.getSupportFragmentManager().beginTransaction().addToBackStack(EventsFragment.TAG).replace(R.id.main_container, EventsFragment.newInstance(), EventsFragment.TAG)
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                     .commit();
         }
@@ -139,8 +140,8 @@ public class Navigator {
                     .commit();
 
         } else {
-            Fragment fragment = activity.getSupportFragmentManager().findFragmentByTag(OffersFragment.TAG);
-            activity.getSupportFragmentManager().beginTransaction().replace(R.id.main_container, fragment, OffersFragment.TAG)
+            activity.getSupportFragmentManager().popBackStack(OffersFragment.TAG,FragmentManager.POP_BACK_STACK_INCLUSIVE);
+            activity.getSupportFragmentManager().beginTransaction().addToBackStack(OffersFragment.TAG).replace(R.id.main_container, OffersFragment.newInstance(), EventsFragment.TAG)
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                     .commit();
         }
@@ -156,8 +157,8 @@ public class Navigator {
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                     .commit();
         } else {
-            Fragment fragment = activity.getSupportFragmentManager().findFragmentByTag(TimetableFragment.TAG);
-            activity.getSupportFragmentManager().beginTransaction().replace(R.id.main_container, fragment, TimetableFragment.TAG)
+            activity.getSupportFragmentManager().popBackStack(TimetableFragment.TAG,FragmentManager.POP_BACK_STACK_INCLUSIVE);
+            activity.getSupportFragmentManager().beginTransaction().addToBackStack(TimetableFragment.TAG).replace(R.id.main_container, TimetableFragment.newInstance(), EventsFragment.TAG)
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                     .commit();
         }
