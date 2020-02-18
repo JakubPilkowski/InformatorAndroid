@@ -6,9 +6,17 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Point;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
+import android.util.Log;
+import android.view.Display;
+import android.view.LayoutInflater;
+import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -17,40 +25,51 @@ import androidx.databinding.ObservableInt;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.android.informator.R;
 import com.android.informator.databinding.AddNoticeFragmentBinding;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import pl.android.informator.activities.MainActivity;
 import pl.android.informator.adapters.notice_board.AddImagesViewPagerAdapter;
 import pl.android.informator.adapters.notice_board.ViewPagerAdapter;
 import pl.android.informator.base.BaseViewModel;
 import pl.android.informator.helpers.ImageHelper;
+import pl.android.informator.models.Image;
 
 public class AddNoticeViewModel extends BaseViewModel {
-    public ObservableField<ViewPager>viewPagerObservableField = new ObservableField<>();
-    private AddImagesViewPagerAdapter viewPagerAdapter;
-    private ViewPager viewPager;
+    //    public ObservableField<ViewPager> viewPagerObservableField = new ObservableField<>();
+    private List<Image> images = new ArrayList<>();
+    public LinearLayout imageContainer;
+    public LinearLayout placeholder;
+    public AddImagesViewPagerAdapter adapter;
+    public int imageWidth;
+
     public void init() {
-        ViewPager viewPager = ((AddNoticeFragmentBinding)getBinding()).noticeDetailsViewpager;
-        viewPagerAdapter = new AddImagesViewPagerAdapter(viewPager.getContext());
-        viewPager.setAdapter(viewPagerAdapter);
-        viewPager.setPageMargin(0);
-        this.viewPager = viewPager;
-        this.viewPagerObservableField.set(viewPager);
+        imageContainer = ((AddNoticeFragmentBinding) getBinding()).addNoticeImageContainer;
+        placeholder = (LinearLayout) LayoutInflater.from(imageContainer.getContext()).inflate(R.layout.image_placeholder, imageContainer, false);
+        imageContainer.addView(placeholder);
+        imageContainer.requestLayout();
+        Display display = getActivity().getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        imageWidth = size.x;
     }
 
-    public void onAddPhoto(){
-        if (ContextCompat.checkSelfPermission(getActivity().getApplicationContext(),Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, MainActivity.RESULT_LOAD_IMAGE);
-        }
-        else {
+    public void onAddPhoto() {
+        if (ContextCompat.checkSelfPermission(getActivity().getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, MainActivity.RESULT_LOAD_IMAGE);
+        } else {
             Intent i = new Intent(Intent.ACTION_PICK,
                     MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             getActivity().startActivityForResult(i, MainActivity.RESULT_LOAD_IMAGE);
         }
     }
+
     public void onCancel() {
         getActivity().onBackPressed();
     }
@@ -60,20 +79,31 @@ public class AddNoticeViewModel extends BaseViewModel {
     }
 
     public void addPhoto(final Uri data) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                InputStream image = null;
-                try{
-                    image = getActivity().getContentResolver().openInputStream(ImageHelper.compressBitmap(getActivity().getContentResolver(),data,90,256));
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
-                Bitmap compressedImage = BitmapFactory.decodeStream(image);
-                viewPagerAdapter.addItem(compressedImage);
-                viewPagerObservableField.set(viewPager);
+        InputStream image = null;
+        Log.d("viewpager", "5");
+//        try {
+//            image = getActivity().getContentResolver().openInputStream(ImageHelper.compressBitmap(getActivity().getContentResolver(), data, 90, width / 3));
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        }
+        if (images.size() <= 5) {
+            Bitmap compressedImage = null;
+            try {
+                compressedImage = ImageHelper.decodeSampledBitmap(imageContainer.getContext(), data);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        }).start();
+            images.add(new Image(compressedImage, data));
+            imageContainer.removeAllViews();
+            GridView imagesView = (GridView) LayoutInflater.from(imageContainer.getContext()).inflate(R.layout.add_images_grid_view, imageContainer, false);
+            adapter = new AddImagesViewPagerAdapter(imageContainer.getContext(), images, imageWidth / 3);
+            imagesView.setAdapter(adapter);
+            imagesView.getLayoutParams().height = imageWidth / 3 * 2 + 50;
+            imageContainer.addView(imagesView);
+            imageContainer.requestLayout();
+        } else {
+            Toast.makeText(getActivity().getApplicationContext(), "Nie można dodać więcej zdjęć!!!", Toast.LENGTH_SHORT).show();
         }
-    // TODO: Implement the ViewModel
+    }
+// TODO: Implement the ViewModel
 }

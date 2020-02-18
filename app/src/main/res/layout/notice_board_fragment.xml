@@ -4,32 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="pl.android.informator.ui.offices.post_offices.PostOfficesFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/notice_board_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/post_offices_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:layout_manager="@{context}"
             app:onScrollListener="@{viewModel.binding}"
             app:recyclerViewAdapter="@{viewModel.adapter}" />
 
-        <Button
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/notice_board_add_button"
-            android:contentDescription="@string/cd_icon_add_notice"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:background="@drawable/oval_gradient_ripple_with_add_button"
+            android:contentDescription="@string/cd_icon_add_notice"
             android:onClick="@{() -> viewModel.onClick()}"
+            android:src="@drawable/oval_gradient_ripple_with_add_button"
+            android:theme="@style/FullImageFloatingButton"
+            app:layout_anchor="@id/post_offices_list"
+            app:layout_anchorGravity="bottom|end"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+
             />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <data>
 

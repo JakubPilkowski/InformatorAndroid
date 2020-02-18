@@ -58,7 +58,8 @@ public class ViewPagerAdapter extends PagerAdapter {
         vp.addView(view);
         return view;
     }
-        @Override
+
+    @Override
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
             ViewPager vp = (ViewPager) container;
             View view = (View) object;

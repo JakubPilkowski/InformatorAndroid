@@ -1,16 +1,24 @@
 package pl.android.informator.adapters.notice_board;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.RippleDrawable;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
@@ -21,76 +29,84 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddImagesViewPagerAdapter extends PagerAdapter {
-    private Context context;
-    private List<Bitmap> images = new ArrayList<>();
+import pl.android.informator.helpers.ImageHelper;
+import pl.android.informator.helpers.TextHelper;
+import pl.android.informator.models.Image;
 
-    public AddImagesViewPagerAdapter(Context context){
+public class AddImagesViewPagerAdapter extends ArrayAdapter {
+    private Context context;
+    private List<Image> images = new ArrayList<>();
+    private LayoutInflater mInflater;
+    private int imageWidth;
+
+    public AddImagesViewPagerAdapter(Context context) {
+        super(context, R.layout.single_image_view);
+        mInflater = LayoutInflater.from(context);
         this.context = context;
     }
 
-    public AddImagesViewPagerAdapter(Context context, List<Bitmap>images){
+    public AddImagesViewPagerAdapter(Context context, List<Image> images, int imageWidth) {
+        super(context, R.layout.single_image_view);
+        mInflater = LayoutInflater.from(context);
         this.context = context;
         this.images = images;
+        this.imageWidth = imageWidth;
     }
 
-    public List<Bitmap> getImages() {
+    public List<Image> getImages() {
         return images;
     }
 
     @Override
     public int getCount() {
-        if(images.size()==0)
-            return 1;
         return images.size();
     }
 
     @NonNull
     @Override
-    public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        Log.d("initItems","inicjacja itemów");
-        LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = null;
-        if(images.size()>0){
-            view = layoutInflater.inflate(R.layout.single_viewpager_view,container,false);
-            view.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    Toast.makeText(context,"Długie naciśnięcie",Toast.LENGTH_SHORT).show();
-                    return false;
-                }
-            });
-            Glide.with(context)
-                    .load(images.get(position))
-                    .diskCacheStrategy(DiskCacheStrategy.NONE)
-                    .skipMemoryCache(true)
-                    .thumbnail(0.1f)
-                    .into((ImageView) view);
+    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        LinearLayout view = (LinearLayout) convertView;
+        if (view == null) {
+            view = (LinearLayout) mInflater.inflate(R.layout.single_image_view, parent, false);
         }
-        if(images.size()==0) {
-            view = layoutInflater.inflate(R.layout.image_placeholder,container,false);
-        }
-        ViewPager vp = (ViewPager) container;
-        vp.addView(view);
+        ImageView imageView = view.findViewById(R.id.single_image_image);
+        imageView.getLayoutParams().width = imageWidth-8;
+        imageView.getLayoutParams().height = imageWidth-8;
+        Drawable d = new BitmapDrawable(parent.getResources(), images.get(position).getBitmap());
+        RippleDrawable rippledImage = new
+                RippleDrawable(ColorStateList.valueOf(view.getResources().getColor(R.color.colorWhite)), d, null);
+        Glide.with(context)
+                .load(rippledImage)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true)
+                .into(imageView);
+        imageView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Toast.makeText(context, "Długie naciśnięcie", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        });
         return view;
     }
+
     @Override
-    public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
-        return view == object;
+    public Object getItem(int position) {
+        return images.get(position);
+    }
+
+    @Override
+    public int getPosition(Object item) {
+        return images.indexOf(item);
     }
 
     public void addItem(Bitmap image) {
-        images.add(image);
-        notifyDataSetChanged();
+//        images.add(image);
+//        notifyDataSetChanged();
     }
 
-    public void removeItem(Bitmap image){
+    public void removeItem(Bitmap image) {
         images.remove(image);
         notifyDataSetChanged();
-    }
-    public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-        ViewPager vp = (ViewPager) container;
-        View view = (View) object;
-        vp.removeView(view);
     }
 }

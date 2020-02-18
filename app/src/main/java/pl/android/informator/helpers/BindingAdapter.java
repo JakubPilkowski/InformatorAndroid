@@ -2,10 +2,12 @@ package pl.android.informator.helpers;
 
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.RippleDrawable;
 import android.os.Build;
 import android.os.Handler;
 import android.text.Editable;
@@ -45,6 +47,7 @@ import com.android.informator.R;
 import com.android.informator.databinding.AddNoticeFragmentBinding;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import pl.android.informator.adapters.notice_board.AddImagesViewPagerAdapter;
 import pl.android.informator.adapters.notice_board.ViewPagerAdapter;
@@ -56,6 +59,8 @@ import pl.android.informator.views.CommunicationLineView;
 import java.util.List;
 
 public class BindingAdapter {
+
+    static boolean isAnimated = false;
 
     @androidx.databinding.BindingAdapter("showViewWithAnim")
     public static void setShowView(final View view, int show) {
@@ -205,18 +210,6 @@ public class BindingAdapter {
         ((ImageView) view).setImageResource(drawableId);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    @androidx.databinding.BindingAdapter("setDrawable")
-    public static void setImageDrawable(final View view, Bitmap bitmap) {
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                Glide.get(view.getContext()).clearDiskCache();
-//            }
-//        }).start();
-//        Glide.get(view.getContext()).clearMemory();
-    }
-
     @androidx.databinding.BindingAdapter("setArrayItems")
     public static <I> void setArrayItems(View view, List<I> items) {
         if (view instanceof ArrayView) {
@@ -243,21 +236,23 @@ public class BindingAdapter {
 
     @androidx.databinding.BindingAdapter("onScrollListener")
     public static void setOnScrollListener(RecyclerView recyclerView, ViewDataBinding binding) {
-        final Button button = ((NoticeBoardFragmentBinding) binding).noticeBoardAddButton;
+        final FloatingActionButton button = ((NoticeBoardFragmentBinding) binding).noticeBoardAddButton;
         final Animation[] animation = new Animation[1];
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                if (dy < -12 && button.getVisibility() == View.GONE) {
+                if (dy < -12 && !button.isShown() && !isAnimated) {
                     animation[0] = AnimationUtils.loadAnimation(recyclerView.getContext(), R.anim.translate_up);
                     animation[0].setAnimationListener(new Animation.AnimationListener() {
                         @Override
                         public void onAnimationStart(Animation animation) {
                             button.setVisibility(View.VISIBLE);
+                            isAnimated = true;
                         }
 
                         @Override
                         public void onAnimationEnd(Animation animation) {
+                            isAnimated = false;
                         }
 
                         @Override
@@ -266,16 +261,18 @@ public class BindingAdapter {
                         }
                     });
                     button.startAnimation(animation[0]);
-                } else if (dy > 12 && button.getVisibility() == View.VISIBLE) {
+                } else if (dy > 12 && button.isShown() && !isAnimated) {
                     animation[0] = AnimationUtils.loadAnimation(recyclerView.getContext(), R.anim.translate_down);
                     animation[0].setAnimationListener(new Animation.AnimationListener() {
                         @Override
                         public void onAnimationStart(Animation animation) {
+                            isAnimated = true;
                         }
 
                         @Override
                         public void onAnimationEnd(Animation animation) {
                             button.setVisibility(View.GONE);
+                            isAnimated = false;
                         }
 
                         @Override
@@ -291,21 +288,17 @@ public class BindingAdapter {
 
     @androidx.databinding.BindingAdapter("dots")
     public static void createDots(final LinearLayout layout, ViewPager viewPager) {
-        AddImagesViewPagerAdapter adapter = (AddImagesViewPagerAdapter) viewPager.getAdapter();
+        ViewPagerAdapter adapter = (ViewPagerAdapter) viewPager.getAdapter();
         final int dotsCount = adapter.getCount();
-        final int itemsCount = adapter.getImages().size();
-        final ImageView[] dots = new ImageView[dotsCount - 1];
-        if (itemsCount > 0) {
-            Log.d("viewpager", "for: ");
-            for (int i = 0; i < dotsCount; i++) {
-                dots[i] = new ImageView(layout.getContext());
-                dots[i].setImageDrawable(layout.getResources().getDrawable(R.drawable.non_active_dot));
-                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                params.setMargins(8, 0, 8, 0);
-                layout.addView(dots[i], params);
-            }
-            dots[0].setImageDrawable(layout.getResources().getDrawable(R.drawable.active_dot));
+        final ImageView[] dots = new ImageView[dotsCount];
+        for (int i = 0; i < dotsCount; i++) {
+            dots[i] = new ImageView(layout.getContext());
+            dots[i].setImageDrawable(layout.getResources().getDrawable(R.drawable.non_active_dot));
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            params.setMargins(8, 0, 8, 0);
+            layout.addView(dots[i], params);
         }
+        dots[0].setImageDrawable(layout.getResources().getDrawable(R.drawable.active_dot));
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -314,13 +307,10 @@ public class BindingAdapter {
 
             @Override
             public void onPageSelected(int position) {
-                Log.d("viewpager", "onPageSelected: ");
-                if (itemsCount > 0) {
                     for (int i = 0; i < dotsCount; i++) {
                         dots[i].setImageDrawable(layout.getResources().getDrawable(R.drawable.non_active_dot));
                     }
                     dots[position].setImageDrawable(layout.getResources().getDrawable(R.drawable.active_dot));
-                }
             }
 
             @Override
@@ -328,8 +318,8 @@ public class BindingAdapter {
 
             }
         });
-
     }
+
 
     @androidx.databinding.BindingAdapter("imageSrc")
     public static void setImageSrc(final View view, final int drawableID) {
@@ -360,13 +350,37 @@ public class BindingAdapter {
                     .thumbnail(0.1f)
                     .into((ImageView) view);
         }
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Glide.get(context).clearDiskCache();
-            }
-        }).start();
-        Glide.get(context).clearMemory();
+    }
+    @androidx.databinding.BindingAdapter("setImageUrlWithRipple")
+    public static void setImageUrlWithRipple(final View view, final int drawableId){
+        final Context context = view.getContext();
+        Drawable drawable = context.getResources().getDrawable(drawableId);
+        RippleDrawable rippleDrawable = new RippleDrawable(ColorStateList.valueOf(context.getResources().getColor(R.color.colorWhite)),drawable,null);
+        if (view instanceof LinearLayout) {
+            Glide.with(view.getContext())
+                    .load(rippleDrawable)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .skipMemoryCache(true)
+                    .thumbnail(0.1f)
+                    .into(new CustomTarget<Drawable>() {
+                        @Override
+                        public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                            view.setBackground(resource);
+                        }
+
+                        @Override
+                        public void onLoadCleared(@Nullable Drawable placeholder) {
+
+                        }
+                    });
+        }
+        if (view instanceof ImageView) {
+            Glide.with(context)
+                    .load(rippleDrawable)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .thumbnail(0.1f)
+                    .into((ImageView) view);
+        }
     }
 }
 

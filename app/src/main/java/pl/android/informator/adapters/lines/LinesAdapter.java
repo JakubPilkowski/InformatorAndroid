@@ -20,7 +20,7 @@ import pl.android.informator.models.CommunicationLine;
 
 public class LinesAdapter extends ArrayAdapter {
     private LayoutInflater mInflater;
-    private List<CommunicationLine>lines = new ArrayList<>();
+    private List<CommunicationLine>lines;
     public LinesAdapter(@NonNull Context context, List<CommunicationLine>lines) {
         super(context, R.layout.single_line_view);
         mInflater = LayoutInflater.from(context);

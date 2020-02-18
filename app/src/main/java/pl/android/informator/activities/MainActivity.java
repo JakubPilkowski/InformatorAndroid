@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -140,12 +141,13 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainActivity
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == RESULT_LOAD_IMAGE) {
+            Log.d("viewpager","pobrane zdjecie");
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Intent i = new Intent(Intent.ACTION_PICK,
                         MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(i, RESULT_LOAD_IMAGE);
             } else {
-                finish();
+//                finish();
             }
         }
         if(requestCode == REQUEST_CALL){
