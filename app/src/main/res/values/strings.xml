@@ -76,4 +76,6 @@
     <string name="cd_offer_photo">Zdjęcie oferty</string>
     <string name="image_placeholder_text">Coś tu pusto</string>
     <string name="cd_add_image">dodane zdjęcie</string>
+    <string name="cancel">Anuluj</string>
+    <string name="next">DALEJ</string>
 </resources>
