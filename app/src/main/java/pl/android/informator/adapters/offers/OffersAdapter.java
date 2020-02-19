@@ -1,24 +1,21 @@
 package pl.android.informator.adapters.offers;
 
-import android.app.ActionBar;
-import android.content.Context;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 
 import com.android.informator.R;
-import pl.android.informator.base.BaseRecyclerViewAdapter;
-import pl.android.informator.base.BaseViewHolder;
 import com.android.informator.databinding.SingleOfferBinding;
-import pl.android.informator.models.Offer;
-import pl.android.informator.navigation.Navigator;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import pl.android.informator.base.BaseRecyclerViewAdapter;
+import pl.android.informator.base.BaseViewHolder;
+import pl.android.informator.models.Offer;
+import pl.android.informator.navigation.Navigator;
 
 public class OffersAdapter extends BaseRecyclerViewAdapter<Offer, BaseViewHolder> {
 
@@ -43,14 +40,15 @@ public class OffersAdapter extends BaseRecyclerViewAdapter<Offer, BaseViewHolder
     @Override
     public void onViewDetachedFromWindow(@NonNull BaseViewHolder holder) {
         super.onViewDetachedFromWindow(holder);
-        ((OffersAdapterViewModel)holder.getViewModel()).refreshView();
         LinearLayout offersDetails = ((SingleOfferBinding)holder.getBinding()).offerDetails;
         offersDetails.measure(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
         int size = offersDetails.getMeasuredHeight();
         ((OffersAdapterViewModel)holder.getViewModel()).setSize(size);
         offersDetails.getLayoutParams().height = 0;
         offersDetails.requestLayout();
+        ((OffersAdapterViewModel)holder.getViewModel()).refreshView();
     }
+
 
     @Override
     public void onBindView(BaseViewHolder holder, int position) {
@@ -70,16 +68,9 @@ public class OffersAdapter extends BaseRecyclerViewAdapter<Offer, BaseViewHolder
             viewModel.refreshView();
         }
         else {
-            Log.d("click","halo");
             viewModel = viewModels.get(position);
             ((SingleOfferBinding)holder.getBinding()).setViewModel(viewModel);
-            LinearLayout offersDetails = ((SingleOfferBinding)holder.getBinding()).offerDetails;
-            offersDetails.measure(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
-            int size = offersDetails.getMeasuredHeight();
-            viewModel.setSize(size);
-            offersDetails.getLayoutParams().height = 0;
-            offersDetails.requestLayout();
+            holder.setViewModel(viewModel);
         }
     }
-
 }

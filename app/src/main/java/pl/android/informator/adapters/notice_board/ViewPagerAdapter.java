@@ -16,22 +16,21 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.List;
 
+import pl.android.informator.helpers.GlideHelper;
 import pl.android.informator.ui.notice_board.notice_details.NoticeDetailsViewModel;
 
 public class ViewPagerAdapter extends PagerAdapter {
     private List<String> imgUrls;
     private Context context;
-    private NoticeDetailsViewModel viewModel;
     @Override
     public int getCount() {
         if(imgUrls.size()==0)
             return 1;
         return imgUrls.size();
     }
-    public ViewPagerAdapter(Context context, List<String>imgUrls, NoticeDetailsViewModel viewModel){
+    public ViewPagerAdapter(Context context, List<String>imgUrls){
         this.context = context;
         this.imgUrls = imgUrls;
-        this.viewModel = viewModel;
     }
     @Override
     public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
@@ -45,11 +44,7 @@ public class ViewPagerAdapter extends PagerAdapter {
         View view = null;
         if(imgUrls.size()>0) {
             view = layoutInflater.inflate(R.layout.single_viewpager_view, container, false);
-            Glide.with(context)
-                    .load(imgUrls.get(position))
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .thumbnail(0.1f)
-                    .into((ImageView) view);
+            GlideHelper.convertToImageView((ImageView) view,imgUrls.get(position));
         }
         if(imgUrls.size()==0){
             view = layoutInflater.inflate(R.layout.image_placeholder,container,false);
@@ -58,7 +53,6 @@ public class ViewPagerAdapter extends PagerAdapter {
         vp.addView(view);
         return view;
     }
-
     @Override
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
             ViewPager vp = (ViewPager) container;

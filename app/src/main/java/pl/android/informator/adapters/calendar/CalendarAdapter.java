@@ -1,7 +1,6 @@
 package pl.android.informator.adapters.calendar;
 
 import android.content.Context;
-import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,14 +9,14 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 
 import com.android.informator.R;
-import pl.android.informator.models.Event;
 
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
+import pl.android.informator.models.Event;
 
 public class CalendarAdapter extends ArrayAdapter {
     private LayoutInflater mInflater;

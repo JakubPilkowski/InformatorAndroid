@@ -1,13 +1,12 @@
 package pl.android.informator.ui.timetable.main;
 
-import android.util.Log;
-
 import androidx.databinding.ViewDataBinding;
 
 import com.android.informator.R;
+import com.android.informator.databinding.TimetableFragmentBinding;
+
 import pl.android.informator.activities.MainActivity;
 import pl.android.informator.base.BaseFragment;
-import com.android.informator.databinding.TimetableFragmentBinding;
 import pl.android.informator.interfaces.Providers;
 import pl.android.informator.navigation.Navigator;
 

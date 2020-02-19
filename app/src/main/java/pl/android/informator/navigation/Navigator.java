@@ -33,7 +33,7 @@ import pl.android.informator.ui.timetable.main.TimetableFragment;
 import pl.android.informator.ui.weather.WeatherFragment;
 
 public class Navigator {
-    FragmentActivity activity;
+    private FragmentActivity activity;
 
     public void setActivity(FragmentActivity activity) {
         this.activity = activity;
@@ -47,11 +47,8 @@ public class Navigator {
 
     }
 
-    public void clearFragment(String tag) {
-        activity.getSupportFragmentManager().popBackStack(tag, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-    }
 
-    public void deleteUselessFragments(String tag) {
+    private void deleteUselessFragments(String tag) {
         for (int i = 0; i < activity.getSupportFragmentManager().getBackStackEntryCount(); i++) {
             FragmentManager.BackStackEntry backStackEntry = activity.getSupportFragmentManager().getBackStackEntryAt(i);
             String tmpTag = backStackEntry.getName();
@@ -62,7 +59,7 @@ public class Navigator {
         }
     }
 
-    public boolean isAvailable(String tag) {
+    private boolean isAvailable(String tag) {
         for (int i = 0; i < activity.getSupportFragmentManager().getBackStackEntryCount(); i++) {
             FragmentManager.BackStackEntry backStackEntry = activity.getSupportFragmentManager().getBackStackEntryAt(i);
             String tmpTag = backStackEntry.getName();
@@ -119,9 +116,6 @@ public class Navigator {
                     .commit();
         }
         else {
-//            Fragment fragment = activity.getSupportFragmentManager().findFragmentByTag(EventsFragment.TAG);
-//            int count = activity.getSupportFragmentManager().getBackStackEntryCount();
-//            FragmentManager.BackStackEntry backStackEntry = activity.getSupportFragmentManager().getBackStackEntryAt(count-1);
             activity.getSupportFragmentManager().popBackStack(EventsFragment.TAG,FragmentManager.POP_BACK_STACK_INCLUSIVE);
             activity.getSupportFragmentManager().beginTransaction().addToBackStack(EventsFragment.TAG).replace(R.id.main_container, EventsFragment.newInstance(), EventsFragment.TAG)
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)

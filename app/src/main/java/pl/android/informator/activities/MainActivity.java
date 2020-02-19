@@ -3,12 +3,10 @@ package pl.android.informator.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,15 +20,12 @@ import com.google.android.material.navigation.NavigationView;
 
 import pl.android.informator.base.BaseActivity;
 import pl.android.informator.base.BaseFragment;
-import pl.android.informator.base.BaseViewModel;
-import pl.android.informator.interfaces.ImageListener;
 import pl.android.informator.interfaces.Providers;
 import pl.android.informator.navigation.Navigator;
 import pl.android.informator.ui.notice_board.add_notice.AddNoticeFragment;
-import pl.android.informator.ui.notice_board.add_notice.AddNoticeViewModel;
 import pl.android.informator.ui.notice_board.notice_details.NoticeDetailsFragment;
 
-public class MainActivity extends BaseActivity<ActivityMainBinding, MainActivityViewModel> implements NavigationView.OnNavigationItemSelectedListener, Providers, ImageListener {
+public class MainActivity extends BaseActivity<ActivityMainBinding, MainActivityViewModel> implements NavigationView.OnNavigationItemSelectedListener, Providers {
 
     DrawerLayout drawerLayout;
     NavigationView navigationView;
@@ -146,8 +141,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainActivity
                 Intent i = new Intent(Intent.ACTION_PICK,
                         MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(i, RESULT_LOAD_IMAGE);
-            } else {
-//                finish();
             }
         }
         if(requestCode == REQUEST_CALL){
@@ -170,10 +163,5 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainActivity
                 ((AddNoticeFragment)getCurrentFragment()).viewModel.addPhoto(data.getData());
             }
         }
-    }
-
-    @Override
-    public void onAdded(BaseViewModel viewModel) {
-//        viewModel.addPhoto()
     }
 }

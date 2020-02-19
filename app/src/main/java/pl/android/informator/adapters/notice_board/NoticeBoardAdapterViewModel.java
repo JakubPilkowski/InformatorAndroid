@@ -11,9 +11,10 @@ public class NoticeBoardAdapterViewModel extends BaseAdapterViewModel {
 
     private Navigator navigator;
     private Notice notice;
-    public ObservableField<String>imgUrl = new ObservableField<>();
-    public ObservableField<String>title = new ObservableField<>();
-    public ObservableField<String>price = new ObservableField<>();
+    public ObservableField<String> imgUrl = new ObservableField<>();
+    public ObservableField<String> title = new ObservableField<>();
+    public ObservableField<String> price = new ObservableField<>();
+
     @Override
     public void init(Object[] values) {
         navigator = (Navigator) values[0];
@@ -23,7 +24,7 @@ public class NoticeBoardAdapterViewModel extends BaseAdapterViewModel {
         price.set(notice.getPrice());
     }
 
-    public void onDetailsClick(){
+    public void onDetailsClick() {
         navigator.showNoticeDetails(notice);
     }
 

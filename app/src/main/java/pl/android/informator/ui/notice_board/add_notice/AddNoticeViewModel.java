@@ -42,16 +42,14 @@ import pl.android.informator.helpers.ImageHelper;
 import pl.android.informator.models.Image;
 
 public class AddNoticeViewModel extends BaseViewModel {
-    //    public ObservableField<ViewPager> viewPagerObservableField = new ObservableField<>();
     private List<Image> images = new ArrayList<>();
-    public LinearLayout imageContainer;
-    public LinearLayout placeholder;
+    private LinearLayout imageContainer;
     public AddImagesViewPagerAdapter adapter;
-    public int imageWidth;
+    private int imageWidth;
 
     public void init() {
         imageContainer = ((AddNoticeFragmentBinding) getBinding()).addNoticeImageContainer;
-        placeholder = (LinearLayout) LayoutInflater.from(imageContainer.getContext()).inflate(R.layout.image_placeholder, imageContainer, false);
+        LinearLayout placeholder = (LinearLayout) LayoutInflater.from(imageContainer.getContext()).inflate(R.layout.image_placeholder, imageContainer, false);
         imageContainer.addView(placeholder);
         imageContainer.requestLayout();
         Display display = getActivity().getWindowManager().getDefaultDisplay();
@@ -79,13 +77,7 @@ public class AddNoticeViewModel extends BaseViewModel {
     }
 
     public void addPhoto(final Uri data) {
-        InputStream image = null;
         Log.d("viewpager", "5");
-//        try {
-//            image = getActivity().getContentResolver().openInputStream(ImageHelper.compressBitmap(getActivity().getContentResolver(), data, 90, width / 3));
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        }
         if (images.size() <= 5) {
             Bitmap compressedImage = null;
             try {
@@ -105,5 +97,4 @@ public class AddNoticeViewModel extends BaseViewModel {
             Toast.makeText(getActivity().getApplicationContext(), "Nie można dodać więcej zdjęć!!!", Toast.LENGTH_SHORT).show();
         }
     }
-// TODO: Implement the ViewModel
 }
