@@ -3,15 +3,19 @@ package pl.android.informator.ui.offers;
 import androidx.databinding.ViewDataBinding;
 
 import com.android.informator.R;
+
 import pl.android.informator.activities.MainActivity;
 import pl.android.informator.base.BaseFragment;
+
 import com.android.informator.databinding.OffersFragmentBinding;
+
 import pl.android.informator.interfaces.Providers;
 import pl.android.informator.navigation.Navigator;
 
-public class OffersFragment extends BaseFragment<OffersFragmentBinding,OffersViewModel> implements Providers {
+public class OffersFragment extends BaseFragment<OffersFragmentBinding, OffersViewModel> implements Providers {
 
     public static final String TAG = "OffersFragment";
+
     public static OffersFragment newInstance() {
         return new OffersFragment();
     }
@@ -56,7 +60,7 @@ public class OffersFragment extends BaseFragment<OffersFragmentBinding,OffersVie
 
     @Override
     public Navigator getNavigator() {
-        return ((MainActivity)getActivity()).navigator;
+        return ((MainActivity) getActivity()).navigator;
     }
 
     @Override
@@ -66,7 +70,7 @@ public class OffersFragment extends BaseFragment<OffersFragmentBinding,OffersVie
 
     @Override
     public ViewDataBinding getActivityOrFragmentBinding() {
-        return ((MainActivity)getActivity()).binding;
+        return ((MainActivity) getActivity()).binding;
     }
 
     @Override

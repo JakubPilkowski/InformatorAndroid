@@ -54,8 +54,6 @@ public class OffersAdapterViewModel extends BaseAdapterViewModel {
     }
 
     void refreshView() {
-        if (show.get()==VISIBLE){
-            show.set(NOTHING);
-        }
+        show.set(NOTHING);
     }
 }

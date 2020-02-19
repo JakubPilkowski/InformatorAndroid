@@ -3,9 +3,12 @@ package pl.android.informator.ui.notice_board;
 import androidx.databinding.ViewDataBinding;
 
 import com.android.informator.R;
+
 import pl.android.informator.activities.MainActivity;
 import pl.android.informator.base.BaseFragment;
+
 import com.android.informator.databinding.NoticeBoardFragmentBinding;
+
 import pl.android.informator.interfaces.Providers;
 import pl.android.informator.navigation.Navigator;
 
@@ -13,6 +16,7 @@ public class NoticeBoardFragment extends BaseFragment<NoticeBoardFragmentBinding
 
 
     public static final String TAG = "NoticeBoardFragment";
+
     public static NoticeBoardFragment newInstance() {
         return new NoticeBoardFragment();
     }
@@ -54,9 +58,10 @@ public class NoticeBoardFragment extends BaseFragment<NoticeBoardFragmentBinding
     public float getToolbarFontSize() {
         return 19;
     }
+
     @Override
     public Navigator getNavigator() {
-        return ((MainActivity)getActivity()).navigator;
+        return ((MainActivity) getActivity()).navigator;
     }
 
     @Override
@@ -66,7 +71,7 @@ public class NoticeBoardFragment extends BaseFragment<NoticeBoardFragmentBinding
 
     @Override
     public ViewDataBinding getActivityOrFragmentBinding() {
-        return ((MainActivity)getActivity()).binding;
+        return ((MainActivity) getActivity()).binding;
     }
 
     @Override

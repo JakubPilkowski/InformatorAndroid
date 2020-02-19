@@ -1,6 +1,5 @@
 package pl.android.informator.interfaces;
 
-import pl.android.informator.models.BusStop;
 import pl.android.informator.models.CommunicationLine;
 
 public interface BusStopListener {

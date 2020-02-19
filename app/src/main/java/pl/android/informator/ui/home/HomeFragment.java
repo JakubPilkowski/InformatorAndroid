@@ -36,19 +36,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentBinding, HomeViewMode
     public void bindData(HomeFragmentBinding binding) {
         binding.setViewModel(viewModel);
         viewModel.setProviders(this);
-//        viewModel.init();
-    }
-
-    @Override
-    public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                viewModel.init();
-            }
-        }).start();
-
+        viewModel.init();
     }
 
     @Override

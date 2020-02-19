@@ -24,12 +24,12 @@ public class NoticeDetailsViewModel extends BaseViewModel {
     public ObservableField<String> price = new ObservableField<>();
     public ObservableField<String> desc = new ObservableField<>();
     public ObservableField<ViewPager> viewPager = new ObservableField<>();
-    public String phoneNumber;
+    private String phoneNumber;
 
     public void init(Notice notice) {
         title.set(notice.getTitle());
         ViewPager viewPager = ((NoticeDetailsFragmentBinding)getBinding()).noticeDetailsViewpager;
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(viewPager.getContext(), notice.getImgUrls(),this);
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(viewPager.getContext(), notice.getImgUrls());
         viewPager.setAdapter(viewPagerAdapter);
         viewPager.setPageMargin(0);
         phoneNumber = String.valueOf(notice.getPhoneNumber());

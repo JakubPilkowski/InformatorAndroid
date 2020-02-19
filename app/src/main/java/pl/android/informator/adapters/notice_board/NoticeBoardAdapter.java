@@ -19,6 +19,7 @@ public class NoticeBoardAdapter extends BaseRecyclerViewAdapter<Notice, BaseView
 
     private Navigator navigator;
     private List<NoticeBoardAdapterViewModel> viewModels = new ArrayList<>();
+
     public void setNavigator(Navigator navigator) {
         this.navigator = navigator;
     }
@@ -31,22 +32,21 @@ public class NoticeBoardAdapter extends BaseRecyclerViewAdapter<Notice, BaseView
     @Override
     public BaseViewHolder onCreateItemViewHolder(ViewGroup parent, int viewType, View itemView) {
         SingleNoticeBoardBinding binding = SingleNoticeBoardBinding.bind(itemView);
-        return new BaseViewHolder(itemView,binding);
+        return new BaseViewHolder(itemView, binding);
     }
 
     @Override
     public void onBindView(BaseViewHolder holder, int position) {
         NoticeBoardAdapterViewModel viewModel;
-        if (viewModels.size()<=position){
+        if (viewModels.size() <= position) {
             viewModel = new NoticeBoardAdapterViewModel();
             viewModels.add(viewModel);
-            ((SingleNoticeBoardBinding)holder.getBinding()).setViewModel(viewModel);
+            ((SingleNoticeBoardBinding) holder.getBinding()).setViewModel(viewModel);
             holder.setViewModel(viewModel);
-            holder.setElement(navigator,items.get(position));
-        }
-        else{
+            holder.setElement(navigator, items.get(position));
+        } else {
             viewModel = viewModels.get(position);
-            ((SingleNoticeBoardBinding)holder.getBinding()).setViewModel(viewModel);
+            ((SingleNoticeBoardBinding) holder.getBinding()).setViewModel(viewModel);
         }
     }
 }

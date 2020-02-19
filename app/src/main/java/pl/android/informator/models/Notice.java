@@ -1,6 +1,5 @@
 package pl.android.informator.models;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public class Notice {

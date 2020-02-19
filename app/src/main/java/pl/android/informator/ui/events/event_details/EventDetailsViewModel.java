@@ -1,23 +1,20 @@
 package pl.android.informator.ui.events.event_details;
 
-import android.os.Build;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
-import androidx.annotation.RequiresApi;
 import androidx.databinding.ObservableField;
 import androidx.databinding.ObservableInt;
 
 import com.android.informator.databinding.EventDetailsFragmentBinding;
-import com.android.informator.databinding.SingleOfferBinding;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 import pl.android.informator.base.BaseViewModel;
 import pl.android.informator.helpers.DateHelper;
 import pl.android.informator.models.Event;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 
 public class EventDetailsViewModel extends BaseViewModel {
     private static final int VISIBLE = 1;
@@ -31,9 +28,8 @@ public class EventDetailsViewModel extends BaseViewModel {
     public ObservableField<String>monthAndYear = new ObservableField<>();
     public ObservableInt show = new ObservableInt();
     public ObservableInt size = new ObservableInt();
-    @RequiresApi(api = Build.VERSION_CODES.O)
     public void init(Event event) {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
         String strDate = dateFormat.format(event.getDate());
         day.set(DateHelper.getDay(strDate));
         monthAndYear.set(DateHelper.getMonthAndYear(strDate));

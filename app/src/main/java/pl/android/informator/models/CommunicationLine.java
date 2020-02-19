@@ -1,6 +1,5 @@
 package pl.android.informator.models;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CommunicationLine {

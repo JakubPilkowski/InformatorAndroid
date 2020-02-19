@@ -1,11 +1,5 @@
 package pl.android.informator.helpers;
 
-import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
-
-import androidx.annotation.RequiresApi;
-
 import com.android.informator.R;
 
 import static pl.android.informator.models.Weather.BURZA;

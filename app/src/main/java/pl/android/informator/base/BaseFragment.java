@@ -36,18 +36,6 @@ public abstract class BaseFragment<B extends ViewDataBinding, VM extends BaseVie
         setHasOptionsMenu(true);
     }
 
-//    @Override
-//    public void onCrOptionsMenu(@NonNull Menu menu) {
-//        menu.clear();
-//        ((MainActivity) getActivity()).refreshToolbar();
-//    }
-
-//    @Override
-//    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-//        super.onCreateOptionsMenu(menu, inflater);
-////        ((MainActivity) getActivity()).refreshToolbar();
-//    }
-
     @LayoutRes
     public abstract int getLayoutRes();
 
