@@ -3,6 +3,8 @@ package pl.android.informator.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
@@ -20,6 +22,7 @@ import com.google.android.material.navigation.NavigationView;
 
 import pl.android.informator.base.BaseActivity;
 import pl.android.informator.base.BaseFragment;
+import pl.android.informator.helpers.AlertDialogManager;
 import pl.android.informator.interfaces.Providers;
 import pl.android.informator.navigation.Navigator;
 import pl.android.informator.ui.notice_board.add_notice.AddNoticeFragment;
@@ -32,8 +35,11 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainActivity
     public static final int RESULT_LOAD_IMAGE = 1001;
     public static final int REQUEST_CALL = 1002;
     public static final int REQUEST_SMS = 1003;
+
+
     @Override
     protected void initActivity(ActivityMainBinding binding) {
+        AlertDialogManager.init(this,this);
         binding.setViewModel(viewModel);
         viewModel.setProviders(this);
         navigator.showHome();

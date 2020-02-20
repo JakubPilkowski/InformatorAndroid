@@ -21,6 +21,8 @@ import com.android.informator.R;
 
 import java.util.List;
 
+import pl.android.informator.helpers.AlertDialogManager;
+import pl.android.informator.interfaces.ImageListener;
 import pl.android.informator.models.Image;
 
 public class AddImagesViewPagerAdapter extends ArrayAdapter {
@@ -28,14 +30,15 @@ public class AddImagesViewPagerAdapter extends ArrayAdapter {
     private List<Image> images;
     private LayoutInflater mInflater;
     private int imageWidth;
+    private ImageListener listener;
 
-
-    public AddImagesViewPagerAdapter(Context context, List<Image> images, int imageWidth) {
+    public AddImagesViewPagerAdapter(Context context, List<Image> images, int imageWidth, ImageListener listener) {
         super(context, R.layout.single_image_view);
         mInflater = LayoutInflater.from(context);
         this.context = context;
         this.images = images;
         this.imageWidth = imageWidth;
+        this.listener = listener;
     }
 
     @Override
@@ -45,7 +48,7 @@ public class AddImagesViewPagerAdapter extends ArrayAdapter {
 
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         LinearLayout view = (LinearLayout) convertView;
         if (view == null) {
             view = (LinearLayout) mInflater.inflate(R.layout.single_image_view, parent, false);
@@ -57,16 +60,23 @@ public class AddImagesViewPagerAdapter extends ArrayAdapter {
         RippleDrawable rippledImage = new
                 RippleDrawable(ColorStateList.valueOf(view.getResources().getColor(R.color.colorWhite)), d, null);
         imageView.setImageDrawable(rippledImage);
-        imageView.setOnLongClickListener(new View.OnLongClickListener() {
+        imageView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onLongClick(View v) {
-                Toast.makeText(context, "Długie naciśnięcie", Toast.LENGTH_SHORT).show();
-                return false;
+            public void onClick(View v) {
+                AlertDialogManager.get().showAcceptDialog("Usunąć zdjęcie?",clickListener(position),AlertDialogManager.get().getCancelClick());
             }
         });
         return view;
     }
-
+    private View.OnClickListener clickListener(final int position){
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onRemoveItem(position);
+                AlertDialogManager.get().dismiss();
+            }
+        };
+    }
     @Override
     public Object getItem(int position) {
         return images.get(position);

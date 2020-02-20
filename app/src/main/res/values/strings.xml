@@ -19,7 +19,6 @@
     <string name="photos">Zdjęcia</string>
     <string name="add_photos">Kliknij, aby dodać zdjęcia</string>
     <string name="publish_notice">Opublikuj ofertę</string>
-    <string name="cancel">Anuluj</string>
     <string name="notice">Ogłoszenie</string>
     <string name="edit_notice">Edytuj ofertę</string>
     <string name="tomorrow">Jutro</string>
@@ -78,4 +77,7 @@
     <string name="cd_add_image">dodane zdjęcie</string>
     <string name="cancel">Anuluj</string>
     <string name="next">DALEJ</string>
+    <string name="ok">OK</string>
+    <string name="yes">tak</string>
+    <string name="no">nie</string>
 </resources>

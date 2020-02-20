@@ -166,10 +166,15 @@ public class BindingAdapter {
                         lettersAmount += "/30";
                         viewBinding.priceLetterLength.setText(lettersAmount);
                         break;
+                    case "PhoneTag":
+                        lettersAmount +="/9";
+                        viewBinding.phoneLetterLength.setText(lettersAmount);
+                        break;
                     case "DescriptionTag":
                         lettersAmount += "/1000";
                         viewBinding.descLetterLength.setText(lettersAmount);
                         break;
+
                 }
             }
 
@@ -315,6 +320,11 @@ public class BindingAdapter {
 
                     }
                 });
+    }
+    @androidx.databinding.BindingAdapter("setOnClickListener")
+    public static void setOnClickListener(View view, View.OnClickListener listener)
+    {
+        view.setOnClickListener(listener);
     }
 }
 

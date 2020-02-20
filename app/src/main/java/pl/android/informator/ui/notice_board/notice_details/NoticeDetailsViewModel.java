@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.provider.Telephony;
+import android.view.View;
+import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -16,6 +18,7 @@ import com.android.informator.databinding.NoticeDetailsFragmentBinding;
 import pl.android.informator.activities.MainActivity;
 import pl.android.informator.adapters.notice_board.ViewPagerAdapter;
 import pl.android.informator.base.BaseViewModel;
+import pl.android.informator.helpers.AlertDialogManager;
 import pl.android.informator.models.Notice;
 
 public class NoticeDetailsViewModel extends BaseViewModel {
@@ -39,7 +42,25 @@ public class NoticeDetailsViewModel extends BaseViewModel {
     }
 
     public void onEditClick() {
+        AlertDialogManager.get().showEditDialog("Podaj email","Email",showCodeDialog(), AlertDialogManager.get().getCancelClick());
+    }
+    private View.OnClickListener showCodeDialog(){
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialogManager.get().showEditDialog("Podaj kod ogłoszenia", "Kod ogłoszenia",openEditingNotice(),AlertDialogManager.get().getCancelClick());
+            }
+        };
+    }
 
+    private View.OnClickListener openEditingNotice(){
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity().getApplicationContext(),"Otworzono edycje ogłoszenia",Toast.LENGTH_SHORT).show();
+                AlertDialogManager.get().dismiss();
+            }
+        };
     }
     public void onPhoneClick(){
         if(ContextCompat.checkSelfPermission(getActivity().getApplicationContext(), Manifest.permission.CALL_PHONE)!= PackageManager.PERMISSION_GRANTED){

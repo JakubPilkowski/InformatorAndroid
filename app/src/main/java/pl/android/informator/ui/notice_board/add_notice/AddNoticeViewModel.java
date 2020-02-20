@@ -2,6 +2,7 @@ package pl.android.informator.ui.notice_board.add_notice;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -13,6 +14,7 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -38,10 +40,12 @@ import pl.android.informator.activities.MainActivity;
 import pl.android.informator.adapters.notice_board.AddImagesViewPagerAdapter;
 import pl.android.informator.adapters.notice_board.ViewPagerAdapter;
 import pl.android.informator.base.BaseViewModel;
+import pl.android.informator.helpers.AlertDialogManager;
 import pl.android.informator.helpers.ImageHelper;
+import pl.android.informator.interfaces.ImageListener;
 import pl.android.informator.models.Image;
 
-public class AddNoticeViewModel extends BaseViewModel {
+public class AddNoticeViewModel extends BaseViewModel implements ImageListener {
     private List<Image> images = new ArrayList<>();
     private LinearLayout imageContainer;
     public AddImagesViewPagerAdapter adapter;
@@ -73,9 +77,25 @@ public class AddNoticeViewModel extends BaseViewModel {
     }
 
     public void onPublishOffer() {
-        getActivity().onBackPressed();
+        AlertDialogManager.get().showEditDialog("Podaj email na który wyślemy unikalny kod ogłoszenia","Podaj email", sendCode(), AlertDialogManager.get().getCancelClick());
     }
-
+    private View.OnClickListener sendCode(){
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialogManager.get().showInfoDialog("Wysłano kod na podany adres mailowy", backHome());
+            }
+        };
+    }
+    private View.OnClickListener backHome(){
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialogManager.get().dismiss();
+                getNavigator().clearBackStack();
+            }
+        };
+    }
     public void addPhoto(final Uri data) {
         Log.d("viewpager", "5");
         if (images.size() <= 5) {
@@ -88,7 +108,7 @@ public class AddNoticeViewModel extends BaseViewModel {
             images.add(new Image(compressedImage, data));
             imageContainer.removeAllViews();
             GridView imagesView = (GridView) LayoutInflater.from(imageContainer.getContext()).inflate(R.layout.add_images_grid_view, imageContainer, false);
-            adapter = new AddImagesViewPagerAdapter(imageContainer.getContext(), images, imageWidth / 3);
+            adapter = new AddImagesViewPagerAdapter(imageContainer.getContext(), images, imageWidth / 3, this);
             imagesView.setAdapter(adapter);
             imagesView.getLayoutParams().height = imageWidth / 3 * 2 + 50;
             imageContainer.addView(imagesView);
@@ -96,5 +116,17 @@ public class AddNoticeViewModel extends BaseViewModel {
         } else {
             Toast.makeText(getActivity().getApplicationContext(), "Nie można dodać więcej zdjęć!!!", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public void onRemoveItem(int position) {
+        images.remove(position);
+        imageContainer.removeAllViews();
+        GridView imagesView = (GridView) LayoutInflater.from(imageContainer.getContext()).inflate(R.layout.add_images_grid_view, imageContainer, false);
+        adapter = new AddImagesViewPagerAdapter(imageContainer.getContext(), images, imageWidth / 3, this);
+        imagesView.setAdapter(adapter);
+        imagesView.getLayoutParams().height = imageWidth / 3 * 2 + 50;
+        imageContainer.addView(imagesView);
+        imageContainer.requestLayout();
     }
 }
