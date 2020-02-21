@@ -80,4 +80,5 @@
     <string name="ok">OK</string>
     <string name="yes">tak</string>
     <string name="no">nie</string>
+    <string name="route_map">Mapa Trasy</string>
 </resources>
