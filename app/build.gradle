@@ -60,4 +60,9 @@ dependencies {
     Open street map
      */
     implementation 'org.osmdroid:osmdroid-android:6.1.5'
+
+    /*
+    PreferenceManager
+     */
+    implementation "androidx.preference:preference:1.1.0"
 }

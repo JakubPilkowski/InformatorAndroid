@@ -1,12 +1,12 @@
 package pl.android.informator.ui.timetable.line_timetables.maps;
 
-import android.preference.PreferenceManager;
-
 import androidx.databinding.Observable;
 import androidx.databinding.ObservableField;
+import androidx.preference.PreferenceManager;
 
 import com.android.informator.databinding.MapFragmentBinding;
 
+import org.metalev.multitouch.controller.MultiTouchController;
 import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
@@ -25,12 +25,18 @@ public class MapViewModel extends BaseViewModel {
 //        Configuration.getInstance().load(getActivity().getApplicationContext(), PreferenceManager.getDe);
         lineNumber.set(String.valueOf(line.getNumber()));
         lineName.set(line.getFrom());
-        lineName.set(line.getTo());
+        lineDestination.set(line.getTo());
         MapView mapView = ((MapFragmentBinding)getBinding()).osmMapView;
+        Configuration.getInstance().load(getActivity().getApplicationContext(), PreferenceManager.getDefaultSharedPreferences(
+                getActivity().getApplicationContext()));
+        mapView.setTileSource(TileSourceFactory.MAPNIK);
         mapView.setMultiTouchControls(true);
         IMapController mapController = mapView.getController();
-        mapController.setZoom(9.5);
-        GeoPoint startPoint = new GeoPoint(48.8583, 2.2944);
+        mapController.setZoom(15d);
+        mapView.setMinZoomLevel(15d);
+        GeoPoint startPoint = new GeoPoint(53.7799500, 20.4941600);
+        GeoPoint endPoint = new GeoPoint(53.7799000,20.4941500);
+        startPoint.distanceToAsDouble(endPoint);
         mapController.setCenter(startPoint);
     }
 }

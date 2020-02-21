@@ -28,6 +28,18 @@ public class MapFragment extends BaseFragment<MapFragmentBinding, MapViewModel> 
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        binding.osmMapView.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        binding.osmMapView.onPause();
+    }
+
+    @Override
     public int getLayoutRes() {
         return R.layout.map_fragment;
     }
