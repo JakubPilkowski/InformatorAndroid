@@ -35,10 +35,10 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainActivity
     public static final int RESULT_LOAD_IMAGE = 1001;
     public static final int REQUEST_CALL = 1002;
     public static final int REQUEST_SMS = 1003;
-
-
+    private static MainActivity INSTANCE;
     @Override
     protected void initActivity(ActivityMainBinding binding) {
+        INSTANCE = this;
         AlertDialogManager.init(this,this);
         binding.setViewModel(viewModel);
         viewModel.setProviders(this);
@@ -47,7 +47,9 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainActivity
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView.setNavigationItemSelectedListener(this);
     }
-
+    public static MainActivity getINSTANCE(){
+        return INSTANCE;
+    }
     @Override
     protected Class<MainActivityViewModel> getViewModel() {
         return MainActivityViewModel.class;
