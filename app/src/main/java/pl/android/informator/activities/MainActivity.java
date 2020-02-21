@@ -23,6 +23,7 @@ import com.google.android.material.navigation.NavigationView;
 import pl.android.informator.base.BaseActivity;
 import pl.android.informator.base.BaseFragment;
 import pl.android.informator.helpers.AlertDialogManager;
+import pl.android.informator.helpers.ProgressDialogManager;
 import pl.android.informator.interfaces.Providers;
 import pl.android.informator.navigation.Navigator;
 import pl.android.informator.ui.notice_board.add_notice.AddNoticeFragment;
@@ -40,6 +41,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainActivity
     protected void initActivity(ActivityMainBinding binding) {
         INSTANCE = this;
         AlertDialogManager.init(this,this);
+        ProgressDialogManager.init(this);
         binding.setViewModel(viewModel);
         viewModel.setProviders(this);
         navigator.showHome();
@@ -75,6 +77,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainActivity
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        ProgressDialogManager.get().dismiss();
         drawerLayout.closeDrawer(GravityCompat.START);
         refreshToolbar();
     }

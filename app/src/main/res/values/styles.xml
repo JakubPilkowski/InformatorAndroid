@@ -20,4 +20,13 @@
         <item name="fabSize">normal</item>
         <item name="maxImageSize">56dp</item>
     </style>
+
+
+    <style name="ProgressDialogTheme" parent="Widget.AppCompat.ProgressBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/colorTransparent</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
 </resources>
