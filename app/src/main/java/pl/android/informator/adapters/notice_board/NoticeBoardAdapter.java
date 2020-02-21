@@ -1,5 +1,6 @@
 package pl.android.informator.adapters.notice_board;
 
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -47,6 +48,7 @@ public class NoticeBoardAdapter extends BaseRecyclerViewAdapter<Notice, BaseView
         } else {
             viewModel = viewModels.get(position);
             ((SingleNoticeBoardBinding) holder.getBinding()).setViewModel(viewModel);
+            holder.setViewModel(viewModel);
         }
     }
 }

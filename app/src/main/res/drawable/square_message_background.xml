@@ -12,5 +12,5 @@
             <solid android:color="@color/colorLightBlue"/>
         </shape>
     </item>
-    <item android:drawable="@drawable/ic_message" />
+    <item android:drawable="@drawable/ic_sms" />
 </layer-list>

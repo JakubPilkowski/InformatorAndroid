@@ -52,7 +52,6 @@
             android:hint="@string/notice_title"
             android:tag="TitleTag"
             android:layout_marginEnd="12dp"
-            android:textAlignment="center"
             android:background="@drawable/gradient_bottom_border_background"
             android:fontFamily="@font/montserrat"
             android:inputType="text"
@@ -107,13 +106,60 @@
             android:background="@drawable/gradient_bottom_border_background"
             android:fontFamily="@font/montserrat"
             android:maxLines="1"
-            android:textAlignment="center"
             android:inputType="text"
             app:onTextChanged="@{viewModel.binding}"
             android:maxLength="30"
             android:textColor="@color/colorTextBlack"
             android:textSize="18sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:weightSum="11"
+            android:orientation="horizontal">
 
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="9"
+                android:drawablePadding="12dp"
+                android:drawableStart="@drawable/ic_telefon"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="12dp"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/phone"
+                android:textColor="@color/colorTextBlack"
+                android:textSize="24sp" />
+            <TextView
+                android:id="@+id/phone_letter_length"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:textAlignment="textEnd"
+                android:layout_gravity="bottom|end"
+                android:text="@string/_0from30"
+                android:textSize="12sp"
+                android:textColor="@color/colorGradientEnd"
+                android:fontFamily="@font/montserrat"
+                />
+
+        </LinearLayout>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:tag="PhoneTag"
+            android:hint="@string/phone"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/gradient_bottom_border_background"
+            android:fontFamily="@font/montserrat"
+            android:maxLines="1"
+            android:inputType="number"
+            app:onTextChanged="@{viewModel.binding}"
+            android:maxLength="9"
+            android:textColor="@color/colorTextBlack"
+            android:textSize="18sp" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -163,9 +209,11 @@
             android:gravity="top|start"
             android:maxLength="1000"
             android:textSize="18sp"
+            android:imeOptions="actionDone"
             android:inputType="textMultiLine"
             android:scrollbars="none"
             android:minLines="5"
+            android:maxLines="15"
             />
 
             <TextView

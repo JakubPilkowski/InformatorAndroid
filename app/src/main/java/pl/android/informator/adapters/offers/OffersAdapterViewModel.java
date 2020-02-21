@@ -26,7 +26,7 @@ public class OffersAdapterViewModel extends BaseAdapterViewModel {
 
     @Override
     public void init(Object[] values) {
-        Log.d("init","halo");
+        Log.d("initEditDialog","halo");
         offer = (Offer) values[0];
         navigator = (Navigator) values[1];
         brand.set(offer.getBrand());

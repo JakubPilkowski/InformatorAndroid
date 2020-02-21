@@ -3,10 +3,15 @@ package pl.android.informator.helpers;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
+import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.RippleDrawable;
+import android.os.AsyncTask;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
+import android.util.TypedValue;
+import android.view.Display;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -26,13 +31,16 @@ import com.android.informator.R;
 import com.android.informator.databinding.AddNoticeFragmentBinding;
 import com.android.informator.databinding.NoticeBoardFragmentBinding;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.GlideBuilder;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
+import java.util.zip.CheckedOutputStream;
 
+import pl.android.informator.activities.MainActivity;
 import pl.android.informator.adapters.notice_board.ViewPagerAdapter;
 import pl.android.informator.views.ArrayView;
 import pl.android.informator.views.CommunicationLineView;
@@ -166,10 +174,15 @@ public class BindingAdapter {
                         lettersAmount += "/30";
                         viewBinding.priceLetterLength.setText(lettersAmount);
                         break;
+                    case "PhoneTag":
+                        lettersAmount += "/9";
+                        viewBinding.phoneLetterLength.setText(lettersAmount);
+                        break;
                     case "DescriptionTag":
                         lettersAmount += "/1000";
                         viewBinding.descLetterLength.setText(lettersAmount);
                         break;
+
                 }
             }
 
@@ -296,18 +309,24 @@ public class BindingAdapter {
     }
 
     @androidx.databinding.BindingAdapter("setImageUrlWithRipple")
-    public static void setImageUrlWithRipple(final View view, final String url) {
-        final Context context = view.getContext();
-        Glide.with(context)
-                .asDrawable()
+    public static void setImageUrlWithRipple(final ImageView view, final String url) {
+        Display display = MainActivity.getINSTANCE().getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+
+        Glide.with(view.getContext())
                 .load(url)
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .thumbnail(0.1f)
+                .override(size.x, TextHelper.getPixels(TypedValue.COMPLEX_UNIT_DIP, 200))
+                .centerCrop()
                 .into(new CustomTarget<Drawable>() {
                     @Override
                     public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
-                        RippleDrawable drawable = new RippleDrawable(ColorStateList.valueOf(view.getResources().getColor(R.color.colorWhite)), resource, null);
-                        ((ImageView) view).setImageDrawable(drawable);
+                        RippleDrawable rippleDrawable = new RippleDrawable(ColorStateList.valueOf(
+                                view.getResources().getColor(R.color.colorWhite)), resource, null);
+                        view.setImageDrawable(rippleDrawable);
+
                     }
 
                     @Override
@@ -315,6 +334,11 @@ public class BindingAdapter {
 
                     }
                 });
+    }
+
+    @androidx.databinding.BindingAdapter("setOnClickListener")
+    public static void setOnClickListener(View view, View.OnClickListener listener) {
+        view.setOnClickListener(listener);
     }
 }
 

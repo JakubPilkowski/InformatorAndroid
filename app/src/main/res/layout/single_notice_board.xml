@@ -11,8 +11,8 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            android:adjustViewBounds="true"
             app:setImageUrlWithRipple="@{viewModel.imgUrl}"
-            android:scaleType="fitXY"
             android:contentDescription="@string/cd_notice_photo" />
 
         <LinearLayout

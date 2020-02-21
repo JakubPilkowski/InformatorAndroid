@@ -6,7 +6,7 @@ import pl.android.informator.base.BaseAdapterViewModel;
 import pl.android.informator.models.Notice;
 import pl.android.informator.navigation.Navigator;
 
-public class NoticeBoardAdapterViewModel extends BaseAdapterViewModel {
+public class NoticeBoardAdapterViewModel extends BaseAdapterViewModel{
 
 
     private Navigator navigator;
@@ -14,7 +14,6 @@ public class NoticeBoardAdapterViewModel extends BaseAdapterViewModel {
     public ObservableField<String> imgUrl = new ObservableField<>();
     public ObservableField<String> title = new ObservableField<>();
     public ObservableField<String> price = new ObservableField<>();
-
     @Override
     public void init(Object[] values) {
         navigator = (Navigator) values[0];
