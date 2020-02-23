@@ -91,7 +91,6 @@ public class MapViewModel extends BaseViewModel implements LocationListener {
     public void initMap() {
 
         final RoadManager roadManager = new OSRMRoadManager(mapView.getContext());
-        roadManager.addRequestOption("routeType=pedestrian");
         final ArrayList<GeoPoint> pts = new ArrayList<>();
         GeoPoint startPoint = new GeoPoint(53.78441739158615, 20.498394209024823);
         GeoPoint point2 = new GeoPoint(53.78346381381083,20.491053279614473);

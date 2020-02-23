@@ -10,7 +10,7 @@ public class TimetableViewModel extends BaseViewModel {
     }
 
     public void onSetRouteClick() {
-
+        getNavigator().showSetRouteFragment();
     }
 
     public void onLineDistributionClick() {
