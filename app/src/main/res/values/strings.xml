@@ -81,4 +81,5 @@
     <string name="yes">tak</string>
     <string name="no">nie</string>
     <string name="route_map">Mapa Trasy</string>
+    <string name="show_line">Wyświetl linię</string>
 </resources>

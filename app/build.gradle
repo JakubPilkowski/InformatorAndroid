@@ -60,7 +60,10 @@ dependencies {
     Open street map
      */
     implementation 'org.osmdroid:osmdroid-android:6.1.5'
-
+    /*
+    Open street map bonus pack
+     */
+    implementation 'com.github.MKergall:osmbonuspack:6.6.0'
     /*
     PreferenceManager
      */

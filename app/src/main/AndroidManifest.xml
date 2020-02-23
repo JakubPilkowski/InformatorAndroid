@@ -18,7 +18,8 @@
         android:theme="@style/AppTheme"
         android:allowBackup="true"
         android:fullBackupContent="true"
-        tools:ignore="GoogleAppIndexingWarning">
+        android:networkSecurityConfig="@xml/network_security_config"
+        tools:ignore="GoogleAppIndexingWarning,UnusedAttribute">
         <activity
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait"
