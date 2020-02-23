@@ -28,6 +28,7 @@ import pl.android.informator.ui.offices.OfficesFragment;
 import pl.android.informator.ui.offices.post_offices.PostOfficesFragment;
 import pl.android.informator.ui.timetable.line_timetables.LineTimetablesFragment;
 import pl.android.informator.ui.timetable.line_timetables.line_details.LineDetailsFragment;
+import pl.android.informator.ui.timetable.line_timetables.maps.MapFragment;
 import pl.android.informator.ui.timetable.line_timetables.single_line.SingleLineFragment;
 import pl.android.informator.ui.timetable.main.TimetableFragment;
 import pl.android.informator.ui.weather.WeatherFragment;
@@ -242,6 +243,13 @@ public class Navigator {
     }
 
     public void showMap(CommunicationLine line) {
+        deleteUselessFragments(TimetableFragment.TAG);
+        activity.getSupportFragmentManager()
+                .beginTransaction()
+                .addToBackStack(TimetableFragment.TAG + MapFragment.TAG)
+                .replace(R.id.main_container, MapFragment.newInstance(line), TimetableFragment.TAG + MapFragment.TAG)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .commit();
     }
 
     public void showLineDetails(BusStop stop, CommunicationLine line) {

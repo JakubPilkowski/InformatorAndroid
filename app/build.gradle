@@ -56,5 +56,16 @@ dependencies {
         transitive = false
     }
     implementation 'androidx.exifinterface:exifinterface:1.2.0-beta01'
-
+    /*
+    Open street map
+     */
+    implementation 'org.osmdroid:osmdroid-android:6.1.5'
+    /*
+    Open street map bonus pack
+     */
+    implementation 'com.github.MKergall:osmbonuspack:6.6.0'
+    /*
+    PreferenceManager
+     */
+    implementation "androidx.preference:preference:1.1.0"
 }
