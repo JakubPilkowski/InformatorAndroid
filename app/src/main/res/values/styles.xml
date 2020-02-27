@@ -33,5 +33,6 @@
     <style name="SearchAutoCompleteTextView" parent="Widget.AppCompat.Light.AutoCompleteTextView">
         <item name="android:textColor">@color/colorWhite</item>
         <item name="android:textColorHint">@color/colorTextGray</item>
+        <item name="android:textAlignment">center</item>
     </style>
 </resources>

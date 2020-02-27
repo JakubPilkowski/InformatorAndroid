@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:background="@color/colorWhite"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_margin="12dp"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_busik_czarny"
+        android:text="@{viewModel.lineNumber}"
+        android:textColor="@color/colorWhite"
+        android:textSize="24sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="12dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/searched_bus_station"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat"
+            android:text="@{viewModel.lineChosenBusStation}"
+            android:textColor="@color/colorBlackLight"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/searched_buses"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat"
+            android:text="@{viewModel.lineChosenBusStation}"
+            android:textColor="@color/colorTextGray"
+            android:textSize="12sp" />
+    </LinearLayout>
+</LinearLayout>

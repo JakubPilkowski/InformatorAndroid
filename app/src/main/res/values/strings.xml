@@ -84,4 +84,5 @@
     <string name="show_line">Wyświetl linię</string>
     <string name="departure_time">Czas odjazdu</string>
     <string name="super_next">Dalej!</string>
+    <string name="closest_bus_station">Najbliższy przystanek</string>
 </resources>
