@@ -265,7 +265,10 @@ public class BindingAdapter {
             }
         });
     }
-
+    @androidx.databinding.BindingAdapter("scrollListener")
+    public static void onScrollListener(RecyclerView recyclerView, RecyclerView.OnScrollListener listener){
+        recyclerView.addOnScrollListener(listener);
+    }
     @androidx.databinding.BindingAdapter("dots")
     public static void createDots(final LinearLayout layout, ViewPager viewPager) {
         ViewPagerAdapter adapter = (ViewPagerAdapter) viewPager.getAdapter();

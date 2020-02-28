@@ -1,77 +1,120 @@
 package pl.android.informator.adapters.search;
 
-import android.content.Context;
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Filter;
-import android.widget.TextView;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import android.widget.Filterable;
 
 import com.android.informator.R;
+import com.android.informator.databinding.SearchDefaultItemBinding;
+import com.android.informator.databinding.SearchLocalizationItemBinding;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import pl.android.informator.base.BaseHeadAndItemRVAdapter;
+import pl.android.informator.base.BaseViewHolder;
 import pl.android.informator.models.SearchResult;
+import pl.android.informator.navigation.Navigator;
+import pl.android.informator.ui.timetable.set_route.set_route.SetRouteViewModel;
 
-public class SearchAdapter extends ArrayAdapter {
-    private LayoutInflater mInflater;
-    private ArrayList<SearchResult> lines;
+public class SearchAdapter extends BaseHeadAndItemRVAdapter<SearchResult, BaseViewHolder, BaseViewHolder> implements Filterable {
+    private List<SearchAdapterViewModel>viewModels = new ArrayList<>();
+    private SearchAdapterViewModel headerViewModel;
+    private SetRouteViewModel routeViewModel;
+    private List<SearchResult> fullItems;
 
-    public SearchAdapter(@NonNull Context context, int resource, ArrayList<SearchResult>lines) {
-        super(context, resource);
-        mInflater = LayoutInflater.from(context);
-        this.lines = lines;
+    public void setRouteViewModel(SetRouteViewModel setRouteViewModel) {
+        this.routeViewModel = setRouteViewModel;
     }
 
-    @NonNull
+    public SearchAdapter(List<SearchResult>fullItems){
+        setItems(fullItems);
+        this.fullItems = fullItems;
+    }
+
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        View view = convertView;
-        if(view==null) {
-            if (position == 0) {
-                view = mInflater.inflate(R.layout.search_localization_item,parent,false);
+    public BaseViewHolder onCreateHeaderViewHolder(ViewGroup parent, int viewType, View itemView) {
+        SearchLocalizationItemBinding binding = SearchLocalizationItemBinding.bind(itemView);
+        return new BaseViewHolder(itemView, binding);
+    }
+
+    @Override
+    public int getHeaderLayoutRes() {
+        return R.layout.search_localization_item;
+    }
+
+    @Override
+    public void onBindHeaderView(BaseViewHolder holder, int position) {
+        if(headerViewModel==null)
+        {
+            headerViewModel = new SearchAdapterViewModel();
+            ((SearchLocalizationItemBinding) holder.getBinding()).setViewModel(headerViewModel);
+            holder.setViewModel(headerViewModel);
+            holder.setElement(routeViewModel, items.get(position));
+        }
+        else{
+            ((SearchLocalizationItemBinding) holder.getBinding()).setViewModel(headerViewModel);
+            holder.setViewModel(headerViewModel);
+        }
+    }
+
+    @Override
+    public int getItemLayoutRes() {
+        return R.layout.search_default_item;
+    }
+
+    @Override
+    public BaseViewHolder onCreateItemViewHolder(ViewGroup parent, int viewType, View itemView) {
+        SearchDefaultItemBinding binding = SearchDefaultItemBinding.bind(itemView);
+        return new BaseViewHolder(itemView, binding);
+    }
+
+    @Override
+    public void onBindView(BaseViewHolder holder, int position) {
+        SearchAdapterViewModel viewModel;
+//        if (viewModels.size() <= position) {
+            viewModel = new SearchAdapterViewModel();
+//            viewModels.add(viewModel);
+            ((SearchDefaultItemBinding) holder.getBinding()).setViewModel(viewModel);
+            holder.setViewModel(viewModel);
+            holder.setElement(routeViewModel, items.get(position));
+//        } else {
+//            viewModel = viewModels.get(position);
+//            ((SearchDefaultItemBinding) holder.getBinding()).setViewModel(viewModel);
+//            holder.setViewModel(viewModel);
+//        }
+    }
+
+    @Override
+    public Filter getFilter() {
+        return searchFilter;
+    }
+    private Filter searchFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            ArrayList<SearchResult> filterResultList = new ArrayList<>();
+            if(constraint == null || constraint.length()==0){
+                filterResultList.addAll(fullItems);
             }
             else{
-                view = mInflater.inflate(R.layout.search_default_item,parent,false);
-                TextView title = view.findViewById(R.id.searched_bus_station);
-                TextView availableLinesView = view.findViewById(R.id.searched_buses);
-
-                title.setText(lines.get(position-1).getBusStation());
-                StringBuilder allLinesText = new StringBuilder();
-                ArrayList<String>allLines = lines.get(position-1).getLines();
-                for (int i = 0; i <allLines.size() ; i++) {
-                    if(i+1==lines.get(position-1).getLines().size()){
-                        allLinesText.append(allLines.get(i));
-                    }
-                    else {
-                        allLinesText.append(allLines.get(i));
-                        allLinesText.append(", ");
+                String pattern = constraint.toString().toLowerCase().trim();
+                Log.d("halo",pattern);
+                for(SearchResult result : fullItems){
+                    if(result.getBusStation().toLowerCase().startsWith(pattern)){
+                        filterResultList.add(result);
                     }
                 }
-                availableLinesView.setText(allLinesText);
-
             }
+            FilterResults filterResults = new FilterResults();
+            filterResults.values = filterResultList;
+            return filterResults;
         }
-        return view;
-    }
 
-    @Override
-    public int getCount() {
-        return lines.size()+1;
-    }
-
-    @Nullable
-    @Override
-    public Object getItem(int position) {
-        return lines.get(position);
-    }
-
-    @Override
-    public int getPosition(Object item) {
-        return lines.indexOf(item);
-    }
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            setItems((List<SearchResult>) results.values);
+        }
+    };
 }

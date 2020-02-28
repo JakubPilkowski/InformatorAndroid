@@ -85,4 +85,7 @@
     <string name="departure_time">Czas odjazdu</string>
     <string name="super_next">Dalej!</string>
     <string name="closest_bus_station">Najbliższy przystanek</string>
+    <string name="done">Gotowe</string>
+    <string name="start_location">Lokalizacja początkowa</string>
+    <string name="end_location">Lokalizacja końcowa</string>
 </resources>

@@ -1,19 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="48dp"
-    android:background="@color/colorWhite"
-    >
-    <TextView
+<layout>
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="pl.android.informator.adapters.search.SearchAdapterViewModel" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:drawableStart="@drawable/ic_lokalizacja"
-        android:text="@string/closest_bus_station"
-        android:layout_marginStart="12dp"
-        android:fontFamily="@font/montserrat"
-        android:textSize="18sp"
-        android:textColor="@color/colorBlackLight"
-        android:drawablePadding="12dp"
-        />
-</LinearLayout>
+        android:layout_height="48dp"
+        android:background="@color/colorWhite"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="12dp"
+            android:drawableStart="@drawable/ic_lokalizacja"
+            android:drawablePadding="12dp"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/closest_bus_station"
+            android:textColor="@color/colorBlackLight"
+            android:textSize="18sp" />
+    </LinearLayout>
+</layout>

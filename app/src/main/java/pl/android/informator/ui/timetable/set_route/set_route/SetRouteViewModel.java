@@ -1,33 +1,23 @@
 package pl.android.informator.ui.timetable.set_route.set_route;
 
-import android.util.Log;
-import android.view.Gravity;
-import android.view.MenuItem;
+import android.app.Activity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
-import android.widget.ArrayAdapter;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.ListView;
+import android.widget.RelativeLayout;
 
-import androidx.appcompat.widget.SearchView;
+import androidx.annotation.NonNull;
+import androidx.databinding.ObservableField;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.informator.R;
 import com.android.informator.databinding.SetRouteFragmentBinding;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
 
-import io.reactivex.rxjava3.annotations.NonNull;
-import io.reactivex.rxjava3.core.Observable;
-import io.reactivex.rxjava3.core.ObservableEmitter;
-import io.reactivex.rxjava3.core.ObservableOnSubscribe;
-import io.reactivex.rxjava3.core.ObservableSource;
-import io.reactivex.rxjava3.core.Observer;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
-import io.reactivex.rxjava3.disposables.Disposable;
-import io.reactivex.rxjava3.functions.Function;
-import io.reactivex.rxjava3.functions.Predicate;
-import io.reactivex.rxjava3.schedulers.Schedulers;
 import pl.android.informator.adapters.search.SearchAdapter;
 import pl.android.informator.base.BaseViewModel;
 import pl.android.informator.models.SearchResult;
@@ -36,14 +26,22 @@ public class SetRouteViewModel extends BaseViewModel {
 
     private CompositeDisposable disposables = new CompositeDisposable();
     private long timeSinceLastRequest;
-    private ArrayAdapter searchAdapter;
+    private SearchAdapter searchAdapter;
+    public ObservableField<SearchAdapter> adapter = new ObservableField<>();
+    public ObservableField<RecyclerView.OnScrollListener> listener = new ObservableField<>();
     private ArrayList<SearchResult> searchResults;
-    private ListView listView;
-    public void init() {
-        final SearchView searchView1 = ((SetRouteFragmentBinding) getBinding()).searchView1;
-        final SearchView searchView2 = ((SetRouteFragmentBinding) getBinding()).searchView2;
-        listView = ((SetRouteFragmentBinding)getBinding()).searchResults;
+    public RelativeLayout nextButton;
+    public RelativeLayout doneButton;
+    public EditText search1;
+    public EditText search2;
+    public RecyclerView recyclerView;
 
+    public void init() {
+        search1 = ((SetRouteFragmentBinding) getBinding()).searchView1;
+        search2 = ((SetRouteFragmentBinding) getBinding()).searchView2;
+        nextButton = ((SetRouteFragmentBinding) getBinding()).setRouteNextButton;
+        doneButton = ((SetRouteFragmentBinding) getBinding()).setRouteDone;
+        recyclerView = ((SetRouteFragmentBinding)getBinding()).setRouteRecyclerView;
         searchResults = new ArrayList<>();
         ArrayList<String> availableLines = new ArrayList<>();
         availableLines.add("103");
@@ -51,48 +49,83 @@ public class SetRouteViewModel extends BaseViewModel {
         availableLines.add("105");
         availableLines.add("106");
         availableLines.add("107");
-        searchResults.add(new SearchResult("Kubusia Puchatka",availableLines));
-        searchResults.add(new SearchResult("Kołobrzeska",availableLines));
-        searchResults.add(new SearchResult("Kościuszki",availableLines));
-        searchResults.add(new SearchResult("Dworzec Główny",availableLines));
-        searchAdapter = new SearchAdapter(listView.getContext(),R.layout.search_default_item,searchResults);
-        listView.setAdapter(searchAdapter);
-        searchView1.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
+        searchResults.add(new SearchResult("Kubusia Puchatka", availableLines));
+        searchResults.add(new SearchResult("Kołobrzeska", availableLines));
+        searchResults.add(new SearchResult("Kościuszki", availableLines));
+        searchResults.add(new SearchResult("Dworzec Główny", availableLines));
+        searchResults.add(new SearchResult("Kubusia Puchatka", availableLines));
+        searchResults.add(new SearchResult("Kołobrzeska", availableLines));
+        searchResults.add(new SearchResult("Kościuszki", availableLines));
+        searchResults.add(new SearchResult("Dworzec Główny", availableLines));
+        searchResults.add(new SearchResult("Kubusia Puchatka", availableLines));
+        searchResults.add(new SearchResult("Kołobrzeska", availableLines));
+        searchResults.add(new SearchResult("Kościuszki", availableLines));
+        searchResults.add(new SearchResult("Dworzec Główny", availableLines));
+        searchAdapter = new SearchAdapter(searchResults);
+        adapter.set(searchAdapter);
+        searchAdapter.setRouteViewModel(this);
+        listener.set(scrollListener);
+        search1.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.length()==0)
+                {
+                    recyclerView.setVisibility(View.VISIBLE);
+                }
+                recyclerView.setVisibility(View.VISIBLE);
+                searchAdapter.getFilter().filter(s);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        search1.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
-                    searchView1.setBackground(searchView1.getResources().getDrawable(R.drawable.gradient_gray_bottom_border));
+                    search2.setVisibility(View.GONE);
+                    search1.setBackground(search1.getResources().getDrawable(R.drawable.gradient_gray_bottom_border));
+                } else {
+                    search2.setVisibility(View.VISIBLE);
+                    search1.setBackgroundResource(R.color.colorBlackLight);
                 }
-                else searchView1.setBackgroundResource(R.color.colorBlackLight);
             }
         });
-        searchView2.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
+        search2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        search2.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus)
-                    searchView2.setBackground(searchView2.getResources().getDrawable(R.drawable.gradient_gray_bottom_border));
-                else searchView2.setBackgroundResource(R.color.colorBlackLight);
+                if (hasFocus) {
+                    search1.setVisibility(View.GONE);
+                    search2.setBackground(search2.getResources().getDrawable(R.drawable.gradient_gray_bottom_border));
+                } else {
+                    search1.setVisibility(View.VISIBLE);
+                    search2.setBackgroundResource(R.color.colorBlackLight);
+                }
             }
         });
-
-        searchView1.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                            @Override
-                            public boolean onQueryTextSubmit(String query) {
-                                Log.d("halo", "onQueryTextSubmit:");
-                                return false;
-                            }
-
-                            @Override
-                            public boolean onQueryTextChange(final String newText) {
-//                                if(searchResults.contains(newText))
-//                                {
-                                    Log.d("halo", "onQueryTextChange:");
-                                    searchAdapter.getFilter().filter(newText);
-//                                    listView.setVisibility(View.VISIBLE);
-//                                }
-                                return false;
-                            }
-                        });
 
 
 //        timeSinceLastRequest = System.currentTimeMillis();
@@ -101,7 +134,7 @@ public class SetRouteViewModel extends BaseViewModel {
 //                    @Override
 //                    public void subscribe(final ObservableEmitter<String> emitter) throws Exception {
 //
-//                        searchView1.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//                        search1.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 //                            @Override
 //                            public boolean onQueryTextSubmit(String query) {
 //                                return false;
@@ -161,11 +194,39 @@ public class SetRouteViewModel extends BaseViewModel {
 
     }
 
+    public void onDoneClick() {
+
+    }
+
     public void onChangeDestClick() {
 
     }
 
     public void onDepartureTimeClick() {
 
+    }
+
+    private RecyclerView.OnScrollListener scrollListener = new RecyclerView.OnScrollListener() {
+        @Override
+        public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+            hideKeyboard(getActivity());
+            super.onScrollStateChanged(recyclerView, newState);
+        }
+
+        @Override
+        public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+            super.onScrolled(recyclerView, dx, dy);
+        }
+    };
+
+    public void hideKeyboard(Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        //Find the currently focused view, so we can grab the correct window token from it.
+        View view = activity.getCurrentFocus();
+        //If no view currently has focus, create a new one, just so we can grab a window token from it
+        if (view == null) {
+            view = new View(activity);
+        }
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 }

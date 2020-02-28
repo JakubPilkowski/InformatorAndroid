@@ -15,7 +15,7 @@ public abstract class BaseViewModel extends ViewModel {
         this.providers = providers;
     }
 
-    protected Activity getActivity() {
+    public Activity getActivity() {
         return providers.getActivity();
     }
     protected Navigator getNavigator(){
