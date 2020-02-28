@@ -131,26 +131,26 @@
                     android:fontFamily="@font/montserrat"
                     />
             </RelativeLayout>
-            <RelativeLayout
-                android:id="@+id/set_route_done"
-                android:visibility="gone"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_gravity="bottom"
-                android:background="@drawable/gradient_with_ripple"
-                android:onClick="@{()->viewModel.onDoneClick()}"
-                >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/done"
-                    android:layout_centerInParent="true"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="24sp"
-                    android:fontFamily="@font/montserrat"
-                    />
-            </RelativeLayout>
+<!--            <RelativeLayout-->
+<!--                android:id="@+id/set_route_done"-->
+<!--                android:visibility="gone"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="48dp"-->
+<!--                android:layout_gravity="bottom"-->
+<!--                android:background="@drawable/gradient_with_ripple"-->
+<!--                android:onClick="@{()->viewModel.onDoneClick()}"-->
+<!--                >-->
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="@string/done"-->
+<!--                    android:layout_centerInParent="true"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:textColor="@color/colorWhite"-->
+<!--                    android:textSize="24sp"-->
+<!--                    android:fontFamily="@font/montserrat"-->
+<!--                    />-->
+<!--            </RelativeLayout>-->
         </RelativeLayout>
     </LinearLayout>
 </layout>

@@ -3,6 +3,7 @@ package pl.android.informator.ui.timetable.set_route.set_route;
 import android.app.Activity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -18,8 +19,10 @@ import com.android.informator.databinding.SetRouteFragmentBinding;
 import java.util.ArrayList;
 
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import pl.android.informator.activities.MainActivity;
 import pl.android.informator.adapters.search.SearchAdapter;
 import pl.android.informator.base.BaseViewModel;
+import pl.android.informator.helpers.TextHelper;
 import pl.android.informator.models.SearchResult;
 
 public class SetRouteViewModel extends BaseViewModel {
@@ -35,12 +38,16 @@ public class SetRouteViewModel extends BaseViewModel {
     public EditText search1;
     public EditText search2;
     public RecyclerView recyclerView;
+    public int state;
+    public final int STATE_SEARCHING = 1;
+    public final int STATE_DEFAULT = 0;
+
 
     public void init() {
+        state = STATE_DEFAULT;
         search1 = ((SetRouteFragmentBinding) getBinding()).searchView1;
         search2 = ((SetRouteFragmentBinding) getBinding()).searchView2;
         nextButton = ((SetRouteFragmentBinding) getBinding()).setRouteNextButton;
-        doneButton = ((SetRouteFragmentBinding) getBinding()).setRouteDone;
         recyclerView = ((SetRouteFragmentBinding)getBinding()).setRouteRecyclerView;
         searchResults = new ArrayList<>();
         ArrayList<String> availableLines = new ArrayList<>();
@@ -73,11 +80,6 @@ public class SetRouteViewModel extends BaseViewModel {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s.length()==0)
-                {
-                    recyclerView.setVisibility(View.VISIBLE);
-                }
-                recyclerView.setVisibility(View.VISIBLE);
                 searchAdapter.getFilter().filter(s);
             }
 
@@ -90,7 +92,6 @@ public class SetRouteViewModel extends BaseViewModel {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
-                    search2.setVisibility(View.GONE);
                     search1.setBackground(search1.getResources().getDrawable(R.drawable.gradient_gray_bottom_border));
                 } else {
                     search2.setVisibility(View.VISIBLE);
@@ -106,7 +107,7 @@ public class SetRouteViewModel extends BaseViewModel {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+                searchAdapter.getFilter().filter(s);
             }
 
             @Override
@@ -118,7 +119,6 @@ public class SetRouteViewModel extends BaseViewModel {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
-                    search1.setVisibility(View.GONE);
                     search2.setBackground(search2.getResources().getDrawable(R.drawable.gradient_gray_bottom_border));
                 } else {
                     search1.setVisibility(View.VISIBLE);
@@ -193,9 +193,41 @@ public class SetRouteViewModel extends BaseViewModel {
     public void onNextClick() {
 
     }
-
+    public void onBackPressed(){
+        state = STATE_DEFAULT;
+        nextButton.setVisibility(View.VISIBLE);
+        searchAdapter = new SearchAdapter(searchResults);
+        adapter.set(searchAdapter);
+        searchAdapter.setRouteViewModel(this);
+        recyclerView.setVisibility(View.INVISIBLE);
+        search1.setVisibility(View.VISIBLE);
+        search2.setVisibility(View.VISIBLE);
+        ((MainActivity)getActivity()).viewModel.title.set(getFragment().getToolbarName());
+        ((MainActivity)getActivity()).viewModel.textSize.set(TextHelper.getPixels(TypedValue.COMPLEX_UNIT_DIP,getFragment().getToolbarFontSize()));
+        search1.clearFocus();
+        search2.clearFocus();
+    }
     public void onDoneClick() {
-
+        state = STATE_DEFAULT;
+        nextButton.setVisibility(View.VISIBLE);
+//        doneButton.setVisibility(View.GONE);
+        searchAdapter = new SearchAdapter(searchResults);
+        adapter.set(searchAdapter);
+        searchAdapter.setRouteViewModel(this);
+        recyclerView.setVisibility(View.INVISIBLE);
+        search1.setVisibility(View.VISIBLE);
+        search2.setVisibility(View.VISIBLE);
+        ((MainActivity)getActivity()).viewModel.title.set(getFragment().getToolbarName());
+        ((MainActivity)getActivity()).viewModel.textSize.set(TextHelper.getPixels(TypedValue.COMPLEX_UNIT_DIP,getFragment().getToolbarFontSize()));
+        if(search1.hasFocus()){
+            search1.clearFocus();
+            if(search2.getText().toString().length()==0)
+                search2.requestFocus();
+            return;
+        }
+        if(search2.hasFocus()){
+            search2.clearFocus();
+        }
     }
 
     public void onChangeDestClick() {

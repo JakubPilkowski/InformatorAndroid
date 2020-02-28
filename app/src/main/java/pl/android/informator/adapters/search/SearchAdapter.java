@@ -34,6 +34,8 @@ public class SearchAdapter extends BaseHeadAndItemRVAdapter<SearchResult, BaseVi
         this.fullItems = fullItems;
     }
 
+
+
     @Override
     public BaseViewHolder onCreateHeaderViewHolder(ViewGroup parent, int viewType, View itemView) {
         SearchLocalizationItemBinding binding = SearchLocalizationItemBinding.bind(itemView);

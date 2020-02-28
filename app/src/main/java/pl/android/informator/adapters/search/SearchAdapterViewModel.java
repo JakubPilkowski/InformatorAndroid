@@ -37,10 +37,13 @@ public class SearchAdapterViewModel extends BaseAdapterViewModel {
         if(viewModel.search1.hasFocus()){
             viewModel.search1.setText(searchResult.getBusStation());
             viewModel.hideKeyboard(viewModel.getActivity());
+            viewModel.onDoneClick();
+            return;
         }
         if(viewModel.search2.hasFocus()){
             viewModel.search2.setText(searchResult.getBusStation());
             viewModel.hideKeyboard(viewModel.getActivity());
+            viewModel.onDoneClick();
         }
     }
 }

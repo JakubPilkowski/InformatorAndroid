@@ -28,6 +28,7 @@ import pl.android.informator.base.BaseActivity;
 import pl.android.informator.base.BaseFragment;
 import pl.android.informator.helpers.AlertDialogManager;
 import pl.android.informator.helpers.ProgressDialogManager;
+import pl.android.informator.helpers.TextHelper;
 import pl.android.informator.interfaces.Providers;
 import pl.android.informator.navigation.Navigator;
 import pl.android.informator.ui.notice_board.add_notice.AddNoticeFragment;
@@ -44,6 +45,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainActivity
     public static final int REQUEST_SMS = 1003;
     public static final int RESULT_ACCESS_FINE_LOCATION = 1004;
     private static MainActivity INSTANCE;
+    private Menu menu;
     @Override
     protected void initActivity(ActivityMainBinding binding) {
         INSTANCE = this;
@@ -79,7 +81,21 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         navigationView.getMenu().clear();
         navigationView.inflateMenu(R.menu.navigation_view_menu);
+        getMenuInflater().inflate(R.menu.toolbar_menu,menu);
+        MenuItem menuItem= menu.getItem(0);
+        menuItem.setVisible(false);
+        menuItem.setEnabled(false);
+        this.menu = menu;
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case (R.id.action_reverse):
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -119,6 +135,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainActivity
     @Override
     public boolean onSupportNavigateUp() {
         drawerLayout.openDrawer(GravityCompat.START);
+        //hide keyboard
         return true;
     }
 
@@ -184,18 +201,24 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainActivity
             SetRouteFragment fragment = (SetRouteFragment) getCurrentFragment();
             Log.d("halo", "setKeyBoardEvent: ");
             if(isShown){
-                fragment.viewModel.doneButton.setVisibility(View.GONE);
+//                fragment.viewModel.doneButton.setVisibility(View.GONE);
                 fragment.viewModel.nextButton.setVisibility(View.GONE);
+                fragment.viewModel.state = fragment.viewModel.STATE_SEARCHING;
+                if(fragment.viewModel.search1.hasFocus()){
+                    viewModel.title.set(getResources().getString(R.string.start_location));
+                    viewModel.textSize.set(TextHelper.getPixels(TypedValue.COMPLEX_UNIT_DIP,16f));
+                    fragment.viewModel.search2.setVisibility(View.GONE);
+                    fragment.viewModel.recyclerView.setVisibility(View.VISIBLE);
+                }
+                if(fragment.viewModel.search2.hasFocus()){
+                    viewModel.title.set(getResources().getString(R.string.end_location));
+                    viewModel.textSize.set(TextHelper.getPixels(TypedValue.COMPLEX_UNIT_DIP,16f));
+                    fragment.viewModel.search1.setVisibility(View.GONE);
+                    fragment.viewModel.recyclerView.setVisibility(View.VISIBLE);
+                }
             }
-            else {
+            //                    fragment.viewModel.doneButton.setVisibility(View.VISIBLE);
 
-//                if(fragment.viewModel.search1.hasFocus() || fragment.viewModel.search2.hasFocus()){
-                    fragment.viewModel.doneButton.setVisibility(View.VISIBLE);
-//                }
-//                else{
-//                    fragment.viewModel.nextButton.setVisibility(View.VISIBLE);
-//                }
-            }
         }
     }
 

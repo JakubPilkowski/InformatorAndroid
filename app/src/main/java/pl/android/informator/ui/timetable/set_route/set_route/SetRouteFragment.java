@@ -52,7 +52,7 @@ public class SetRouteFragment extends BaseFragment<SetRouteFragmentBinding,SetRo
 
     @Override
     public float getToolbarFontSize() {
-        return 24;
+        return 18;
     }
 
     @Override
