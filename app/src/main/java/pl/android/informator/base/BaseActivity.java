@@ -11,6 +11,8 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ViewModelProviders;
 
 import pl.android.informator.navigation.Navigator;
+import pl.android.informator.ui.timetable.set_route.set_route.SetRouteFragment;
+import pl.android.informator.ui.timetable.set_route.set_route.SetRouteViewModel;
 
 public abstract class BaseActivity<B extends ViewDataBinding, VM extends BaseViewModel> extends AppCompatActivity {
 
@@ -26,31 +28,44 @@ public abstract class BaseActivity<B extends ViewDataBinding, VM extends BaseVie
         viewModel = ViewModelProviders.of(this).get(getViewModel());
         initActivity(binding);
     }
-    public BaseFragment getCurrentFragment(){
+
+    public BaseFragment getCurrentFragment() {
         return (BaseFragment) getSupportFragmentManager().findFragmentById(getIdFragmentContainer());
     }
 
     @Override
     public void onBackPressed() {
-        if(getSupportFragmentManager().getBackStackEntryCount()<=1)
+        if (getSupportFragmentManager().getBackStackEntryCount() <= 1)
             finish();
         else {
             BaseFragment fragment = getCurrentFragment();
-            switch (fragment.getBackPressType()){
-                case 0:
+            if (fragment instanceof SetRouteFragment) {
+                SetRouteFragment setRouteFragment = (SetRouteFragment) fragment;
+                if (setRouteFragment.viewModel.state == setRouteFragment.viewModel.STATE_DEFAULT) {
                     super.onBackPressed();
-                    break;
-                case 1:
-                    navigator.clearBackStack();
-                    break;
+                }
+                else {
+                    setRouteFragment.viewModel.onBackPressed();
+                }
+            } else {
+                switch (fragment.getBackPressType()) {
+                    case 0:
+                        super.onBackPressed();
+                        break;
+                    case 1:
+                        navigator.clearBackStack();
+                        break;
+                }
             }
         }
     }
+
     protected abstract void initActivity(B binding);
 
     protected abstract Class<VM> getViewModel();
 
     public abstract int getIdFragmentContainer();
+
     @LayoutRes
     public abstract int getLayoutRes();
 

@@ -31,6 +31,7 @@ import pl.android.informator.ui.timetable.line_timetables.line_details.LineDetai
 import pl.android.informator.ui.timetable.line_timetables.maps.MapFragment;
 import pl.android.informator.ui.timetable.line_timetables.single_line.SingleLineFragment;
 import pl.android.informator.ui.timetable.main.TimetableFragment;
+import pl.android.informator.ui.timetable.set_route.set_route.SetRouteFragment;
 import pl.android.informator.ui.weather.WeatherFragment;
 
 public class Navigator {
@@ -258,6 +259,16 @@ public class Navigator {
                 .beginTransaction()
                 .addToBackStack(TimetableFragment.TAG + LineDetailsFragment.TAG)
                 .replace(R.id.main_container, LineDetailsFragment.newInstance(stop, line), TimetableFragment.TAG + LineDetailsFragment.TAG)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .commit();
+    }
+
+    public void showSetRouteFragment() {
+        deleteUselessFragments(TimetableFragment.TAG);
+        activity.getSupportFragmentManager()
+                .beginTransaction()
+                .addToBackStack(TimetableFragment.TAG + SetRouteFragment.TAG)
+                .replace(R.id.main_container, SetRouteFragment.newInstance(), TimetableFragment.TAG + SetRouteFragment.TAG)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit();
     }

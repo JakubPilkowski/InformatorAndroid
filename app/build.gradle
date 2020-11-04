@@ -55,7 +55,6 @@ dependencies {
     implementation("com.github.bumptech.glide:recyclerview-integration:4.9.0") {
         transitive = false
     }
-    implementation 'androidx.exifinterface:exifinterface:1.2.0-beta01'
     /*
     Open street map
      */
@@ -68,4 +67,10 @@ dependencies {
     PreferenceManager
      */
     implementation "androidx.preference:preference:1.1.0"
+    /*
+    RxJava and RxAndroid
+     */
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
+
+    implementation 'io.reactivex.rxjava3:rxjava:3.0.0'
 }

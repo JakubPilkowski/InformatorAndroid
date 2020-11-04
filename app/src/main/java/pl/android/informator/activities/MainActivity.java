@@ -3,12 +3,16 @@ package pl.android.informator.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.os.Bundle;
-import android.os.PersistableBundle;
+import android.graphics.Rect;
+import android.os.Build;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,11 +28,13 @@ import pl.android.informator.base.BaseActivity;
 import pl.android.informator.base.BaseFragment;
 import pl.android.informator.helpers.AlertDialogManager;
 import pl.android.informator.helpers.ProgressDialogManager;
+import pl.android.informator.helpers.TextHelper;
 import pl.android.informator.interfaces.Providers;
 import pl.android.informator.navigation.Navigator;
 import pl.android.informator.ui.notice_board.add_notice.AddNoticeFragment;
 import pl.android.informator.ui.notice_board.notice_details.NoticeDetailsFragment;
 import pl.android.informator.ui.timetable.line_timetables.maps.MapFragment;
+import pl.android.informator.ui.timetable.set_route.set_route.SetRouteFragment;
 
 public class MainActivity extends BaseActivity<ActivityMainBinding, MainActivityViewModel> implements NavigationView.OnNavigationItemSelectedListener, Providers {
 
@@ -39,6 +45,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainActivity
     public static final int REQUEST_SMS = 1003;
     public static final int RESULT_ACCESS_FINE_LOCATION = 1004;
     private static MainActivity INSTANCE;
+    private Menu menu;
     @Override
     protected void initActivity(ActivityMainBinding binding) {
         INSTANCE = this;
@@ -50,6 +57,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainActivity
         navigationView = findViewById(R.id.nav_view);
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView.setNavigationItemSelectedListener(this);
+        setKeyboardVisibilityListener();
     }
     public static MainActivity getINSTANCE(){
         return INSTANCE;
@@ -73,7 +81,21 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         navigationView.getMenu().clear();
         navigationView.inflateMenu(R.menu.navigation_view_menu);
+        getMenuInflater().inflate(R.menu.toolbar_menu,menu);
+        MenuItem menuItem= menu.getItem(0);
+        menuItem.setVisible(false);
+        menuItem.setEnabled(false);
+        this.menu = menu;
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case (R.id.action_reverse):
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -113,6 +135,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainActivity
     @Override
     public boolean onSupportNavigateUp() {
         drawerLayout.openDrawer(GravityCompat.START);
+        //hide keyboard
         return true;
     }
 
@@ -144,6 +167,59 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainActivity
 
     public void refreshToolbar() {
         viewModel.refreshToolbar();
+    }
+
+
+    private void setKeyboardVisibilityListener() {
+        final View parentView = ((ViewGroup) findViewById(android.R.id.content)).getChildAt(0);
+        parentView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+
+            private boolean alreadyOpen;
+            private final int defaultKeyboardHeightDP = 100;
+            private final int EstimatedKeyboardDP = defaultKeyboardHeightDP + (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP ? 48 : 0);
+            private final Rect rect = new Rect();
+
+            @Override
+            public void onGlobalLayout() {
+                int estimatedKeyboardHeight = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, EstimatedKeyboardDP, parentView.getResources().getDisplayMetrics());
+                parentView.getWindowVisibleDisplayFrame(rect);
+                int heightDiff = parentView.getRootView().getHeight() - (rect.bottom - rect.top);
+                boolean isShown = heightDiff >= estimatedKeyboardHeight;
+
+                if (isShown == alreadyOpen) {
+                    Log.i("Keyboard state", "Ignoring global layout change...");
+                    return;
+                }
+                alreadyOpen = isShown;
+                setKeyBoardEvent(isShown);
+            }
+        });
+    }
+
+    private void setKeyBoardEvent(boolean isShown) {
+        if(getCurrentFragment() instanceof SetRouteFragment){
+            SetRouteFragment fragment = (SetRouteFragment) getCurrentFragment();
+            Log.d("halo", "setKeyBoardEvent: ");
+            if(isShown){
+//                fragment.viewModel.doneButton.setVisibility(View.GONE);
+                fragment.viewModel.nextButton.setVisibility(View.GONE);
+                fragment.viewModel.state = fragment.viewModel.STATE_SEARCHING;
+                if(fragment.viewModel.search1.hasFocus()){
+                    viewModel.title.set(getResources().getString(R.string.start_location));
+                    viewModel.textSize.set(TextHelper.getPixels(TypedValue.COMPLEX_UNIT_DIP,16f));
+                    fragment.viewModel.search2.setVisibility(View.GONE);
+                    fragment.viewModel.recyclerView.setVisibility(View.VISIBLE);
+                }
+                if(fragment.viewModel.search2.hasFocus()){
+                    viewModel.title.set(getResources().getString(R.string.end_location));
+                    viewModel.textSize.set(TextHelper.getPixels(TypedValue.COMPLEX_UNIT_DIP,16f));
+                    fragment.viewModel.search1.setVisibility(View.GONE);
+                    fragment.viewModel.recyclerView.setVisibility(View.VISIBLE);
+                }
+            }
+            //                    fragment.viewModel.doneButton.setVisibility(View.VISIBLE);
+
+        }
     }
 
     @Override
